@@ -1,0 +1,217 @@
+{
+  "name": "Tracer Study 2022",
+  "title": "Form Tracer Alumni",
+  "description": null,
+  "sections": [
+    {
+      "label": "IDENTITAS",
+      "description": "Section untuk isi identitas Anda.",
+      "order": 0,
+      "questions": [
+        {
+          "label": "NIM Mahasiswa",
+          "code": "nimhsmsmh",
+          "input_type": "text"
+        }
+      ]
+    },
+    {
+      "label": "PELACAKAN",
+      "description": "Section untuk isi data pelacakan alumni.",
+      "order": 0,
+      "questions": [
+        {
+          "label": "Menurut anda seberapa besar penekanan pada metode pembelajaran di bawah ini dilaksanakan di program studi anda?",
+          "info": null,
+          "code": "f2",
+          "input_type": null,
+          "options": null,
+          "question_childs": [
+            {
+              "label": "Perkuliahan",
+              "code": "f21",
+              "input_type": "single select",
+              "options": [
+                {
+                  "label": "Sangat Besar",
+                  "value": 1
+                },
+                {
+                  "label": "Besar",
+                  "value": 2
+                },
+                {
+                  "label": "Cukup Besar",
+                  "value": 3
+                }
+              ]
+            },
+            {
+              "label": "Demonstrasi ",
+              "code": "f22",
+              "input_type": "single select",
+              "options": [
+                {
+                  "label": "Sangat Besar",
+                  "value": 1
+                },
+                {
+                  "label": "Besar",
+                  "value": 2
+                },
+                {
+                  "label": "Cukup Besar",
+                  "value": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Kapan anda mulai mencari pekerjaan? Mohon pekerjaan sambilan tidak dimasukkan.",
+          "info": "Mohon pekerjaan sambilan tidak dimasukkan.",
+          "code": "f301",
+          "input_type": "single select",
+          "options": [
+            {
+              "label": "Sebelum Lulus",
+              "value": 1
+            },
+            {
+              "label": "Sesudah Lulus",
+              "value": 2
+            },
+            {
+              "label": "Saya tidak mencari kerja (langsung ke pertanyaan f9)",
+              "value": 3
+            }
+          ],
+          "question_childs": [],
+          "condition": [
+            {
+              "ifValue": 1,
+              "question": {
+                "label": "Berapa bulan sebelum lulus?",
+                "code": "f302",
+                "input_type": "number"
+              }
+            },
+            {
+              "ifValue": 2,
+              "question": {
+                "label": "Berapa bulan setelah lulus?",
+                "code": "f303",
+                "input_type": "number"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Bagaimana anda mencari pekerjaan tersebut?",
+          "info": null,
+          "code": "f4",
+          "input_type": null,
+          "options": null,
+          "question_childs": [
+            {
+              "label": "Melalui iklan di koran/majalah, brosur",
+              "code": "f401",
+              "input_type": "self checkbox",
+              "options": null
+            },
+            {
+              "label": "Melamar ke perusahaan tanpa mengetahui lowongan yang ada",
+              "code": "f401",
+              "input_type": "self checkbox",
+              "options": null
+            },
+            {
+              "label": "Lainnya",
+              "code": "f415",
+              "input_type": "self checkbox",
+              "options": null,
+              "question_childs": [],
+              "condition": [
+                {
+                  "ifValue": "f415",
+                  "question": {
+                    "label": "Tuliskan dibawah ini bagaimana?",
+                    "code": "f416",
+                    "input_type": "text"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Kira kira berapa pendapatan anda setiap bulannya ?",
+          "info": null,
+          "code": "f13",
+          "input_type": null,
+          "options": null,
+          "question_childs": [
+            {
+              "label": "Dari Pekerjaan Utama",
+              "code": "f1301",
+              "input_type": "money"
+            },
+            {
+              "label": "Dari Lembur dan Tips",
+              "code": "f1302",
+              "input_type": "money"
+            },
+            {
+              "label": "Dari Pekerjaan Lainnya",
+              "code": "f1303",
+              "input_type": "money"
+            }
+          ]
+        },
+        {
+          "label": "(A) Pada saat lulus, pada tingkat mana kompetensi di bawah ini anda kuasai? (B) Pada saat ini, pada tingkat mana kompetensi di bawah ini diperlukan dalam pekerjaan?",
+          "info": null,
+          "code": "f17",
+          "input_type": null,
+          "options": null,
+          "question_childs": [
+            {
+              "label": "Pengetahuan di bidang atau disiplin ilmu anda",
+              "code": null,
+              "input_type": null,
+              "question_childs": [
+                {
+                  "label": "A",
+                  "code": "f1701",
+                  "input_type": "rating"
+                },
+                {
+                  "label": "B",
+                  "code": "f1702b",
+                  "input_type": "rating"
+                }
+              ]
+            },
+            {
+              "label": "Pengetahuan di luar bidang atau disiplin ilmu anda",
+              "code": null,
+              "input_type": null,
+              "question_childs": [
+                {
+                  "label": "A",
+                  "code": "f1703",
+                  "input_type": "rating"
+                },
+                {
+                  "label": "B",
+                  "code": "f1704b",
+                  "input_type": "rating"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
