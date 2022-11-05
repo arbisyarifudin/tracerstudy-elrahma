@@ -1,273 +1,330 @@
 <template>
   <aside
-    class="
-      sidebar
-      bg-gray-900
-      fixed
-      h-full
-      z-50
-      w-[78px]
-      md:w-1/6
-      top-0
-      left-0
-      transition-all
-      ease-out-out
-      text-white
-    "
-    :class="[closed ? 'closed md:w-[78px]' : '']"
+    id="sidebar"
+    class="sidebar bg-slate-800"
+    :class="[closed ? 'sidebar-hide' : '']"
   >
-    <button @click="closed = !closed">Toggle</button>
-    <div class="logo-details h-10 w-full flex items-center">
-      <i
-        class="
-          bx
-          bxl-c-plus-plus
-          min-w-[78px]
-          h-10
-          text-xl text-center
-          !leading-10
-        "
-      ></i>
-      <span
-        class="logo_name text-xl font-semibold transition ease-out duration-300"
-        :class="[
-          closed ? 'opacity-0 delay-0 pointer-events-none' : 'delay-100',
-        ]"
-        >KPTracerStudy</span
-      >
-    </div>
-    <ul
-      class="nav-links h-full pt-7 px-0 pb-36"
-      :class="[closed ? 'overflow-visible' : 'overflow-auto']"
+    <div
+      class="sidebar-logo bg-slate-800 flex items-center justify-center mb-3"
     >
+      <span class="text-white text-lg font-bold">LOGO</span>
+    </div>
+    <ul class="menu flex flex-col items-start justify-center w-full">
       <li
-        class="relative transition-all duration-300 ease-out hover:bg-slate-800"
+        v-for="(menu, i) in menus"
+        :key="i"
+        class="
+          menu-item
+          flex
+          items-center
+          justify-center
+          md:justify-start
+          cursor-pointer
+          h-14
+          md:h-auto
+          w-full
+          hover:bg-slate-800
+          text-slate-300
+          hover:text-white
+          transition
+          duraton-300
+          group
+        "
       >
-        <a href="#" class="flex items-center">
-          <i
-            class="
-              bx bx-grid-alt
-              h-10
-              min-w-[78px]
-              text-center
-              !leading-10
-              text-xl
-              cursor-pointer
-              transition-all
-              duration-300
-              ease-out
-            "
-          ></i>
+        <router-link
+          v-if="!menu.childs || (menu.childs && menu.childs < 1)"
+          :to="menu.path"
+          class="
+            flex flex-col
+            w-full
+            md:flex-row
+            items-center
+            justify-start
+            md:px-4 md:py-4
+          "
+          :class="[routeActiveName === menu.activeName ? 'active' : '']"
+        >
+          <!-- <ph-circles-four :size="25" class="md:mr-3" /> -->
+          <component
+            :is="`ph-${menu.icon}`"
+            :size="25"
+            class="md:mr-3"
+          ></component>
           <span
-            class="
-              link_name
-              text-lg
-              font-normal
-              transition-all
-              duration-300
-              ease-out
-            "
-            :class="[closed ? 'opacity-0 pointer-events-none' : '']"
-            >Dashboard</span
-          >
-        </a>
-        <ul
-          class="sub-menu blank bg-slate-800 absolute left-[100%]"
-          :class="[
-            closed
-              ? '-top-3 mt-0 py-3 px-5 opacity-0 block pointer-events-none transition duration-[0s] rounded-r-md'
-              : 'opacity-100 pointer-events-auto pt-2 pr-2 pb-4 pl-20',
-          ]"
-        >
-          <li>
-            <a
-              class="link_name"
-              :class="[closed ? 'text-lg opacity-100 block' : 'hidden']"
-              href="#"
-              >Category</a
-            >
-          </li>
-        </ul>
-      </li>
-      <li
-        class="relative transition-all duration-300 ease-out hover:bg-slate-800"
-      >
+            class="font-semibold hidden md:inline-block text-xl"
+            v-text="menu.title"
+          ></span
+        ></router-link>
         <div
-          class="iocn-link items-center justify-between"
-          :class="[closed ? 'block' : 'flex']"
+          v-else
+          class="
+            flex flex-col
+            w-full
+            items-center
+            md:items-start
+            justify-start
+            md:px-4 md:py-4
+            relative
+          "
+          :class="[routeActiveName === menu.activeName ? 'active' : '']"
+          v-click-outside="collapseChild"
         >
-          <a href="#" class="flex items-center">
-            <i
+          <div
+            class="menu-item__parent flex md:w-full"
+            @click="menu.expand = !menu.expand"
+          >
+            <component
+              :is="`ph-${menu.icon}`"
+              :size="25"
+              class="md:mr-3"
+            ></component>
+            <div class="hidden md:flex flex-1">
+              <span
+                class="flex-1 font-semibold text-xl"
+                v-text="menu.title"
+              ></span>
+              <ph-caret-down
+                :size="25"
+                class="menu-item__caret"
+                :class="menu.expand ? 'open' : ''"
+              />
+            </div>
+          </div>
+          <transition name="slide-fade" :duration="100">
+            <ul
               class="
-                bx bx-collection
-                h-10
-                min-w-[78px]
-                text-center
-                !leading-10
-                text-xl
-                cursor-pointer
+                menu-item__child
+                md:pl-6
+                mt-2
+                leading-8
+                md:w-full
                 transition-all
-                duration-300
-                ease-out
+                md:static
+                absolute
+                top-0
+                right-0
+                md:bg-transparent
+                bg-slate-900
+                z-20
+                p-2
+                rounded-r-lg
+                min-w-[140px]
+                translate-x-[140px]
+                md:translate-x-0
               "
-            ></i>
-            <span
-              class="
-                link_name
-                text-lg
-                font-normal
-                transition-all
-                duration-300
-                ease-out
-              "
-              :class="[closed ? 'opacity-0 pointer-events-none' : '']"
-              >Category</span
+              v-show="menu.expand"
             >
-          </a>
-          <i
-            class="
-              bx
-              bxs-chevron-down
-              arrow
-              h-10
-              min-w-[78px]
-              text-center
-              !leading-10
-              text-xl
-              cursor-pointer
-              transition-all
-              duration-300
-              ease-out
-            "
-            :class="[closed ? '!hidden' : 'inline']"
-          ></i>
+              <li
+                v-for="(submenu, i2) in menu.childs"
+                :key="i2"
+                class="
+                  menu-item__child-item
+                  text-slate-400
+                  hover:text-white hover:font-semibold
+                  transition-all
+                  duration-200
+                "
+              >
+                <router-link
+                  :to="submenu.path"
+                  class="
+                    flex flex-col
+                    w-full
+                    md:flex-row md:items-center
+                    justify-start
+                  "
+                >
+                  <component
+                    :is="`ph-${submenu.icon}`"
+                    :size="25"
+                    class="md:mr-3"
+                  ></component>
+                  <span
+                    class="font-normal md:inline-block"
+                    v-text="submenu.title"
+                  ></span
+                ></router-link>
+              </li>
+            </ul>
+          </transition>
         </div>
-        <ul
-          class="sub-menu bg-slate-800 absolute left-[100%]"
-          :class="[
-            closed
-              ? '-top-3 mt-0 py-3 px-5 opacity-0 block pointer-events-none transition duration-[0s] rounded-r-md'
-              : 'pt-2 pr-2 pb-4 pl-20',
-          ]"
-        >
-          <li>
-            <a
-              class="
-                link_name
-                text-lg
-                py-2
-                whitespace-nowrap
-                opacity-100
-                hover:opacity-100
-                transition-all
-                duration-300
-                ease-out
-              "
-              :class="[closed ? 'text-lg opacity-100 block' : 'hidden']"
-              href="#"
-              >Category</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="
-                block
-                text-base
-                py-2
-                whitespace-nowrap
-                opacity-60
-                hover:opacity-100
-                transition-all
-                duration-300
-                ease-out
-              "
-              >HTML & CSS</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="
-                block
-                text-base
-                py-2
-                whitespace-nowrap
-                opacity-60
-                hover:opacity-100
-                transition-all
-                duration-300
-                ease-out
-              "
-              >JavaScript</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="
-                block
-                text-base
-                py-2
-                whitespace-nowrap
-                opacity-60
-                hover:opacity-100
-                transition-all
-                duration-300
-                ease-out
-              "
-              >PHP & MySQL</a
-            >
-          </li>
-        </ul>
       </li>
     </ul>
   </aside>
 </template>
 
 <script setup>
+import { ref } from '@vue/reactivity';
+import { useNavigationStore } from '@/store/navigation';
+import { computed, onMounted, watch } from '@vue/runtime-core';
+import { useRoute } from 'vue-router';
+
 defineProps({
   closed: {
     type: Boolean,
     default: true,
   },
 });
+
+const menus = ref([
+  {
+    title: 'Dashboard',
+    icon: 'circles-four',
+    path: {
+      name: 'Dashboard Page',
+    },
+    activeName: 'Dashboard',
+    expand: false,
+  },
+  {
+    title: 'Data Master',
+    icon: 'database',
+    activeName: 'Master',
+    expand: false,
+    childs: [
+      {
+        title: 'Angkatan',
+        path: {
+          name: 'Batch List Page',
+        },
+        activeName: 'Master',
+      },
+      {
+        title: 'Program Studi',
+        path: {
+          name: 'Major List Page',
+        },
+        activeName: 'Master',
+      },
+      {
+        title: 'Peminatan',
+        path: {
+          name: 'Major Interest List Page',
+        },
+        activeName: 'Master',
+      },
+    ],
+  },
+  {
+    title: 'Alumni',
+    icon: 'users-four',
+    path: {
+      name: 'Alumni List Page',
+    },
+    activeName: 'Alumni',
+    expand: false,
+  },
+  {
+    title: 'Pengguna',
+    icon: 'users',
+    path: {
+      name: 'User List Page',
+    },
+    activeName: 'User',
+    expand: false,
+  },
+]);
+
+const collapseChild = () => {
+  // console.log('window.innerWidth', window.innerWidth);
+  if (window.innerWidth < 768) {
+    for (let i = 0; i < menus.value.length; i++) {
+      menus.value[i].expand = false;
+    }
+  }
+};
+
+const $route = useRoute();
+const navigationStore = useNavigationStore();
+const routeActiveName = computed(() => {
+  return navigationStore.routeActiveName;
+});
+const checkRouteActiveName = () => {
+  switch ($route.name) {
+    case 'Dashboard Page':
+      navigationStore.setRouteActiveName('Dashboard');
+      break;
+    case 'Batch List Page':
+    case 'Major List Page':
+    case 'Major Interest List Page':
+      navigationStore.setRouteActiveName('Master');
+      break;
+    case 'Alumni List Page':
+      navigationStore.setRouteActiveName('Alumni');
+      break;
+    case 'User List Page':
+      navigationStore.setRouteActiveName('User');
+      break;
+    default:
+      navigationStore.setRouteActiveName(null);
+      break;
+  }
+
+  const findActiveMenu = menus.value.find(
+    (v) => v.activeName === routeActiveName.value
+  );
+  if (findActiveMenu) {
+    findActiveMenu.expand = true;
+  }
+};
+
+watch(
+  () => $route.name,
+  (val) => {
+    console.log('route name:', val);
+    checkRouteActiveName();
+  }
+);
+
+onMounted(() => {
+  checkRouteActiveName();
+});
 </script>
 
 <style lang="scss" scoped>
-.sidebar {
-  /* width: 260px; */
-  /* transition: all 0.5s ease-out; */
-  @media (max-width: 400px) {
-    &.closed {
-      left: -78px;
+#sidebar {
+  width: calc(50px + 32px);
+  transition: all 0.3s ease-out;
+  &.sidebar-hide {
+    width: 0;
+  }
+  .sidebar {
+    &-logo {
+      width: 100%;
+      // height: calc(50px + 32px);
+      height: calc(30px + 32px);
     }
   }
-  .nav-links {
-    @media (max-width: 400px) {
-      overflow: visible;
-      li .link_name {
-        display: block !important;
+
+  .menu {
+    &-item {
+      > .router-link-exact-active,
+      // > .router-link-active,
+      > .active {
+        color: #fff;
+        svg {
+          color: rgba(37, 99, 235, 1);
+        }
       }
-      .sub-menu {
-        padding-left: 20px;
-        top: 0;
-        left: 100%;
+      &__caret {
+        transition: all 0.3s ease-out;
+        &.open {
+          transform: rotate(-180deg);
+        }
       }
-    }
-  }
-  &.closed {
-    width: 78px;
-    .nav-links {
-      li:hover {
-        .sub-menu {
-          top: 0;
-          opacity: 1 !important;
-          pointer-events: auto;
-          transition: all 0.4s ease-out;
+      &__child {
+        transition: all 0.3s ease-out;
+        .router-link-exact-active {
+          color: #fff;
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #sidebar {
+    width: calc((50px * 5) + 32px);
   }
 }
 </style>

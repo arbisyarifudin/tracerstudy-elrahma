@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-1">
     <Sidebar :closed="closed" />
-    <!-- <SidebarBak /> -->
-    <Main :closed="closed" @closeSidebar="onCloseSidebar" />
+    <Main :closed="closed" @closeSidebar="onCloseSidebar">
+      <router-view></router-view>
+    </Main>
   </div>
 </template>
 
 <script setup>
 import Sidebar from '@/components/Sidebar.vue';
-import SidebarBak from '@/components/Sidebar.Bak.vue';
 import Main from '@/components/Main.vue';
 import { ref } from '@vue/reactivity';
 
