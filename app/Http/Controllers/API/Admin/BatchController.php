@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Repositories\Admin\Batch\DestroyHandling;
 use App\Repositories\Admin\Batch\ListHandling;
 use App\Repositories\Admin\Batch\StoreHandling;
+use App\Repositories\Admin\Batch\UpdateHandling;
 use Illuminate\Http\Request;
 
 class BatchController extends ApiController
@@ -39,6 +40,18 @@ class BatchController extends ApiController
     {
         try {
             $executor = new DestroyHandling($request, $id);
+            $data = $executor->handle();
+
+            return $this->responseData($data);
+        } catch (\Exception $e) {
+            return $this->responseException($e);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $executor = new UpdateHandling($request, $id);
             $data = $executor->handle();
 
             return $this->responseData($data);

@@ -20,7 +20,16 @@
       <template v-slot:body-cell-action="props">
         <td>
           <div class="flex">
-            <Button size="sm" label="Edit" class="mr-2" />
+            <Button
+              size="sm"
+              label="Edit"
+              class="mr-2"
+              @click="
+                isEditMode = true;
+                showDialogAdd = true;
+                state = props.row;
+              "
+            />
             <Button
               variant="danger"
               size="sm"
@@ -35,10 +44,10 @@
       </template>
     </MyTable>
     <Modal
-      title="Tambah Angkatan"
+      :title="`${isEditMode ? 'Edit' : 'Tambah'} Angkatan`"
       :show="showDialogAdd"
       :loading="loading"
-      @close="showDialogAdd = false"
+      @close="onCloseDialog"
       @confirm="submitBatch"
     >
       <template #content>
@@ -59,7 +68,7 @@
       title="Hapus Angkatan"
       :show="showDialogDelete"
       :loading="loading"
-      @close="showDialogDelete = false"
+      @close="onCloseDialog"
     >
       <template #content>
         <div class="p-4">
@@ -156,12 +165,12 @@ onMounted(() => {
   getData();
 });
 
-/* ADD ANGKATAN */
+/* ADD & EDIT ANGKATAN */
 
 const { showLoading } = useLoading();
 const showDialogAdd = ref(false);
 const loading = ref(false);
-
+const isEditMode = ref(false);
 const state = ref({
   year: new Date().getFullYear(),
 });
@@ -170,15 +179,53 @@ const errors = ref({
   year: null,
 });
 
+const onCloseDialog = () => {
+  showDialogAdd.value = false;
+  showDialogDelete.value = false;
+  isEditMode.value = false;
+  state.value = {};
+};
+
 const submitBatch = () => {
   loading.value = true;
   showLoading(true);
+  if (isEditMode.value === true) {
+    updateData();
+  } else {
+    saveData();
+  }
+  onCloseDialog();
+};
+
+const saveData = () => {
   axios
     .post('api/batch', state.value)
     .then((response) => {
       console.log('res', response.data);
       showDialogAdd.value = false;
       // rows.value.push(response.data.data);
+      getData();
+    })
+    .catch((error) => {
+      console.log('err', error.response.data);
+      if (error.response.status !== 422) {
+        showAlert(error.response.message);
+      } else {
+        errors.value = error.response.data.errors;
+      }
+    })
+    .finally(() => {
+      showLoading(false);
+      loading.value = false;
+    });
+};
+
+const updateData = () => {
+  axios
+    .put('api/batch/' + state.value.id, state.value)
+    .then((response) => {
+      console.log('res', response.data);
+      showDialogAdd.value = false;
       getData();
     })
     .catch((error) => {

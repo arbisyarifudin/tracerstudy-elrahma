@@ -25,11 +25,13 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'batch'], function ($routes) {
     $routes->get('', [BatchController::class, 'list']);
     $routes->post('', [BatchController::class, 'store']);
+    $routes->put('{id}', [BatchController::class, 'update']);
     $routes->delete('{id}', [BatchController::class, 'delete']);
 });
 Route::group(['prefix' => 'major'], function ($routes) {
     $routes->get('', [MajorController::class, 'list']);
     $routes->post('', [MajorController::class, 'store']);
+    $routes->put('{id}', [MajorController::class, 'update']);
     $routes->delete('{id}', [MajorController::class, 'delete']);
 });
 // });
