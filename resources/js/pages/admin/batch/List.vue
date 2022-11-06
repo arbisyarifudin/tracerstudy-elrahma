@@ -165,12 +165,13 @@ onMounted(() => {
   getData();
 });
 
-/* ADD & EDIT ANGKATAN */
-
-const { showLoading } = useLoading();
-const showDialogAdd = ref(false);
 const loading = ref(false);
 const isEditMode = ref(false);
+
+/* ADD & EDIT ANGKATAN */
+const { showLoading } = useLoading();
+const showDialogAdd = ref(false);
+
 const state = ref({
   year: new Date().getFullYear(),
 });
@@ -178,13 +179,6 @@ const state = ref({
 const errors = ref({
   year: null,
 });
-
-const onCloseDialog = () => {
-  showDialogAdd.value = false;
-  showDialogDelete.value = false;
-  isEditMode.value = false;
-  state.value = {};
-};
 
 const submitBatch = () => {
   loading.value = true;
@@ -194,7 +188,6 @@ const submitBatch = () => {
   } else {
     saveData();
   }
-  onCloseDialog();
 };
 
 const saveData = () => {
@@ -205,6 +198,7 @@ const saveData = () => {
       showDialogAdd.value = false;
       // rows.value.push(response.data.data);
       getData();
+      onCloseDialog();
     })
     .catch((error) => {
       console.log('err', error.response.data);
@@ -227,6 +221,7 @@ const updateData = () => {
       console.log('res', response.data);
       showDialogAdd.value = false;
       getData();
+      onCloseDialog();
     })
     .catch((error) => {
       console.log('err', error.response.data);
@@ -243,7 +238,6 @@ const updateData = () => {
 };
 
 /* DELETE ANGKATAN */
-
 const selectedData = ref({
   id: null,
   year: null,
@@ -273,6 +267,14 @@ const deleteBatch = () => {
       showLoading(false);
       loading.value = false;
     });
+};
+
+const onCloseDialog = () => {
+  showDialogAdd.value = false;
+  showDialogDelete.value = false;
+  isEditMode.value = false;
+  state.value = {};
+  errors.value = {};
 };
 </script>
 

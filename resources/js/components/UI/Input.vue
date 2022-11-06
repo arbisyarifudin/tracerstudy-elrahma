@@ -63,7 +63,7 @@ const $props = defineProps({
   },
   errors: {
     type: [String, Object, Array],
-    default: [],
+    default: {},
   },
 });
 
