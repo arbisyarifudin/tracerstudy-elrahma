@@ -40,7 +40,7 @@ const routes = [
         meta: {
           title: 'Program Studi'
         },
-        component: Dashboard
+        component: () => import('@/pages/admin/major/List.vue')
       },
       {
         path: 'major-interest',

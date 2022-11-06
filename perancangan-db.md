@@ -14,6 +14,7 @@
 - id
 - code UNIQUE
 - name
+- level
 
 ## major_interests
 - id
@@ -28,6 +29,10 @@
 - email 
 - password
 - email_verified_at
+
+## batchs
+- id
+- name
 
 ## alumni
 - id

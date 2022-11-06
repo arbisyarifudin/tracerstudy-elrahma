@@ -1,0 +1,34 @@
+<template>
+  <div
+    class="
+      bg-black/25
+      fixed
+      z-90
+      top-0
+      left-0
+      flex
+      items-center
+      justify-center
+      w-full
+      h-full
+    "
+    role="status"
+    aria-label="loading"
+  >
+    <div
+      class="
+        w-20
+        h-20
+        animate-spin
+        inline-block
+        border-[3px] border-current border-t-transparent
+        text-white
+        rounded-full
+        relative
+        z-100
+      "
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</template>

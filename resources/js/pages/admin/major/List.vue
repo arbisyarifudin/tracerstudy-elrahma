@@ -3,7 +3,9 @@
     <MyTable :columns="columns" :datas="rows" :pagination="pagination">
       <template #header>
         <div class="flex items-center justify-between">
-          <div class="text-2xl font-medium text-slate-700 mb-3">Angkatan</div>
+          <div class="text-2xl font-medium text-slate-700 mb-3">
+            Program Studi
+          </div>
           <Button label="Tambah" icon="plus" @click="showDialogAdd = true" />
         </div>
       </template>
@@ -12,9 +14,19 @@
           {{ props.index + 1 }}
         </td>
       </template>
-      <template v-slot:body-cell-year="props">
+      <template v-slot:body-cell-code="props">
         <td>
-          {{ props.row.year }}
+          {{ props.row.code }}
+        </td>
+      </template>
+      <template v-slot:body-cell-name="props">
+        <td>
+          {{ props.row.name }}
+        </td>
+      </template>
+      <template v-slot:body-cell-level="props">
+        <td>
+          {{ props.row.level }}
         </td>
       </template>
       <template v-slot:body-cell-action="props">
@@ -35,7 +47,7 @@
       </template>
     </MyTable>
     <Modal
-      title="Tambah Angkatan"
+      title="Tambah Program Studi"
       :show="showDialogAdd"
       :loading="loading"
       @close="showDialogAdd = false"
@@ -44,19 +56,30 @@
       <template #content>
         <div class="p-4">
           <Input
-            label="Tahun Angkatan"
-            placeholder="Tuliskan tahun angkatan"
-            type="number"
-            v-model="state.year"
-            :max="2050"
-            :errors="errors.year"
-            @change="errors.year = null"
+            label="Kode Prodi"
+            placeholder="Tuliskan kode prodi"
+            v-model="state.code"
+            :errors="errors.code"
+            @change="errors.code = null"
+          ></Input>
+          <Input
+            label="Nama Prodi"
+            placeholder="Tuliskan name prodi"
+            v-model="state.name"
+            :errors="errors.name"
+            @change="errors.name = null"
+          ></Input>
+          <Input
+            label="Jenjang"
+            v-model="state.level"
+            :errors="errors.level"
+            @change="errors.level = null"
           ></Input>
         </div>
       </template>
     </Modal>
     <Modal
-      title="Hapus Angkatan"
+      title="Hapus Program Studi"
       :show="showDialogDelete"
       :loading="loading"
       @close="showDialogDelete = false"
@@ -101,8 +124,18 @@ const columns = [
     width: 80,
   },
   {
-    label: 'Angkatan',
-    name: 'year',
+    label: 'Kode',
+    name: 'code',
+    align: 'left',
+  },
+  {
+    label: 'Nama Prodi',
+    name: 'name',
+    align: 'left',
+  },
+  {
+    label: 'Jenjang',
+    name: 'level',
     align: 'left',
   },
   {
@@ -124,11 +157,11 @@ const pagination = ref({
 const getData = () => {
   showLoading(true);
   axios
-    .get('api/batch', {
+    .get('api/major', {
       params: {
         size: pagination.value.size,
         page: pagination.value.page,
-        sortBy: 'year',
+        sortBy: 'created_at',
         sortDir: 'asc',
       },
     })
@@ -163,18 +196,22 @@ const showDialogAdd = ref(false);
 const loading = ref(false);
 
 const state = ref({
-  year: new Date().getFullYear(),
+  code: '',
+  name: '',
+  level: 'S1',
 });
 
 const errors = ref({
-  year: null,
+  code: null,
+  name: null,
+  level: null,
 });
 
 const submitBatch = () => {
   loading.value = true;
   showLoading(true);
   axios
-    .post('api/batch', state.value)
+    .post('api/major', state.value)
     .then((response) => {
       console.log('res', response.data);
       showDialogAdd.value = false;
@@ -208,7 +245,7 @@ const deleteBatch = () => {
   loading.value = true;
   showLoading(true);
   axios
-    .delete('api/batch/' + selectedData.value.id)
+    .delete('api/major/' + selectedData.value.id)
     .then((response) => {
       console.log('res', response.data);
       showDialogDelete.value = false;

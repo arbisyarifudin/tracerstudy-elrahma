@@ -1,0 +1,165 @@
+<template>
+  <div class="mytable rounded-xl border shadow-xl p-5 bg-white">
+    <slot name="header" />
+    <table class="table-auto w-full divide-y divide-gray-300">
+      <thead class="divide-y divide-gray-300">
+        <tr class="uppercase">
+          <th
+            v-for="(column, c) in columns"
+            :key="c"
+            :align="column.align"
+            :width="column.width"
+            class="p-4 text-sm font-medium text-gray-500"
+          >
+            {{ column.label }}
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-300">
+        <tr v-for="(row, i) in rows" :key="i" class="hover:bg-slate-100">
+          <td
+            v-for="(column, c) in columns"
+            :key="c"
+            :align="column.align"
+            class="
+              px-6
+              py-4
+              whitespace-nowrap
+              text-sm text-gray-800
+              dark:text-gray-200
+            "
+          >
+            <slot
+              :name="`body-cell-${column.name}`"
+              :row="row"
+              :index="generateIndex(i)"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <slot name="pagination">
+      <nav class="flex items-center justify-end space-x-2">
+        <a
+          class="p-4 inline-flex items-center gap-2 rounded-md"
+          :class="[
+            pagination.page > 1
+              ? 'text-gray-400 hover:text-blue-800 cursor-pointer'
+              : 'pointer-events-none opacity-50',
+          ]"
+          @click="pagination.page -= 1"
+        >
+          <span aria-hidden="true">«</span>
+          <span>Previous</span>
+        </a>
+        <a
+          v-for="page in pagination.totalPage"
+          :key="page"
+          class="
+            w-10
+            h-10
+            p-4
+            inline-flex
+            items-center
+            text-sm
+            font-medium
+            rounded-full
+          "
+          :class="[
+            page === pagination.page
+              ? 'bg-blue-800 text-white'
+              : 'text-gray-500 hover:text-blue-800 cursor-pointer',
+          ]"
+          aria-current="page"
+          @click.prevent="pagination.page = page"
+          >{{ page }}</a
+        >
+        <a
+          class="p-4 inline-flex items-center gap-2 rounded-md"
+          :class="[
+            pagination.page < pagination.totalPage
+              ? 'text-gray-400 hover:text-blue-800 cursor-pointer'
+              : 'pointer-events-none opacity-50',
+          ]"
+          @click="pagination.page += 1"
+        >
+          <span>Next</span>
+          <span aria-hidden="true">»</span>
+        </a>
+      </nav>
+    </slot>
+  </div>
+</template>
+
+<script setup>
+import { ref } from '@vue/reactivity';
+import { onMounted, watch } from '@vue/runtime-core';
+
+const $props = defineProps({
+  title: {
+    type: String,
+    default: null,
+  },
+  columns: {
+    type: Object,
+    default: [],
+  },
+  datas: {
+    type: Object,
+    default: [],
+  },
+  pagination: {
+    type: Object,
+    default: {
+      size: 1,
+      page: 1,
+      totalPage: 1,
+      totalData: 1,
+    },
+  },
+});
+
+const rows = ref([]);
+
+const columnNames = $props.columns.map((v) => v.name);
+columnNames.push('id');
+
+watch(
+  () => $props.datas,
+  (newValue) => {
+    rows.value = [];
+    newValue.forEach((item) => {
+      const itemFiltered = Object.keys(item)
+        .filter((key) => columnNames.includes(key))
+        .reduce((cur, key) => {
+          return Object.assign(cur, { [key]: item[key] });
+        }, {});
+      rows.value.push(itemFiltered);
+    });
+  }
+);
+
+const generateIndex = (currIndex) => {
+  const index =
+    ($props.pagination.page - 1) * $props.pagination.size + currIndex;
+  return index;
+};
+</script>
+
+<style lang="scss" scoped>
+// .mytable {
+//   width: 100%;
+//   thead {
+//     tr {
+//       background-color: #ddd;
+//     }
+//   }
+//   tr {
+//     th,
+//     td {
+//       border: 1px solid #ddd;
+//       padding: 10px 20px;
+//     }
+//   }
+// }
+</style>

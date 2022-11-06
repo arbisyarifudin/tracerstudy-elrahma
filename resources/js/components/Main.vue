@@ -6,7 +6,7 @@
       w-full
       relative
       bg-slate-100
-      h-screen
+      min-h-screen
       transition-all
       duration-500
       ease-out

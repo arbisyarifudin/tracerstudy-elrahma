@@ -3,7 +3,14 @@ import { createPinia } from 'pinia'
 
 import AppComponent from './App.vue'
 import router from './router/index'
+
+/* ICONSET */
 import PhosphorVue from 'phosphor-vue'
+
+/* AXIOS */
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+axios.defaults.baseURL = import.meta.env.VITE_APP_URL
 
 const pinia = createPinia()
 const app = createApp({
@@ -15,6 +22,7 @@ const app = createApp({
 app.use(pinia)
 app.use(router)
 app.use(PhosphorVue)
+app.use(VueAxios, axios)
 
 app.directive('click-outside', {
   beforeMount: (el, binding) => {
@@ -32,4 +40,5 @@ app.directive('click-outside', {
   }
 })
 
+app.provide('axios', app.config.globalProperties.axios) // provide 'axios'
 app.mount('#app')
