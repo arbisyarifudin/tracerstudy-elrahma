@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Repositories\Admin\Major\DestroyHandling;
 use App\Repositories\Admin\Major\ListHandling;
 use App\Repositories\Admin\Major\StoreHandling;
+use App\Repositories\Admin\Major\UpdateHandling;
 use Illuminate\Http\Request;
 
 class MajorController extends ApiController
@@ -39,6 +40,18 @@ class MajorController extends ApiController
   {
     try {
       $executor = new DestroyHandling($request, $id);
+      $data = $executor->handle();
+
+      return $this->responseData($data);
+    } catch (\Exception $e) {
+      return $this->responseException($e);
+    }
+  }
+
+  public function update(Request $request, $id)
+  {
+    try {
+      $executor = new UpdateHandling($request, $id);
       $data = $executor->handle();
 
       return $this->responseData($data);

@@ -39,7 +39,7 @@
               @click="
                 isEditMode = true;
                 showDialogAdd = true;
-                state = props.row;
+                state = { ...props.row };
               "
             />
             <Button
@@ -48,7 +48,7 @@
               icon="trash"
               @click="
                 showDialogDelete = true;
-                selectedData = props.row;
+                selectedData = { ...props.row };
               "
             />
           </div>
@@ -78,12 +78,13 @@
             :errors="errors.name"
             @change="errors.name = null"
           ></Input>
-          <Input
+          <Select
             label="Jenjang"
             v-model="state.level"
+            :options="levelOptions"
             :errors="errors.level"
             @change="errors.level = null"
-          ></Input>
+          ></Select>
         </div>
       </template>
     </Modal>
@@ -118,6 +119,7 @@ import MyTable from '@/components/UI/Table/MyTable.vue';
 import Button from '@/components/UI/Button.vue';
 import Modal from '@/components/UI/Modal.vue';
 import Input from '@/components/UI/Input.vue';
+import Select from '@/components/UI/Select.vue';
 
 import useLoading from '@/composables/loading';
 import useAlert from '@/composables/alert';
@@ -217,6 +219,29 @@ const errors = ref({
   name: null,
   level: null,
 });
+
+const levelOptions = ref([
+  {
+    label: 'D3',
+    value: 'D3',
+  },
+  {
+    label: 'S1',
+    value: 'S1',
+  },
+  {
+    label: 'S2',
+    value: 'S2',
+  },
+  {
+    label: 'S3',
+    value: 'S3',
+  },
+  {
+    label: 'Profesi',
+    value: 'Profesi',
+  },
+]);
 
 const submitBatch = () => {
   loading.value = true;

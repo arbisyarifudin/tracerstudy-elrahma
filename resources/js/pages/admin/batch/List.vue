@@ -27,7 +27,7 @@
               @click="
                 isEditMode = true;
                 showDialogAdd = true;
-                state = props.row;
+                state = { ...props.row };
               "
             />
             <Button
@@ -36,7 +36,7 @@
               icon="trash"
               @click="
                 showDialogDelete = true;
-                selectedData = props.row;
+                selectedData = { ...props.row };
               "
             />
           </div>

@@ -30,7 +30,10 @@
       :class="[vCenteredClass]"
       @click.stop
     >
-      <div class="flex flex-col bg-white border shadow-sm rounded-xl">
+      <div
+        class="flex flex-col bg-white border shadow-sm rounded-xl"
+        v-on:keyup.enter="confirmModal"
+      >
         <slot name="header">
           <div class="flex justify-between items-center py-3 px-4 border-b">
             <h3 class="font-bold text-gray-800" v-text="title"></h3>
