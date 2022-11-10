@@ -56,7 +56,23 @@ const routes = [
         meta: {
           title: 'Alumni'
         },
-        component: Dashboard
+        component: () => import('@/pages/admin/alumni/List.vue')
+      },
+      {
+        path: 'alumni/add',
+        name: 'Alumni Add Page',
+        meta: {
+          title: 'Tambah Alumni'
+        },
+        component: () => import('@/pages/admin/alumni/Add.vue')
+      },
+      {
+        path: 'alumni/:id/edit',
+        name: 'Alumni Edit Page',
+        meta: {
+          title: 'Edit Alumni'
+        },
+        component: () => import('@/pages/admin/alumni/Edit.vue')
       },
       {
         path: 'user',

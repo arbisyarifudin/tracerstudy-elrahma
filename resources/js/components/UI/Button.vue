@@ -11,12 +11,18 @@
     :title="title"
   >
     <component
-      v-if="icon"
+      v-if="icon && iconPosition === 'left'"
       :is="`ph-${icon}`"
       :size="20"
       :class="[label ? 'mr-2' : '']"
     ></component>
     <span v-text="label"></span>
+    <component
+      v-if="icon && iconPosition === 'right'"
+      :is="`ph-${icon}`"
+      :size="20"
+      :class="[label ? 'ml-2' : '']"
+    ></component>
     <slot />
   </button>
 </template>
@@ -49,6 +55,10 @@ const $props = defineProps({
   icon: {
     type: String,
     default: null,
+  },
+  iconPosition: {
+    type: String,
+    default: 'left',
   },
 });
 

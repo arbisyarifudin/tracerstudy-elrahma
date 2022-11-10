@@ -3,10 +3,12 @@
     <MyTable :columns="columns" :datas="rows" :pagination="pagination">
       <template #header>
         <div class="flex items-center justify-between">
-          <div class="text-2xl font-medium text-slate-700 mb-3">
-            Program Studi
-          </div>
-          <Button label="Tambah" icon="plus" @click="showDialogAdd = true" />
+          <div class="text-2xl font-medium text-slate-700 mb-3">Alumni</div>
+          <Button
+            label="Tambah"
+            icon="plus"
+            @click="$router.push({ name: 'Alumni Add Page' })"
+          />
         </div>
       </template>
       <template v-slot:body-cell-no="props">
@@ -14,9 +16,9 @@
           {{ props.index + 1 }}
         </td>
       </template>
-      <template v-slot:body-cell-code="props">
+      <template v-slot:body-cell-nim="props">
         <td>
-          {{ props.row.code }}
+          {{ props.row.nim }}
         </td>
       </template>
       <template v-slot:body-cell-name="props">
@@ -24,9 +26,14 @@
           {{ props.row.name }}
         </td>
       </template>
-      <template v-slot:body-cell-level="props">
+      <template v-slot:body-cell-entered_year="props">
         <td>
-          {{ props.row.level }}
+          {{ props.row.entered_year }}
+        </td>
+      </template>
+      <template v-slot:body-cell-graduated_year="props">
+        <td>
+          {{ props.row.graduated_year }}
         </td>
       </template>
       <template v-slot:body-cell-action="props">
@@ -37,9 +44,10 @@
               label="Edit"
               class="mr-2"
               @click="
-                isEditMode = true;
-                showDialogAdd = true;
-                state = { ...props.row };
+                $router.push({
+                  name: 'Alumni Edit Page',
+                  params: { id: props.row.nim },
+                })
               "
             />
             <Button
@@ -56,39 +64,6 @@
       </template>
     </MyTable>
     <Modal
-      :title="`${isEditMode ? 'Edit' : 'Tambah'} Prodi`"
-      :show="showDialogAdd"
-      :loading="loading"
-      @close="onCloseDialog"
-      @confirm="submitBatch"
-    >
-      <template #content>
-        <div class="p-4">
-          <Input
-            label="Kode Prodi"
-            placeholder="Tuliskan kode prodi"
-            v-model="state.code"
-            :errors="errors.code"
-            @change="errors.code = null"
-          ></Input>
-          <Input
-            label="Nama Prodi"
-            placeholder="Tuliskan name prodi"
-            v-model="state.name"
-            :errors="errors.name"
-            @change="errors.name = null"
-          ></Input>
-          <Select
-            label="Jenjang"
-            v-model="state.level"
-            :options="levelOptions"
-            :errors="errors.level"
-            @change="errors.level = null"
-          ></Select>
-        </div>
-      </template>
-    </Modal>
-    <Modal
       title="Hapus Program Studi"
       :show="showDialogDelete"
       :loading="loading"
@@ -96,7 +71,7 @@
     >
       <template #content>
         <div class="p-4">
-          Apakah anda yakin ingin menghapus prodi {{ selectedData.name }}
+          Apakah anda yakin ingin menghapus alumni {{ selectedData.fullname }}
         </div>
       </template>
       <template #footer>
@@ -135,18 +110,23 @@ const columns = [
     width: 80,
   },
   {
-    label: 'Kode',
-    name: 'code',
+    label: 'NIM',
+    name: 'nim',
     align: 'left',
   },
   {
-    label: 'Nama Prodi',
+    label: 'Nama Alumni',
     name: 'name',
     align: 'left',
   },
   {
-    label: 'Jenjang',
-    name: 'level',
+    label: 'Th. Masuk',
+    name: 'entered_year',
+    align: 'left',
+  },
+  {
+    label: 'Th. Lulus',
+    name: 'graduated_year',
     align: 'left',
   },
   {
@@ -164,6 +144,8 @@ const pagination = ref({
   totalPage: 1,
   totalData: 1,
 });
+
+const { showLoading } = useLoading();
 
 const getData = () => {
   showLoading(true);
@@ -201,105 +183,8 @@ onMounted(() => {
 });
 
 const loading = ref(false);
-const isEditMode = ref(false);
 
-/* ADD & UPDATE MAJOR */
-
-const { showLoading } = useLoading();
-const showDialogAdd = ref(false);
-
-const state = ref({
-  code: '',
-  name: '',
-  level: 'S1',
-});
-
-const errors = ref({
-  code: null,
-  name: null,
-  level: null,
-});
-
-const levelOptions = ref([
-  {
-    label: 'D3',
-    value: 'D3',
-  },
-  {
-    label: 'S1',
-    value: 'S1',
-  },
-  {
-    label: 'S2',
-    value: 'S2',
-  },
-  {
-    label: 'S3',
-    value: 'S3',
-  },
-  {
-    label: 'Profesi',
-    value: 'Profesi',
-  },
-]);
-
-const submitBatch = () => {
-  loading.value = true;
-  showLoading(true);
-  if (isEditMode.value === true) {
-    updateData();
-  } else {
-    saveData();
-  }
-};
-
-const saveData = () => {
-  axios
-    .post('api/major', state.value)
-    .then((response) => {
-      console.log('res', response.data);
-      showDialogAdd.value = false;
-      getData();
-      onCloseDialog();
-    })
-    .catch((error) => {
-      console.log('err', error.response.data);
-      if (error.response.status !== 422) {
-        showAlert(error.response.message);
-      } else {
-        errors.value = error.response.data.errors;
-      }
-    })
-    .finally(() => {
-      showLoading(false);
-      loading.value = false;
-    });
-};
-
-const updateData = () => {
-  axios
-    .put('api/major/' + state.value.id, state.value)
-    .then((response) => {
-      console.log('res', response.data);
-      showDialogAdd.value = false;
-      getData();
-      onCloseDialog();
-    })
-    .catch((error) => {
-      console.log('err', error.response.data);
-      if (error.response.status !== 422) {
-        showAlert(error.response.message);
-      } else {
-        errors.value = error.response.data.errors;
-      }
-    })
-    .finally(() => {
-      showLoading(false);
-      loading.value = false;
-    });
-};
-
-/* DELETE PRODI */
+/* DELETE DATA */
 const selectedData = ref({
   id: null,
   year: null,

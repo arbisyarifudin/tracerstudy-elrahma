@@ -159,77 +159,26 @@ import { useNavigationStore } from '@/store/navigation';
 import { computed, onMounted, watch } from '@vue/runtime-core';
 import { useRoute } from 'vue-router';
 
-defineProps({
+const $props = defineProps({
   closed: {
     type: Boolean,
     default: true,
   },
+  menus: {
+    type: Array,
+    default: () => {
+      return [];
+    },
+  },
 });
 
-const menus = ref([
-  {
-    title: 'Dashboard',
-    icon: 'circles-four',
-    path: {
-      name: 'Dashboard Page',
-    },
-    activeName: 'Dashboard',
-    expand: false,
-  },
-  {
-    title: 'Data Master',
-    icon: 'database',
-    activeName: 'Master',
-    expand: false,
-    childs: [
-      {
-        title: 'Angkatan',
-        path: {
-          name: 'Batch List Page',
-        },
-        activeName: 'Master',
-      },
-      {
-        title: 'Program Studi',
-        path: {
-          name: 'Major List Page',
-        },
-        activeName: 'Master',
-      },
-      {
-        title: 'Peminatan',
-        path: {
-          name: 'Major Interest List Page',
-        },
-        activeName: 'Master',
-      },
-    ],
-  },
-  {
-    title: 'Alumni',
-    icon: 'users-four',
-    path: {
-      name: 'Alumni List Page',
-    },
-    activeName: 'Alumni',
-    expand: false,
-  },
-  {
-    title: 'Pengguna',
-    icon: 'users',
-    path: {
-      name: 'User List Page',
-    },
-    activeName: 'User',
-    expand: false,
-  },
-]);
+// const menus = ref([]);
 
 const collapseChild = () => {
   // console.log('window.innerWidth', window.innerWidth);
   if (window.innerWidth < 768) {
-    for (let i = 0; i < menus.value.length; i++) {
-      menus.value[i].expand = false;
+    for (let i = 0; i < $props.menus.value.length; i++) {
+      $props.menus.value[i].expand = false;
     }
   }
 };
@@ -250,6 +199,8 @@ const checkRouteActiveName = () => {
       navigationStore.setRouteActiveName('Master');
       break;
     case 'Alumni List Page':
+    case 'Alumni Add Page':
+    case 'Alumni Edit Page':
       navigationStore.setRouteActiveName('Alumni');
       break;
     case 'User List Page':
@@ -260,7 +211,7 @@ const checkRouteActiveName = () => {
       break;
   }
 
-  const findActiveMenu = menus.value.find(
+  const findActiveMenu = $props.menus.find(
     (v) => v.activeName === routeActiveName.value
   );
   if (findActiveMenu) {

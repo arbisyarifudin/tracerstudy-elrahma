@@ -24,11 +24,13 @@
 
 ## users
 - id
-- uid
+<!-- - uid -->
 - name
+- uname
 - email 
 - password
 - email_verified_at
+- type
 
 ## batchs
 - id
@@ -48,14 +50,21 @@
 - address NULLABLE
 - province_id ** NULLABLE
 - regency_id ** NULLABLE
-- entered_year_id ** NULLABLE
+- entered_year NULLABLE
 - graduation_year NULLABLE
 - major_id ** NULLABLE
 - major_interest_id ** NULLABLE
 - gpa NULLABLE
 - photo NULLABLE
 - suggestion NULLABLE
-- socials JSON
+- is_active BOOL
+<!-- - contacts JSON -->
+
+## alumni_contacts
+- id
+- alumni_id **
+- name
+- value
   
 ## alumni_educations
 - id
@@ -67,9 +76,6 @@
 - entered_year
 - graduated_year NULLABLE
 
-# bussiness_categories
-- id
-- name
 
 ## alumni_jobs
 - id
