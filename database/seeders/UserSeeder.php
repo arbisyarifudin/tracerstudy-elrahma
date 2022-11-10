@@ -16,13 +16,15 @@ class UserSeeder extends Seeder
     {
         \App\Models\User::factory()->create([
             'name' => 'Mr. Admin',
+            'uname' => 'admin',
             'email' => 'admin@example.com',
             'type' => 'Administrator',
         ]);
         \App\Models\User::factory()->create([
             'name' => 'Test Alumni',
+            'uname' => 'alumni',
             'email' => 'alumni@example.com',
-            'type' => 'Alumnus',
+            'type' => 'Alumni',
         ]);
     }
 }

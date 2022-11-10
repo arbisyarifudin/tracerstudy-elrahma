@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API\Admin;
 
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\API\ApiController;
 use App\Repositories\Admin\Major\DestroyHandling;
 use App\Repositories\Admin\Major\ListHandling;
 use App\Repositories\Admin\Major\StoreHandling;
