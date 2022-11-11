@@ -16,7 +16,7 @@ class BatchSeeder extends Seeder
     public function run()
     {
         for ($year = 2018; $year <= date('Y'); $year++) {
-            Batch::create(['year' => $year]);
+            Batch::firstOrCreate(['year' => $year]);
         }
     }
 }

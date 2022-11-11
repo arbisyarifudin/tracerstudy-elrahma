@@ -50,7 +50,7 @@
 - address NULLABLE
 - province_id ** NULLABLE
 - regency_id ** NULLABLE
-- entered_year NULLABLE
+- enter_year NULLABLE
 - graduation_year NULLABLE
 - major_id ** NULLABLE
 - major_interest_id ** NULLABLE
@@ -73,8 +73,8 @@
 - address
 - major_name NULLABLE
 - level
-- entered_year
-- graduated_year NULLABLE
+- enter_year
+- graduate_year NULLABLE
 
 
 ## alumni_jobs

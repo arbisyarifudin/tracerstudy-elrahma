@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\API\Admin\AlumniController;
 use App\Http\Controllers\API\Admin\BatchController;
 use App\Http\Controllers\API\Admin\MajorController;
+use App\Http\Controllers\API\Admin\ProvinceController;
+use App\Http\Controllers\API\Admin\RegencyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +36,18 @@ Route::group(['prefix' => 'major'], function ($routes) {
     $routes->post('', [MajorController::class, 'store']);
     $routes->put('{id}', [MajorController::class, 'update']);
     $routes->delete('{id}', [MajorController::class, 'delete']);
+});
+Route::group(['prefix' => 'alumni'], function ($routes) {
+    $routes->get('', [AlumniController::class, 'list']);
+    $routes->get('{id}', [AlumniController::class, 'show']);
+    $routes->post('', [AlumniController::class, 'store']);
+    $routes->put('{id}', [AlumniController::class, 'update']);
+    $routes->delete('{id}', [AlumniController::class, 'delete']);
+});
+Route::group(['prefix' => 'province'], function ($routes) {
+    $routes->get('', [ProvinceController::class, 'list']);
+});
+Route::group(['prefix' => 'regency'], function ($routes) {
+    $routes->get('', [RegencyController::class, 'list']);
 });
 // });

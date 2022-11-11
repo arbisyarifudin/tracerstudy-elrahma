@@ -27,11 +27,7 @@
         to-slate-900
       "
     >
-      <ph-list
-        :size="28"
-        @click="closeSidebar"
-        class="cursor-pointer md:hidden"
-      />
+      <ph-list :size="28" @click="closeSidebar" class="cursor-pointer" />
       <!-- <span class="text-lg ml-2">{{ $route.meta.title }}</span> -->
     </header>
     <!-- <div class="p-3 bg-slate-700 text-white mt-2">{{ $route.meta.title }}</div> -->

@@ -32,7 +32,7 @@
     >
       <div
         class="flex flex-col bg-white border shadow-sm rounded-xl"
-        v-on:keyup.enter="confirmModal"
+        @keyup.enter="confirmModal"
       >
         <slot name="header">
           <div class="flex justify-between items-center py-3 px-4 border-b">

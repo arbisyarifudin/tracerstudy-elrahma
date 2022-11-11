@@ -1,23 +1,32 @@
 <template>
   <div class="mb-3" :class="className">
-    <label
-      v-if="label"
-      class="block text-sm font-medium mb-2 dark:text-white"
-      v-text="label"
-    ></label>
+    <label v-if="label" class="block text-sm font-medium mb-2 dark:text-white">
+      {{ label }}
+      <span v-show="required" class="text-red-500 small ml-1">*</span>
+    </label>
+    <div class="text-gray-400 text-sm block -mt-1 mb-3" v-if="hint">
+      {{ hint }}
+    </div>
     <select
-      class="block w-full rounded-md mb-1"
+      class="
+        block
+        w-full
+        rounded-md
+        disabled:border-dashed disabled:cursor-not-allowed disabled:bg-gray-100
+      "
       :class="[styles, errors && errors.length > 0 ? '!border-red-500' : '']"
       :value="modelValue"
+      :disabled="disabled"
+      :required="required"
       @input="updateValue"
       @change="changeValue"
     >
-      <option :value="null" v-show="placeholder" v-text="placeholder"></option>
+      <option value="" v-show="placeholder" v-text="placeholder"></option>
       <option
         v-for="(option, i) in options"
         :key="i"
         v-text="option.label"
-        :value="options.value"
+        :value="option.value"
       ></option>
     </select>
     <div class="text-sm text-red-500" v-for="(error, i) in errors" :key="i">
@@ -38,6 +47,10 @@ const $props = defineProps({
     type: String,
     default: null,
   },
+  hint: {
+    type: String,
+    default: null,
+  },
   variant: {
     type: String,
     default: 'primary',
@@ -45,6 +58,14 @@ const $props = defineProps({
   size: {
     type: String,
     default: 'md',
+  },
+  required: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
   className: {
     type: [String, Object, Array],
@@ -72,7 +93,7 @@ const variants = ref({
 
 const sizes = ref({
   xs: '',
-  sm: '',
+  sm: 'py-2 px-4 text-sm',
   md: 'py-3 px-4 text-sm',
   lg: '',
 });

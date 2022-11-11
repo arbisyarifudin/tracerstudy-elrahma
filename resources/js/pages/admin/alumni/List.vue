@@ -3,12 +3,24 @@
     <MyTable :columns="columns" :datas="rows" :pagination="pagination">
       <template #header>
         <div class="flex items-center justify-between">
-          <div class="text-2xl font-medium text-slate-700 mb-3">Alumni</div>
-          <Button
-            label="Tambah"
-            icon="plus"
-            @click="$router.push({ name: 'Alumni Add Page' })"
-          />
+          <div class="text-2xl font-medium text-slate-700 mb-3 flex-1">
+            Alumni
+          </div>
+          <div class="flex items-center space-x-4">
+            <Select
+              class="md:mb-0"
+              placeholder="- Semua Tahun -"
+              required
+              size="sm"
+              v-model="pagination.batch_id"
+              :options="batchOptions"
+            ></Select>
+            <Button
+              label="Tambah"
+              icon="plus"
+              @click="$router.push({ name: 'Alumni Add Page' })"
+            />
+          </div>
         </div>
       </template>
       <template v-slot:body-cell-no="props">
@@ -21,19 +33,19 @@
           {{ props.row.nim }}
         </td>
       </template>
-      <template v-slot:body-cell-name="props">
+      <template v-slot:body-cell-fullname="props">
         <td>
-          {{ props.row.name }}
+          {{ props.row.fullname }}
         </td>
       </template>
-      <template v-slot:body-cell-entered_year="props">
+      <template v-slot:body-cell-enter_year="props">
         <td>
-          {{ props.row.entered_year }}
+          {{ props.row.enter_year }}
         </td>
       </template>
-      <template v-slot:body-cell-graduated_year="props">
+      <template v-slot:body-cell-graduate_year="props">
         <td>
-          {{ props.row.graduated_year }}
+          {{ props.row.graduate_year }}
         </td>
       </template>
       <template v-slot:body-cell-action="props">
@@ -116,17 +128,17 @@ const columns = [
   },
   {
     label: 'Nama Alumni',
-    name: 'name',
+    name: 'fullname',
     align: 'left',
   },
   {
     label: 'Th. Masuk',
-    name: 'entered_year',
+    name: 'enter_year',
     align: 'left',
   },
   {
     label: 'Th. Lulus',
-    name: 'graduated_year',
+    name: 'graduate_year',
     align: 'left',
   },
   {
@@ -143,14 +155,17 @@ const pagination = ref({
   page: 1,
   totalPage: 1,
   totalData: 1,
+  batch_id: null,
 });
+
+const batchOptions = ref([]);
 
 const { showLoading } = useLoading();
 
 const getData = () => {
   showLoading(true);
   axios
-    .get('api/major', {
+    .get('api/alumni', {
       params: {
         size: pagination.value.size,
         page: pagination.value.page,
@@ -197,7 +212,7 @@ const deleteBatch = () => {
   loading.value = true;
   showLoading(true);
   axios
-    .delete('api/major/' + selectedData.value.id)
+    .delete('api/alumni/' + selectedData.value.id)
     .then((response) => {
       console.log('res', response.data);
       showDialogDelete.value = false;
@@ -218,11 +233,7 @@ const deleteBatch = () => {
 };
 
 const onCloseDialog = () => {
-  showDialogAdd.value = false;
   showDialogDelete.value = false;
-  isEditMode.value = false;
-  state.value = {};
-  errors.value = {};
 };
 </script>
 

@@ -1,13 +1,15 @@
 <template>
   <div class="mb-3" :class="className">
-    <label
-      v-if="label"
-      class="block text-sm font-medium mb-2 dark:text-white"
-      v-text="label"
-    ></label>
+    <label v-if="label" class="block text-sm font-medium mb-2 dark:text-white">
+      {{ label }}
+      <span v-show="required" class="text-red-500 small ml-1">*</span>
+    </label>
+    <div class="text-gray-400 text-sm block -mt-1 mb-3" v-if="hint">
+      {{ hint }}
+    </div>
     <input
       :type="type"
-      class="block w-full rounded-md mb-1"
+      class="block w-full rounded-md"
       :class="[styles, errors && errors.length > 0 ? '!border-red-500' : '']"
       :placeholder="placeholder"
       :value="modelValue"
@@ -15,8 +17,15 @@
       @change="changeValue"
       :min="min"
       :max="max"
+      :step="step"
+      :disabled="disabled"
+      :required="required"
     />
-    <div class="text-sm text-red-500" v-for="(error, i) in errors" :key="i">
+    <div
+      class="text-xs mt-1 text-red-500"
+      v-for="(error, i) in errors"
+      :key="i"
+    >
       <span v-text="error"></span>
     </div>
   </div>
@@ -38,6 +47,10 @@ const $props = defineProps({
     type: String,
     default: null,
   },
+  hint: {
+    type: String,
+    default: null,
+  },
   variant: {
     type: String,
     default: 'primary',
@@ -53,6 +66,18 @@ const $props = defineProps({
   max: {
     type: Number,
     default: null,
+  },
+  step: {
+    type: Number,
+    default: null,
+  },
+  required: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
   className: {
     type: [String, Object, Array],
