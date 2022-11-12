@@ -28,7 +28,7 @@ class ListHandling extends PagingData
     $request = $this->getRequest();
     $rules = [
       'batch_id' => [
-        'sometimes',
+        'nullable',
         Rule::exists(Batch::class, 'id')
       ]
     ];
@@ -62,6 +62,11 @@ class ListHandling extends PagingData
       ->leftJoin('majors', 'majors.id', '=', 'alumnis.major_id')
       ->leftJoin('batches', 'batches.id', '=', 'alumnis.batch_id')
       ->whereNull('users.deleted_at');
+
+    if (isset($validated['batch_id']) && !empty($validated['batch_id'])) {
+      $query->where('batch_id', $validated['batch_id']);
+    }
+
     $this->paginateData($query);
 
     return [

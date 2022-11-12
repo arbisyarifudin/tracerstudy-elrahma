@@ -158,8 +158,6 @@ const pagination = ref({
   batch_id: null,
 });
 
-const batchOptions = ref([]);
-
 const { showLoading } = useLoading();
 
 const getData = () => {
@@ -171,12 +169,16 @@ const getData = () => {
         page: pagination.value.page,
         sortBy: 'created_at',
         sortDir: 'asc',
+        batch_id: pagination.value.batch_id,
       },
     })
     .then((response) => {
       console.log('res', response);
       rows.value = response.data.data;
-      pagination.value = response.data.paginate;
+      pagination.value = {
+        ...response.data.paginate,
+        batch_id: pagination.value.batch_id,
+      };
     })
     .catch((error) => {
       console.log('err', error);
@@ -193,8 +195,49 @@ watch(
   }
 );
 
+/* BATCH DATA */
+const batchOptions = ref([]);
+const getBatch = () => {
+  showLoading(true);
+  loading.value = true;
+  axios
+    .get('api/batch', {
+      params: {
+        size: 50,
+        page: 1,
+      },
+    })
+    .then((response) => {
+      console.log('res', response.data);
+      batchOptions.value = response.data.data.map((v) => {
+        return {
+          label: v.year,
+          value: v.id,
+        };
+      });
+    })
+    .catch((error) => {
+      console.log('err', error);
+      if (error?.response?.data) {
+        showAlert(error.response.message);
+      }
+    })
+    .finally(() => {
+      showLoading(false);
+      loading.value = false;
+    });
+};
+
+watch(
+  () => pagination.value.batch_id,
+  (val) => {
+    getData();
+  }
+);
+
 onMounted(() => {
   getData();
+  getBatch();
 });
 
 const loading = ref(false);

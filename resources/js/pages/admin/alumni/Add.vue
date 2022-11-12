@@ -51,9 +51,9 @@
             label="Tanggal Lahir"
             placeholder="Pilih tanggal lahir"
             type="date"
-            v-model="state.data_of_birth"
-            :errors="errors.data_of_birth"
-            @change="errors.data_of_birth = null"
+            v-model="state.date_of_birth"
+            :errors="errors.date_of_birth"
+            @change="errors.date_of_birth = null"
           ></Input>
         </div>
       </div>
@@ -227,7 +227,10 @@
 <script setup>
 import { ref } from '@vue/reactivity';
 import { inject, onMounted, watch } from '@vue/runtime-core';
+import { useRouter } from 'vue-router';
+
 const axios = inject('axios');
+const $router = useRouter();
 
 import Input from '@/components/UI/Input.vue';
 import Select from '@/components/UI/Select.vue';
@@ -451,10 +454,10 @@ const onSubmit = () => {
     .then((response) => {
       console.log('res', response.data);
       showAlert('Alumni berhasil ditambahkan!');
-      $route.push({ name: 'Alumni List Page' });
+      $router.push({ name: 'Alumni List Page' });
     })
     .catch((error) => {
-      console.log('err', error.response.data);
+      console.log('err', error);
       if (error.response.status !== 422) {
         showAlert(error.response.message);
       } else {

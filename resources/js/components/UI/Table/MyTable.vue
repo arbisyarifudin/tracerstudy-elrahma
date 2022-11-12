@@ -36,6 +36,14 @@
             />
           </td>
         </tr>
+        <tr v-if="rows.length < 1">
+          <td
+            :colspan="columns.length"
+            class="text-center text-gray-500 text-sm py-5"
+          >
+            No data.
+          </td>
+        </tr>
       </tbody>
     </table>
     <slot name="pagination">

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('place_of_birth')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('address')->nullable();
+            $table->foreignId('province_id')->nullable()->constrained('provinces', 'id')->nullOnDelete();
             $table->foreignId('regency_id')->nullable()->constrained('regencies', 'id')->nullOnDelete();
             // $table->year('enter_year')->nullable();
             $table->foreignId('batch_id')->nullable()->constrained('batches', 'id')->nullOnDelete();

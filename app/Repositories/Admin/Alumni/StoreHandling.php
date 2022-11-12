@@ -49,6 +49,13 @@ class StoreHandling
       'graduate_year' => [
         'required',
       ],
+      'email' => [
+        'nullable',
+        'email',
+      ],
+      'password' => [
+        'nullable',
+      ],
     ];
 
     $messages = [
@@ -58,6 +65,7 @@ class StoreHandling
       'gender.required' => 'Jenis Kelamin wajib diisi.',
       'batch_id.required' => 'Tahun Masuk/Angkatan wajib diisi.',
       'graduate_year.required' => 'Tahun Lulus wajib diisi.',
+      'email.email' => 'Email tidak valid.',
     ];
 
     $validated = Validator::make($this->request->all(), $rules, $messages)->validate();
@@ -79,7 +87,7 @@ class StoreHandling
 
       $alumniData = $validated;
       $alumniData['user_id'] = $user->id;
-      unset($alumniData['email']);
+      // unset($alumniData['email']);
       unset($alumniData['password']);
 
       if ($this->request->has('photo') && !empty($this->request->photo)) {
@@ -98,6 +106,10 @@ class StoreHandling
       $data = Alumni::create($alumniData);
 
       DB::commit();
+
+      // TODO:
+      // Kirim email pemberitahuan ke alumni
+
     } catch (\Exception $e) {
       DB::rollBack();
       throw $e;
