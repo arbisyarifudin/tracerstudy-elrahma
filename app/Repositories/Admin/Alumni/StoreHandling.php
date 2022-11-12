@@ -8,6 +8,7 @@ namespace App\Repositories\Admin\Alumni;
 
 use App\Models\Alumni;
 use App\Models\Batch;
+use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,9 +43,21 @@ class StoreHandling
       'gender' => [
         'required'
       ],
+      'province_id' => [
+        'nullable',
+        Rule::exists(Province::class, 'id')
+      ],
+      'regency_id' => [
+        'nullable',
+        Rule::exists(Regency::class, 'id')
+      ],
       'batch_id' => [
         'required',
         Rule::exists(Batch::class, 'id')
+      ],
+      'major_id' => [
+        'required',
+        Rule::exists(Major::class, 'id')
       ],
       'graduate_year' => [
         'required',
@@ -64,6 +77,7 @@ class StoreHandling
       'fullname.required' => 'Nama Lengkap wajib diisi.',
       'gender.required' => 'Jenis Kelamin wajib diisi.',
       'batch_id.required' => 'Tahun Masuk/Angkatan wajib diisi.',
+      'major_id.required' => 'Program Studi wajib diisi.',
       'graduate_year.required' => 'Tahun Lulus wajib diisi.',
       'email.email' => 'Email tidak valid.',
     ];

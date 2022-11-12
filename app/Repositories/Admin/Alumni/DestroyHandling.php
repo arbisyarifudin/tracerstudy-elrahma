@@ -7,6 +7,7 @@
 namespace App\Repositories\Admin\Alumni;
 
 use App\Models\Alumni;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -37,7 +38,8 @@ class DestroyHandling
     $this->validate();
     $data = $this->data;
 
-    $this->data->delete();
+    $user = User::find($data->user_id);
+    $user->delete();
 
     $data['message'] = 'Alumni deleted successfully!';
     return $data;

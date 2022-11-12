@@ -8,6 +8,7 @@ namespace App\Repositories\Admin\Alumni;
 
 use App\Models\Alumni;
 use App\Models\Batch;
+use App\Models\Major;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\User;
@@ -51,10 +52,6 @@ class UpdateHandling
       'gender' => [
         'required'
       ],
-      'batch_id' => [
-        'required',
-        Rule::exists(Batch::class, 'id')
-      ],
       'graduate_year' => [
         'required',
       ],
@@ -65,6 +62,14 @@ class UpdateHandling
       'regency_id' => [
         'nullable',
         Rule::exists(Regency::class, 'id')
+      ],
+      'batch_id' => [
+        'required',
+        Rule::exists(Batch::class, 'id')
+      ],
+      'major_id' => [
+        'required',
+        Rule::exists(Major::class, 'id')
       ],
       'email' => [
         'nullable',
@@ -81,6 +86,7 @@ class UpdateHandling
       'fullname.required' => 'Nama Lengkap wajib diisi.',
       'gender.required' => 'Jenis Kelamin wajib diisi.',
       'batch_id.required' => 'Tahun Masuk/Angkatan wajib diisi.',
+      'major_id.required' => 'Program Studi wajib diisi.',
       'graduate_year.required' => 'Tahun Lulus wajib diisi.',
       'email.email' => 'Email tidak valid.',
     ];
