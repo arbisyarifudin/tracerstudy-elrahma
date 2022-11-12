@@ -338,7 +338,7 @@ const getDetail = () => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       } else {
         showAlert('Data not found!');
       }
@@ -372,7 +372,7 @@ const getProvince = () => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -405,7 +405,7 @@ const getRegency = (province_id) => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -436,7 +436,7 @@ const getBatch = () => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -467,7 +467,7 @@ const getMajor = () => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -494,15 +494,16 @@ const onSubmit = () => {
     .put('api/alumni/' + detailData.value.id, state.value)
     .then((response) => {
       console.log('res', response.data);
-      showAlert('Alumni berhasil diperbarui!');
+      showAlert('Alumni berhasil diperbarui!', { type: 'success' });
       $router.push({ name: 'Alumni List Page' });
     })
     .catch((error) => {
-      console.log('err', error.response.data);
-      if (error.response.status !== 422) {
-        showAlert(error.response.message);
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
       } else {
         errors.value = error.response.data.errors;
+        showAlert('Permintaan tidak valid! Mohon cek kembali.');
       }
     })
     .finally(() => {

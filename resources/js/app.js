@@ -7,6 +7,18 @@ import router from './router/index'
 /* ICONSET */
 import PhosphorVue from 'phosphor-vue'
 
+/* SNACKBAR */
+import Toast, { POSITION } from 'vue-toastification'
+// Import the CSS or use your own!
+import 'vue-toastification/dist/index.css'
+const toastOptions = {
+  // You can set your default options here
+  position: POSITION.TOP_RIGHT,
+  timeout: 3000,
+  maxToasts: 5,
+  newestOnTop: true
+}
+
 /* AXIOS */
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -22,6 +34,7 @@ const app = createApp({
 app.use(pinia)
 app.use(router)
 app.use(PhosphorVue)
+app.use(Toast, toastOptions)
 app.use(VueAxios, axios)
 
 app.directive('click-outside', {

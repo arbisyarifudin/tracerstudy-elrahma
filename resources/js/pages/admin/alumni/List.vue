@@ -92,7 +92,7 @@
             variant="danger"
             type="submit"
             label="Hapus"
-            @click="deleteBatch"
+            @click="deleteData"
             :disabled="loading"
           />
         </div>
@@ -219,7 +219,7 @@ const getBatch = () => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -251,7 +251,7 @@ const selectedData = ref({
 const showDialogDelete = ref(false);
 const { showAlert } = useAlert();
 
-const deleteBatch = () => {
+const deleteData = () => {
   loading.value = true;
   showLoading(true);
   axios
@@ -259,14 +259,13 @@ const deleteBatch = () => {
     .then((response) => {
       console.log('res', response.data);
       showDialogDelete.value = false;
+      showAlert('Alumni berhasil dihapus!');
       getData();
     })
     .catch((error) => {
-      console.log('err', error.response.data);
-      if (error.response.status !== 422) {
-        showAlert(error.response.message);
-      } else {
-        errors.value = error.response.data.errors;
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {

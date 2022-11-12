@@ -259,13 +259,14 @@ const saveData = () => {
     .then((response) => {
       console.log('res', response.data);
       showDialogAdd.value = false;
+      showAlert('Program Studi berhasil ditambah!', { type: 'success' });
       getData();
       onCloseDialog();
     })
     .catch((error) => {
-      console.log('err', error.response.data);
-      if (error.response.status !== 422) {
-        showAlert(error.response.message);
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
       } else {
         errors.value = error.response.data.errors;
       }
@@ -282,13 +283,14 @@ const updateData = () => {
     .then((response) => {
       console.log('res', response.data);
       showDialogAdd.value = false;
+      showAlert('Program Studi berhasil diperbarui!', { type: 'success' });
       getData();
       onCloseDialog();
     })
     .catch((error) => {
-      console.log('err', error.response.data);
-      if (error.response.status !== 422) {
-        showAlert(error.response.message);
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
       } else {
         errors.value = error.response.data.errors;
       }
@@ -316,12 +318,13 @@ const deleteBatch = () => {
     .then((response) => {
       console.log('res', response.data);
       showDialogDelete.value = false;
+      showAlert('Program Studi berhasil dihapus!');
       getData();
     })
     .catch((error) => {
-      console.log('err', error.response.data);
-      if (error.response.status !== 422) {
-        showAlert(error.response.message);
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
       } else {
         errors.value = error.response.data.errors;
       }

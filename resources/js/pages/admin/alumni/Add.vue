@@ -336,7 +336,7 @@ const getProvince = () => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -369,7 +369,7 @@ const getRegency = (province_id) => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -400,7 +400,7 @@ const getBatch = () => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -431,7 +431,7 @@ const getMajor = () => {
     .catch((error) => {
       console.log('err', error);
       if (error?.response?.data) {
-        showAlert(error.response.message);
+        showAlert(error.response.data.message);
       }
     })
     .finally(() => {
@@ -453,15 +453,22 @@ const onSubmit = () => {
     .post('api/alumni', state.value)
     .then((response) => {
       console.log('res', response.data);
-      showAlert('Alumni berhasil ditambahkan!');
+      showAlert('Alumni berhasil ditambahkan!', { type: 'success' });
       $router.push({ name: 'Alumni List Page' });
     })
     .catch((error) => {
       console.log('err', error);
-      if (error.response.status !== 422) {
-        showAlert(error.response.message);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
       } else {
         errors.value = error.response.data.errors;
+        // for (const key in errors.value) {
+        showAlert('Permintaan tidak valid! Mohon cek kembali.');
+        //   if (Object.hasOwnProperty.call(errors.value, key)) {
+        //     const msg = errors.value[key];
+        //     showAlert(msg[0]);
+        //   }
+        // }
       }
     })
     .finally(() => {
