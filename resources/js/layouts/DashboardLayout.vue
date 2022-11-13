@@ -73,14 +73,23 @@ const menus = ref([
     expand: false,
   },
   {
-    title: 'Pengguna',
-    icon: 'users',
+    title: 'Form',
+    icon: 'table',
     path: {
-      name: 'User List Page',
+      name: 'Form List Page',
     },
-    activeName: 'User',
+    activeName: 'Form',
     expand: false,
   },
+  // {
+  //   title: 'Pengguna',
+  //   icon: 'users',
+  //   path: {
+  //     name: 'User List Page',
+  //   },
+  //   activeName: 'User',
+  //   expand: false,
+  // },
 ]);
 </script>
 

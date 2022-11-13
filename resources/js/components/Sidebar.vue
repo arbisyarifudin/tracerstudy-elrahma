@@ -206,6 +206,9 @@ const checkRouteActiveName = () => {
     case 'User List Page':
       navigationStore.setRouteActiveName('User');
       break;
+    case 'Form List Page':
+      navigationStore.setRouteActiveName('Form');
+      break;
     default:
       navigationStore.setRouteActiveName(null);
       break;

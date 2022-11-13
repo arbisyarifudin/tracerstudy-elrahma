@@ -38,7 +38,7 @@ class UpdateHandling
       'code' => [
         'required',
         'numeric',
-        Rule::unique(Major::class, 'code')->whereNull('deleted_at')->ignore($this->request->code, 'code')
+        Rule::unique(Major::class, 'code')->whereNull('deleted_at')->ignore($this->id, 'id')
       ],
       'name' => [
         'required',
@@ -65,6 +65,7 @@ class UpdateHandling
 
     $this->data->update($validated);
 
+    $data = $this->data->refresh();
     $data['message'] = 'Major updated successfully!';
     return $data;
   }

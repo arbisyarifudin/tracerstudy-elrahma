@@ -75,6 +75,14 @@ const routes = [
         component: () => import('@/pages/admin/alumni/Edit.vue')
       },
       {
+        path: 'form',
+        name: 'Form List Page',
+        meta: {
+          title: 'Form'
+        },
+        component: () => import('@/pages/admin/form/List.vue')
+      },
+      {
         path: 'user',
         name: 'User List Page',
         meta: {

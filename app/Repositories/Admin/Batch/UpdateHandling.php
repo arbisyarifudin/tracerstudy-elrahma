@@ -58,6 +58,7 @@ class UpdateHandling
 
     $this->data->update($validated);
 
+    $data = $this->data->refresh();
     $data['message'] = 'Batch updated successfully!';
     return $data;
   }

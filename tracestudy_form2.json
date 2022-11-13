@@ -1,0 +1,162 @@
+{
+  "name": "Tracer Study 2022",
+  "title": "Form Tracer Alumni",
+  "description": null,
+  "sections": [
+    {
+      "label": "IDENTITAS",
+      "description": "Section untuk isi identitas Anda.",
+      "order": 0,
+      "questions": [
+        {
+          "label": "NIM Mahasiswa",
+          "order": 0,
+          "exportable": true,
+          "export": {
+            "code": "nimhsmsmh",
+            "order": 0
+          },
+          "input": {
+            "type": "text",
+            "required": true
+          },
+          "is_editable": false,
+          "from_existing": {
+            "model": "app\\Models\\Alumni",
+            "relation": null,
+            "field": "nim"
+          },
+          "default_next_question_id": "1"
+        },
+        {
+          "label": "Tahun Lulus",
+          "order": 1,
+          "exportable": true,
+          "export": {
+            "code": "tahun_lulus",
+            "order": 1
+          },
+          "input": {
+            "type": "number",
+            "required": true
+          },
+          "is_editable": false,
+          "from_existing": {
+            "model": "app\\Models\\Alumni",
+            "relation": "batch",
+            "field": "batch.year"
+          }
+        },
+        {
+          "label": "Kode PT",
+          "order": 2,
+          "exportable": true,
+          "export": {
+            "code": "kodept",
+            "order": 2
+          },
+          "is_editable": false,
+          "input": {
+            "type": "number",
+            "required": true
+          },
+          "default": {
+            "value": 50123
+          }
+        },
+        {
+          "label": "Kode Prodi",
+          "code": "kodeprodi",
+          "input_type": "text",
+          "is_editable": false,
+          "from_existing": {
+            "model": "app\\Models\\Alumni",
+            "relation": "major",
+            "field": "major.code"
+          }
+        },
+        {
+          "label": "NIK",
+          "code": "nik",
+          "input": {
+            "type": "text",
+            "required": true
+          }
+        },
+        {
+          "label": "NPWP",
+          "order": 5,
+          "exportable": true,
+          "export": {
+            "code": "npwp",
+            "order": 5
+          },
+          "is_editable": false,
+          "input": {
+            "type": "text",
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+      "label": "Tracer Study",
+      "description": "Section untuk isi data pelacakan alumni.",
+      "order": 0,
+      "questions": [
+        {
+          "id": "ID",
+          "text": "Jelaskan status Anda saat ini?",
+          "input_type": "radio",
+          "default_next_question_id": "question ID",
+          "options": [
+            {
+              "id": "options ID",
+              "text": "Bekerja (full/part time)",
+              "value": 1,
+              "next_question_id": "question ID 2"
+            },
+            {
+              "id": "options ID",
+              "text": "Wiraswasta",
+              "value": 2,
+              "next_question_id": "question ID 2"
+            }
+          ]
+        },
+        {
+          "id": "ID",
+          "text": "Apakah anda telah mendapatkan pekerjaan <= 6 bulan / termasuk bekerja sebelum lulus ?",
+          "input_type": "radio",
+          "default_next_question_id": "question ID",
+          "options": [
+            {
+              "id": "options ID",
+              "text": "Ya",
+              "value": 1,
+              "next_question_id": "question ID 2"
+            },
+            {
+              "id": "options ID",
+              "text": "Tidak",
+              "value": 2,
+              "next_question_id": "question ID 2"
+            }
+          ]
+        },
+        {
+          "id": "ID",
+          "text": "Dalam berapa bulan anda mendapatkan pekerjaan ?",
+          "input_type": "text",
+          "default_next_question_id": "question ID"
+        },
+        {
+          "id": "ID",
+          "text": "Berapa rata-rata pendapatan anda per bulan ? (take home pay)?",
+          "input_type": "number",
+          "default_next_question_id": "question ID"
+        }
+      ]
+    }
+  ]
+}

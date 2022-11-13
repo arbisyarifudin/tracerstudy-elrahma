@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Admin\AlumniController;
 use App\Http\Controllers\API\Admin\BatchController;
+use App\Http\Controllers\API\Admin\FormController;
 use App\Http\Controllers\API\Admin\MajorController;
 use App\Http\Controllers\API\Admin\ProvinceController;
 use App\Http\Controllers\API\Admin\RegencyController;
@@ -44,6 +45,16 @@ Route::group(['prefix' => 'alumni'], function ($routes) {
     $routes->put('{id}', [AlumniController::class, 'update']);
     $routes->delete('{id}', [AlumniController::class, 'delete']);
 });
+
+Route::group(['prefix' => 'form'], function ($routes) {
+    $routes->get('', [FormController::class, 'list']);
+    $routes->get('{id}', [FormController::class, 'show']);
+    $routes->get('{id}/detail', [FormController::class, 'showDetail']);
+    $routes->post('', [FormController::class, 'store']);
+    $routes->put('{id}', [FormController::class, 'update']);
+    $routes->delete('{id}', [FormController::class, 'delete']);
+});
+
 Route::group(['prefix' => 'province'], function ($routes) {
     $routes->get('', [ProvinceController::class, 'list']);
 });

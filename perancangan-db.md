@@ -98,7 +98,7 @@
 ## ts_form_sections
 - id 
 - form_id **
-- label
+- title
 - description
 - order
 
@@ -106,13 +106,24 @@
 - id 
 - form_section_id ** NULLABLE
 - label
-- code 
-- exportable
-- info NULLABLE
-- input_type NULLABLE
-- options NULLABLE
+- hint NULLABLE
 - order
+- exportable BOOLEAN
+<!-- - export_code NULLABLE -->
+<!-- - export_order NULLABLE -->
+- input_type NULLABLE
+- input_required BOOL
+<!-- - options NULLABLE -->
+- is_editable
+<!-- - from_existing -->
 - form_question_parent_id **
+
+## ts_form_question_options
+- id
+- form_question_id **
+- text
+- value
+- next_question_id NULLABLE
 
 <!-- ## ts_form_template
 - id

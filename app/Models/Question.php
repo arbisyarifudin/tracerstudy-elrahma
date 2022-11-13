@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Alumni extends Model
+class Question extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
     /* RELATIONS */
-    public function major()
+    public function question_options()
     {
-        return $this->hasOne(Major::class);
-    }
-    public function batch()
-    {
-        return $this->hasOne(Batch::class);
+        return $this->hasMany(QuestionOption::class)->orderBy('order', 'asc');;
     }
 }
