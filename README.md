@@ -1,66 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TRACER STUDY ELRAHMA
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Tracer Study ELRAHMA adalah Sistem Informasi Alumni yang digunakan oleh Perguruan Tinggi untuk pengelolaan data alumni, media pencatatan dan pelacakan lulusan kampus serta forum diskusi yang terkait dengan topik-topik tertentu yang relevan untuk alumni dan dunia setelah lulus dari kampus.
 
-## About Laravel
+***
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi ini untuk menggunakan `RestFul` yang di kembangkan menggunakan bahasa pemrograman `PHP` dan framework `Laravel` versi 9, serta didukung oleh framework frontend `VueJS`.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 1. Kebutuhan untuk development
+- PHP versi terbaru https://www.php.net/downloads.php beserta kelengkapan paketnya  bisa dicek di https://laravel.com/docs/9.x
+- PostgreSQL versi terbaru https://www.postgresql.org/ atau MySQL versi terbaru
+- Git https://git-scm.com
+- Composer https://getcomposer.org
+- [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer) untuk standar coding (Optional)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 2. Cara Menjalankan Aplikasi
+- Pastikan di komputer sudah terinstal untuk kebutuhan development (Point no.1)
+- Clone Repo ini
+- Gunakan terminal atau command line
+- Copy file **.env.example** menjadi **.env**
+  
+        cp .env.example .env
 
-## Learning Laravel
+- Atur koneksi database
+   
+        DB_HOST=127.0.0.1
+        DB_PORT=5432
+        DB_DATABASE=database_name
+        DB_USERNAME=database_user
+        DB_PASSWORD=database_password
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Eksekusi `composer install`
+- Eksekusi `php artisan jwt:secret`
+- Eksekusi `php artisan migrate`
+- Eksekusi `php artisan db:seed`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 3. Cara Menjalankan Projek
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    php artisan serve
+  
+atau bisa menggunakan 
 
-## Laravel Sponsors
+    ./serve.sh 8000
+  
+## Struktur Projek
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Untuk mengurangi jumlah baris pada `controller`, projek ini memisahkan proses bisnis dengan controller pada folder `app/Repositories`.
 
-### Premium Partners
+    - app
+      - Http
+        - Controllers
+          - YourController.php
+      - Repositories
+        - YourController
+          - DestroyHandling.php
+          - ListHandling.php
+          - ShowHandling.php
+          - StoreHandling.php
+          - UpdateHandling.php
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+**Untuk desain database aplikasi ini ada [di sini](#)**
+  
+Untuk routing menggunakan 2 file:
+- `web.php` untuk route yang diakses oleh pengguna
+- `api.php` untuk route yang dipakai untuk melakukan operasi melalui `Restful API`
 
-## Contributing
+## Coding Style
+- Menggunakan `camelCase` untuk nama variable dan fungsi
+- Penggunaan plural untuk penamaan variable dan fungsi yang berupa array / banyak data, dan singular untuk data tunggal. 
+  Misal: `$users = User::all();` bentuk plural / banyak dan `$user = User::find($id);` untuk bentuk singular / tunggal
+- Menggunakan petik satu `'...'` untuk string dan petik dua `"..."` hanya untuk alternatif
+- Nilai boolean adalah `true` dan `false` dengan huruf kecil
+- Penamaan route menggunakan `lowercase` dan untuk yang lebih dari 1 kata dihubungkan dengan tanda `-`
+- Struktur folder Repositories menyesuaikan dengan contoh **Struktur Project** di atas
+- Untuk nama fungsi di controller dan struktur repositories tambahan yang tidak ada dalam standar template di atas, diwajibkan menggunakan nama yang jelas, bahasa inggris, dan menggunakan `camelCase`
+- Khusus data berbentuk list menggunakan **Laravel Query Builder** untuk optimasi pengambilan data
+- Selain data berbentuk list menggunakan **Laravel Eloquent ORM**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## How to push update
+Untuk keperluan development maka branch yang dikerjakan masing-masing developer akan dibuat terpisah sesuai nama masing-masing developer.  
+Untuk langkah-langkah penggunaan repository ini sebagai berikut :
+1. Clone repo ini
+ 
+        git clone repo-url
+2. Chekout ke branch masing-masing
 
-## Code of Conduct
+        git checkout -b your-branch
+3. Sebelum melanjutkan coding mohon update source code dari branch `main` dulu
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+        git checkout your-branch
+        git pull origin main
+4. Setiap mau mengupdate pada repository lakukan langkah berikut
 
-## Security Vulnerabilities
+        git add .
+        git pull origin your-branch
+        git commit -m "commit comment"
+        git push origin your-branch
+5. Untuk merge / menggabungkan perubahan ke main gunakan fitur **Merge Request** pada GitLab guna pengecekan apakah terjadi konflik atau tidak. 
+6. Pastikan jika semua perubahan sudah dipush jangan lupa untuk kembali update dari branch `main`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+        git checkout your-branch
+        git pull origin main
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Tim Developer
+1. [Arbi Syarifudin](mailto:arbisyarifudin@gmail.com)
