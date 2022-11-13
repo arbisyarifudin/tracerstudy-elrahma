@@ -4,14 +4,13 @@
  * @author Arbi Syarifudin <arbisyarifudin@gmail.com>
  */
 
-namespace App\Repositories\Admin\Alumni;
+namespace App\Repositories\Admin\Form;
 
-use App\Models\Alumni;
-use App\Models\User;
+use App\Models\Form;
 use Illuminate\Http\Request;
 
 /**
- * Delete Alumni Data.
+ * Delete Form Data.
  */
 class DestroyHandling
 {
@@ -26,10 +25,10 @@ class DestroyHandling
 
   public function validate()
   {
-    $this->data = Alumni::find($this->id);
+    $this->data = Form::find($this->id);
 
     if (!$this->data) {
-      throw new \Exception('Alumni not found!', 404);
+      throw new \Exception('Form not found!', 404);
     }
   }
 
@@ -37,11 +36,8 @@ class DestroyHandling
   {
     $this->validate();
     $data = $this->data;
-
-    $user = User::find($data->user_id);
-    $user->delete();
-
-    $data['message'] = 'Alumni deleted successfully!';
+    $this->data->delete();
+    $data['message'] = 'Form deleted successfully!';
     return $data;
   }
 }

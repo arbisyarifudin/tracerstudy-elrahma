@@ -37,8 +37,8 @@ class ListHandling extends PagingData
   {
     $this->validate();
     $validated = $this->getValidated();
-    $searchableColumns = ['name', 'tag', 'description'];
-    $orderableColumns = ['name', 'tag', 'description', 'created_at'];
+    $searchableColumns = ['name', /* 'tag', */ 'description'];
+    $orderableColumns = ['name', /* 'tag', */ 'description', 'created_at'];
 
     $this->setSearchableColumns($searchableColumns);
     $this->setOrderableColumns($orderableColumns);
@@ -46,7 +46,8 @@ class ListHandling extends PagingData
     $selectedColumns = [
       'id',
       'name',
-      'tag',
+      /* 'tag', */
+      'slug',
       'description',
       'created_at',
       'updated_at',

@@ -4,20 +4,16 @@
  * @author Arbi Syarifudin <arbisyarifudin@gmail.com>
  */
 
-namespace App\Repositories\Admin\Alumni;
+namespace App\Repositories\Admin\Form;
 
-use App\Models\Alumni;
-use App\Models\Batch;
-use App\Models\Major;
-use App\Models\User;
+use App\Models\Form;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 /**
- * Add new Alumni Data.
+ * Add new Form Data.
  */
 class StoreHandling
 {
@@ -27,59 +23,24 @@ class StoreHandling
   public function __construct(Request $request)
   {
     $this->request  = $request;
-    $this->model  = new Alumni();
+    $this->model  = new Form();
   }
 
   public function validate()
   {
     $rules = [
-      'nim' => [
+      'name' => [
         'required',
-        Rule::unique(Alumni::class, 'nim')
+        Rule::unique(Form::class, 'name')
       ],
-      'fullname' => [
-        'required',
-      ],
-      'gender' => [
-        'required'
-      ],
-      'province_id' => [
-        'nullable',
-        Rule::exists(Province::class, 'id')
-      ],
-      'regency_id' => [
-        'nullable',
-        Rule::exists(Regency::class, 'id')
-      ],
-      'batch_id' => [
-        'required',
-        Rule::exists(Batch::class, 'id')
-      ],
-      'major_id' => [
-        'required',
-        Rule::exists(Major::class, 'id')
-      ],
-      'graduate_year' => [
-        'required',
-      ],
-      'email' => [
-        'nullable',
-        'email',
-      ],
-      'password' => [
-        'nullable',
+      'description' => [
+        'nullable'
       ],
     ];
 
     $messages = [
-      'nim.required' => 'NIM wajib diisi.',
-      'nim.unique' => 'NIM sudah terdaftar.',
-      'fullname.required' => 'Nama Lengkap wajib diisi.',
-      'gender.required' => 'Jenis Kelamin wajib diisi.',
-      'batch_id.required' => 'Tahun Masuk/Angkatan wajib diisi.',
-      'major_id.required' => 'Program Studi wajib diisi.',
-      'graduate_year.required' => 'Tahun Lulus wajib diisi.',
-      'email.email' => 'Email tidak valid.',
+      'name.required' => 'Nama Formulir wajib diisi.',
+      'name.unique' => 'Nama Formulir sudah terdaftar.',
     ];
 
     $validated = Validator::make($this->request->all(), $rules, $messages)->validate();
@@ -89,48 +50,10 @@ class StoreHandling
   public function handle()
   {
     $validated = $this->validate();
+    $validated['slug'] = Str::slug($validated['name']);
+    $data = Form::create($validated);
 
-    DB::beginTransaction();
-    try {
-      $user = User::create([
-        'uname' => $validated['nim'],
-        'name' => $validated['fullname'],
-        'email' => @$validated['email'],
-        'password' => Hash::make(isset($validated['password']) ? $validated['password'] : $validated['nim']),
-      ]);
-
-      $alumniData = $validated;
-      $alumniData['user_id'] = $user->id;
-      // unset($alumniData['email']);
-      unset($alumniData['password']);
-
-      if ($this->request->has('photo') && !empty($this->request->photo)) {
-        $uploadDir = 'uploads/alumni/';
-        $photo = $this->request->file('photo');
-        $photoName = time() . '.' . $photo->getClientOriginalExtension();
-        $photo->move(public_path($uploadDir), $photoName);
-        $alumniData['photo'] =  $uploadDir . $photoName;
-
-        // $product = Product::find($id);
-        // if (file_exists(public_path($product->photo_filelink)) && !empty($product->photo_filelink)) {
-        //   unlink(public_path($product->photo_filelink));
-        // }
-      }
-
-      $data = Alumni::create($alumniData);
-
-      DB::commit();
-
-      // TODO:
-      // Kirim email pemberitahuan ke alumni
-
-    } catch (\Exception $e) {
-      DB::rollBack();
-      throw $e;
-    }
-
-
-    $data['message'] = 'Alumni created successfully!';
+    $data['message'] = 'Form created successfully!';
     return $data;
   }
 }

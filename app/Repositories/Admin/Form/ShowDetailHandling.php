@@ -40,7 +40,8 @@ class ShowDetailHandling
     $this->validate();
 
     $data = Form::with([
-      'sections.questions.question_options'
+      'sections.questions.question_options',
+      'sections.questions.question_childs'
     ])->where('id', $this->data->id)->first();
 
     $data['message'] = 'Form detail data!';

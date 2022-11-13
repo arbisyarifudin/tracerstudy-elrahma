@@ -23,7 +23,8 @@ class FormAndQuestionSeeder extends Seeder
         $data = [
             [
                 'name' => 'Form Tracestudy 2021',
-                'tag' => 'ts2021',
+                // 'tag' => 'ts2021',
+                'slug' => 'form-ts-2021',
                 'description' => 'Form Tracestudy 2021',
                 'sections' => [
                     [
@@ -1215,9 +1216,10 @@ class FormAndQuestionSeeder extends Seeder
         try {
             foreach ($data as $dataRow) {
                 $form = Form::firstOrCreate([
-                    'tag' => $dataRow['tag'],
-                ], [
+                    // 'tag' => $dataRow['tag'],
+                    'slug' => $dataRow['slug'],
                     'name' => $dataRow['name'],
+                ], [
                     'description' => $dataRow['description']
                 ]);
                 foreach ($dataRow['sections'] as $keySection => $section) {

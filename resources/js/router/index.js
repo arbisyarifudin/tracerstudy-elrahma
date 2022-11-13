@@ -78,7 +78,7 @@ const routes = [
         path: 'form',
         name: 'Form List Page',
         meta: {
-          title: 'Form'
+          title: 'Formulir'
         },
         component: () => import('@/pages/admin/form/List.vue')
       },

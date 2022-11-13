@@ -245,7 +245,8 @@ const loading = ref(false);
 /* DELETE DATA */
 const selectedData = ref({
   id: null,
-  year: null,
+  fullname: null,
+  nim: null,
 });
 
 const showDialogDelete = ref(false);
