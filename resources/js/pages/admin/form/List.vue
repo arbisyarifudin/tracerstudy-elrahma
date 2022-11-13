@@ -32,11 +32,25 @@
             <Button
               size="sm"
               label="Edit"
+              icon="pencil-simple"
               class="mr-2"
               @click="
                 isEditMode = true;
                 showDialogAdd = true;
                 state = { ...props.row };
+              "
+            />
+            <Button
+              variant="secondary"
+              size="sm"
+              icon="question"
+              label="Kelola Kuisioner"
+              class="mr-2"
+              @click="
+                $router.push({
+                  name: 'Form Questionnaire Edit Page',
+                  params: { id: props.row.id },
+                })
               "
             />
             <Button

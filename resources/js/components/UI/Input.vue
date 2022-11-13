@@ -75,6 +75,14 @@ const $props = defineProps({
     type: Boolean,
     default: false,
   },
+  underline: {
+    type: Boolean,
+    default: false,
+  },
+  filled: {
+    type: Boolean,
+    default: false,
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -100,6 +108,17 @@ const variants = ref({
   secondary: '',
 });
 
+const variantUnderline = ref({
+  primary:
+    '!border-b-2 border-x-transparent border-t-transparent !rounded-none focus:!border-x-transparent focus:!border-t-transparent border-gray-400',
+  secondary: '',
+});
+
+const variantFilled = ref({
+  primary: 'bg-gray-50 focus:bg-gray-100',
+  secondary: '',
+});
+
 const sizes = ref({
   xs: '',
   sm: '',
@@ -109,8 +128,14 @@ const sizes = ref({
 
 const styles = computed(() => {
   const styleVariant = variants.value[$props.variant];
+  const styleVariantUnderline = $props.underline
+    ? variantUnderline.value[$props.variant]
+    : '';
+  const styleVariantFilled = $props.filled
+    ? variantFilled.value[$props.variant]
+    : '';
   const styleSize = sizes.value[$props.size];
-  return `${styleVariant} ${styleSize}`;
+  return `${styleVariant} ${styleVariantUnderline} ${styleVariantFilled} ${styleSize}`;
 });
 
 const updateValue = (event) => {

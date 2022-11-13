@@ -83,6 +83,14 @@ const routes = [
         component: () => import('@/pages/admin/form/List.vue')
       },
       {
+        path: 'form/:id/questionnaire',
+        name: 'Form Questionnaire Edit Page',
+        meta: {
+          title: 'Formulir - Kelola Kuisioner'
+        },
+        component: () => import('@/pages/admin/form/EditQuestionnaire.vue')
+      },
+      {
         path: 'user',
         name: 'User List Page',
         meta: {

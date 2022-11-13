@@ -9,6 +9,7 @@
     "
     :class="[styles]"
     :title="title"
+    :type="type"
   >
     <component
       v-if="icon && iconPosition === 'left'"
@@ -32,6 +33,10 @@ import { ref } from '@vue/reactivity';
 import { computed } from '@vue/runtime-core';
 
 const $props = defineProps({
+  type: {
+    type: String,
+    default: 'button',
+  },
   label: {
     type: String,
     default: null,

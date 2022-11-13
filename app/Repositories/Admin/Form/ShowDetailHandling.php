@@ -28,7 +28,7 @@ class ShowDetailHandling
 
   public function validate()
   {
-    $this->data = Form::where('id', $this->id)->orWhere('tag', $this->id)->first();
+    $this->data = Form::where('id', $this->id)->orWhere('slug', $this->id)->first();
 
     if (!$this->data) {
       throw new \Exception('Form not found!', 404);

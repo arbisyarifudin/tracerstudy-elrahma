@@ -73,12 +73,12 @@ const menus = ref([
     expand: false,
   },
   {
-    title: 'Form',
+    title: 'Formulir',
     icon: 'table',
     path: {
       name: 'Form List Page',
     },
-    activeName: 'Form',
+    activeName: 'Formulir',
     expand: false,
   },
   // {
