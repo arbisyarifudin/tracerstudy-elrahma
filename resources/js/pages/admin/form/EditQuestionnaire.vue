@@ -13,7 +13,8 @@
         @click="$router.push({ name: 'Form List Page' })"
       />
     </div>
-    <form @submit.prevent="onSubmit" @keyup.enter="onSubmit">
+    <form @submit.prevent="onSubmit">
+      <!-- <div class="lg:max-w-6xl md:max-w-xl sm:max-w-lg"> -->
       <div class="max-w-6xl">
         <section
           v-for="(section, sectionIndex) in state.sections"
@@ -49,19 +50,24 @@
               <!-- {{ question.code }} -->
               {{ sectionIndex + 1 }}
             </div>
-            <div class="">
-              <div class="text-2xl font-semibold">{{ section.title }}</div>
-              <div
-                class="text-lg font-normal mt-2 mb-3"
-                v-if="section.description"
-              >
-                {{ section.description }}
-              </div>
+            <div class="w-full">
+              <Input
+                underline
+                filled
+                placeholder="Judul Section"
+                v-model="section.title"
+              />
+              <Input
+                underline
+                size="xs"
+                placeholder="Deskripsi (optional)"
+                v-model="section.description"
+              />
             </div>
           </div>
-          <div class="text-xl font-semibold mb-4">Pertanyaan:</div>
+          <div class="ml-4 text-xl font-semibold mb-4">Pertanyaan:</div>
           <div
-            class="bg-white p-6 border rounded-lg shadow-lg mb-8"
+            class="ml-4 bg-white p-6 border rounded-lg shadow-lg mb-8"
             v-for="(question, questionIndex) in section.questions"
             :key="questionIndex"
           >
@@ -86,18 +92,108 @@
               </div>
               <div class="flex-1">
                 <div class="flex space-x-5">
-                  <Input
-                    class="w-3/4"
-                    underline
-                    filled
-                    placeholder="Tulis Pertanyaan"
-                    v-model="question.text"
-                  />
+                  <div class="w-3/4">
+                    <Input
+                      underline
+                      filled
+                      placeholder="Tulis Pertanyaan"
+                      v-model="question.text"
+                    />
+                    <div class="flex justify-end">
+                      <span
+                        class="
+                          flex
+                          items-center
+                          text-xs text-gray-400
+                          cursor-pointer
+                          ml-2
+                        "
+                        @click="question.showHint = !question.showHint"
+                      >
+                        <ph-plus
+                          v-if="!question.showHint"
+                          class="text-lime-500"
+                        />
+                        <ph-x v-else class="text-red-500" />
+                        {{ !question.showHint ? 'Tampilkan' : 'Sembunyikan' }}
+                        teks bantuan</span
+                      >
+                      <span
+                        class="
+                          flex
+                          items-center
+                          text-xs text-gray-400
+                          cursor-pointer
+                          ml-2
+                        "
+                        @click="
+                          question.showDefaultValue = !question.showDefaultValue
+                        "
+                      >
+                        <ph-plus
+                          v-if="!question.showDefaultValue"
+                          class="text-lime-500"
+                        />
+                        <ph-x v-else class="text-red-500" />
+                        {{ !question.showDefaultValue ? 'Tambahkan' : 'Hapus' }}
+                        nilai bawaan</span
+                      >
+                    </div>
+                  </div>
                   <Select
                     class="w-1/4"
                     v-model="question.type"
                     :options="questionTypeOptions"
                   />
+                </div>
+                <div
+                  class="mb-4 mt-2"
+                  v-if="question.showHint || question.showDefaultValue"
+                >
+                  <div v-if="question.showHint" class="flex items-center mb-2">
+                    <ph-info :size="15" class="-mt-2" />
+                    <Input
+                      class="pl-2 flex-1"
+                      underline
+                      size="xs"
+                      placeholder="Teks bantuan (opsional)"
+                      v-model="question.hint"
+                    />
+                  </div>
+                  <div
+                    v-if="question.showDefaultValue"
+                    class="flex items-center mb-2"
+                  >
+                    <div class="w-1/2 flex items-center">
+                      <ph-pencil-simple-line :size="15" class="-mt-2" />
+                      <Input
+                        class="pl-2 flex-1"
+                        underline
+                        size="xs"
+                        placeholder="Nilai bawaan (opsional)"
+                        v-model="question.default_value"
+                        :disabled="question.is_default_value_editable"
+                      />
+                    </div>
+                    <label
+                      :for="`lock-default-value-${sectionIndex}-${questionIndex}`"
+                      class="
+                        flex
+                        items-center
+                        text-xs text-gray-500
+                        cursor-pointer
+                        ml-3
+                      "
+                    >
+                      <input
+                        :id="`lock-default-value-${sectionIndex}-${questionIndex}`"
+                        type="checkbox"
+                        class="mr-2 inline-block"
+                        v-model="question.is_default_value_editable"
+                      />
+                      Kunci nilai bawaan
+                    </label>
+                  </div>
                 </div>
                 <div
                   v-if="question.type === 'text'"
@@ -109,15 +205,90 @@
                 >
                   Teks jawaban singkat
                 </div>
-                <div
-                  v-if="question.type === 'number'"
-                  class="
-                    p-2
-                    border-b border-dashed border-gray-300
-                    text-gray-500 text-sm
-                  "
-                >
-                  Jawaban nomor
+                <div v-if="question.type === 'number'">
+                  <input
+                    type="number"
+                    class="
+                      p-2
+                      border-b border-dashed border-gray-300
+                      text-gray-500 text-sm
+                      bg-transparent
+                      focus:outline-none
+                    "
+                    placeholder="Jawaban angka"
+                  />
+                </div>
+                <div v-if="question.type === 'phone number'">
+                  <input
+                    type="number"
+                    class="
+                      p-2
+                      border-b border-dashed border-gray-300
+                      text-gray-500 text-sm
+                      bg-transparent
+                      focus:outline-none
+                      block
+                      w-auto
+                      min-w-[200px]
+                    "
+                    placeholder="Jawaban nomor telepon"
+                  />
+                </div>
+                <div v-if="question.type === 'date'">
+                  <input
+                    type="date"
+                    class="
+                      p-2
+                      border-b border-dashed border-gray-300
+                      text-gray-500 text-sm
+                      bg-transparent
+                      focus:outline-none
+                    "
+                  />
+                </div>
+                <div v-if="question.type === 'time'">
+                  <input
+                    type="time"
+                    class="
+                      p-2
+                      border-b border-dashed border-gray-300
+                      text-gray-500 text-sm
+                      bg-transparent
+                      focus:outline-none
+                    "
+                  />
+                </div>
+                <div v-if="question.type === 'year'">
+                  <input
+                    type="number"
+                    :min="2000"
+                    :max="maxYear"
+                    :minlength="4"
+                    :maxlength="4"
+                    class="
+                      p-2
+                      border-b border-dashed border-gray-300
+                      text-gray-500 text-sm
+                      bg-transparent
+                      focus:outline-none
+                    "
+                    :value="thisYear"
+                  />
+                </div>
+                <div v-if="question.type === 'email'">
+                  <input
+                    type="email"
+                    class="
+                      p-2
+                      border-b border-dashed border-gray-300
+                      text-gray-500 text-sm
+                      bg-transparent
+                      focus:outline-none
+                      w-full
+                    "
+                    placeholder="Jawaban email"
+                    readonly
+                  />
                 </div>
                 <div
                   v-else-if="question.type === 'textarea'"
@@ -137,20 +308,119 @@
                   <li
                     v-for="(option, optionIndex) in question.question_options"
                     :key="optionIndex"
+                    class="flex items-center justify-between"
                   >
                     <label
                       :for="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                      class="flex items-center flex-1 space-x-4 cursor-pointer"
                     >
                       <input
                         type="radio"
-                        :name="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                        :name="`option-${sectionIndex}-${questionIndex}`"
+                        disabled
+                        class="w-5 h-5 pointer-events-none"
                       />
-                      &nbsp; {{ option.text }}</label
+                      <Input
+                        :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                        variant="secondary"
+                        size="sm"
+                        underline-on-hover
+                        v-model="option.text"
+                        class="flex-1"
+                      />
+                    </label>
+                    <Button
+                      icon="x"
+                      size="xs"
+                      class="
+                        bg-transparent
+                        text-gray-800
+                        hover:bg-gray-50
+                        rounded-full
+                        py-2
+                        text-xs
+                        ml-3
+                      "
+                    />
+                  </li>
+                  <li>
+                    <label
+                      :for="`option-${sectionIndex}-${questionIndex}-${question.question_options.length}`"
+                      class="
+                        flex
+                        items-center
+                        flex-1
+                        space-x-3
+                        cursor-pointer
+                        text-sm
+                      "
                     >
+                      <input
+                        type="radio"
+                        disabled
+                        class="w-5 h-5 pointer-events-none"
+                      />
+                      &nbsp;
+                      <span class="text-gray-500 cursor-pointer hover:underline"
+                        >Tambahkan opsi</span
+                      >
+                      <span class="mx-2 inline-block">atau</span>
+                      <span class="text-blue-500 cursor-pointer"
+                        >tambahkan "Lainnya"</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <ul
+                  class="text-base text-gray-700 space-y-2"
+                  v-else-if="question.type === 'checkbox'"
+                >
+                  <li
+                    v-for="(option, optionIndex) in question.question_options"
+                    :key="optionIndex"
+                    class="flex items-center justify-between"
+                  >
+                    <label
+                      :for="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                      class="flex items-center flex-1 space-x-4 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        :name="`option-${sectionIndex}-${questionIndex}`"
+                        disabled
+                        class="w-5 h-5 pointer-events-none"
+                      />
+                      <Input
+                        :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                        variant="secondary"
+                        size="sm"
+                        underline-on-hover
+                        v-model="option.text"
+                        class="flex-1"
+                      />
+                    </label>
+                    <Button
+                      icon="x"
+                      size="xs"
+                      class="
+                        bg-transparent
+                        text-gray-800
+                        hover:bg-gray-50
+                        rounded-full
+                        py-2
+                        text-xs
+                        ml-3
+                      "
+                    />
                   </li>
                   <li>
                     <label for="">
-                      <input type="radio" disabled /> &nbsp;
+                      <input
+                        type="radio"
+                        disabled
+                        class="w-5 h-5 pointer-events-none"
+                      />
+                      &nbsp;
                       <span class="text-gray-500 cursor-pointer hover:underline"
                         >Tambahkan opsi</span
                       >
@@ -202,7 +472,7 @@
 
 <script setup>
 import { ref } from '@vue/reactivity';
-import { inject, onMounted, watch } from '@vue/runtime-core';
+import { computed, inject, onMounted, watch } from '@vue/runtime-core';
 const axios = inject('axios');
 
 import Input from '@/components/UI/Input.vue';
@@ -233,13 +503,21 @@ const questionTypeOptions = ref([
     value: 'text',
   },
   {
-    label: 'Jawaban nomor',
+    label: 'Jawaban panjang',
+    // value: 'multiple-line text',
+    value: 'textarea',
+  },
+  {
+    label: 'Jawaban angka',
     value: 'number',
   },
   {
-    label: 'Jawaban Panjang',
-    // value: 'multiple-line text',
-    value: 'textarea',
+    label: 'Jawaban email',
+    value: 'email',
+  },
+  {
+    label: '───────────────',
+    value: null,
   },
   {
     label: 'Pilihan Ganda',
@@ -255,23 +533,38 @@ const questionTypeOptions = ref([
     value: 'select',
   },
   {
+    label: '───────────────',
+    value: null,
+  },
+  {
     label: 'Skala linier',
     // value: 'linear scale',
     value: 'rating',
   },
   {
+    label: '───────────────',
+    value: null,
+  },
+  {
     label: 'Tanggal',
     value: 'date',
   },
-  {
-    label: 'Waktu',
-    value: 'time',
-  },
+  // {
+  //   label: 'Waktu',
+  //   value: 'time',
+  // },
   {
     label: 'Tahun',
     value: 'year',
   },
 ]);
+
+const thisYear = computed(() => {
+  return new Date().getFullYear();
+});
+const maxYear = computed(() => {
+  return thisYear.value + 10;
+});
 
 watch(
   () => state.value.province_id,

@@ -8,8 +8,9 @@
       {{ hint }}
     </div>
     <input
+      :id="id"
       :type="type"
-      class="block w-full rounded-md"
+      class="block w-full rounded-md transition duration-500"
       :class="[styles, errors && errors.length > 0 ? '!border-red-500' : '']"
       :placeholder="placeholder"
       :value="modelValue"
@@ -35,6 +36,10 @@
 import { computed, ref } from '@vue/runtime-core';
 
 const $props = defineProps({
+  id: {
+    type: String,
+    default: null,
+  },
   type: {
     type: String,
     default: 'text',
@@ -79,6 +84,10 @@ const $props = defineProps({
     type: Boolean,
     default: false,
   },
+  underlineOnHover: {
+    type: Boolean,
+    default: false,
+  },
   filled: {
     type: Boolean,
     default: false,
@@ -105,13 +114,21 @@ const $emit = defineEmits(['update:modelValue', 'change']);
 const variants = ref({
   primary:
     'border border-gray-300 focus:border-2 focus:border-blue-500 focus:ring-blue-500 outline-none',
-  secondary: '',
+  secondary:
+    'border border-gray-300 focus:border-2 focus:border-gray-800 focus:ring-gray-800 outline-none',
 });
 
 const variantUnderline = ref({
   primary:
-    '!border-b-2 border-x-transparent border-t-transparent !rounded-none focus:!border-x-transparent focus:!border-t-transparent border-gray-400',
+    '!border-b-1 border-x-transparent border-t-transparent !rounded-b-none focus:!border-x-transparent focus:!border-t-transparent border-gray-400',
   secondary: '',
+});
+
+const variantUnderlineOnHover = ref({
+  primary:
+    '!border-b-1 border-x-transparent border-t-transparent !rounded-b-none focus:!border-x-transparent focus:!border-t-transparent border-gray-100 hover:border-x-transparent hover:border-t-transparent hover:border-gray-400',
+  secondary:
+    '!border-b-1 border-x-transparent border-t-transparent !rounded-b-none focus:!border-x-transparent focus:!border-t-transparent border-gray-100 hover:border-x-transparent hover:border-t-transparent hover:border-gray-400',
 });
 
 const variantFilled = ref({
@@ -120,9 +137,9 @@ const variantFilled = ref({
 });
 
 const sizes = ref({
-  xs: '',
-  sm: '',
-  md: 'py-3 px-4 text-sm',
+  xs: 'py-1 px-2 text-xs',
+  sm: 'py-2 px-2 text-sm',
+  md: 'py-3 px-4 text-base',
   lg: '',
 });
 
@@ -131,11 +148,14 @@ const styles = computed(() => {
   const styleVariantUnderline = $props.underline
     ? variantUnderline.value[$props.variant]
     : '';
+  const styleVariantUnderlineOnHover = $props.underlineOnHover
+    ? variantUnderlineOnHover.value[$props.variant]
+    : '';
   const styleVariantFilled = $props.filled
     ? variantFilled.value[$props.variant]
     : '';
   const styleSize = sizes.value[$props.size];
-  return `${styleVariant} ${styleVariantUnderline} ${styleVariantFilled} ${styleSize}`;
+  return `${styleVariant} ${styleVariantUnderline} ${styleVariantUnderlineOnHover} ${styleVariantFilled} ${styleSize}`;
 });
 
 const updateValue = (event) => {

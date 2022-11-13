@@ -27,6 +27,7 @@
         :key="i"
         v-text="option.label"
         :value="option.value"
+        :disabled="option.value === null"
       ></option>
     </select>
     <div class="text-sm text-red-500" v-for="(error, i) in errors" :key="i">
