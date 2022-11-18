@@ -14,6 +14,8 @@ class FormSection extends Model
     /* RELATIONS */
     public function questions()
     {
-        return $this->hasMany(Question::class)->whereNull('parent_id')->orderBy('order', 'asc');;
+        return $this->hasMany(Question::class)
+            ->whereNull('parent_id')
+            ->orderBy('order', 'asc');;
     }
 }

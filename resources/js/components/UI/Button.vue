@@ -13,15 +13,17 @@
   >
     <component
       v-if="icon && iconPosition === 'left'"
-      :is="`ph-${icon}`"
+      :is="`ph-${iconName}`"
       :size="20"
+      :weight="iconWeight"
       :class="[label ? 'mr-2' : '']"
     ></component>
     <span v-text="label"></span>
     <component
       v-if="icon && iconPosition === 'right'"
-      :is="`ph-${icon}`"
+      :is="`ph-${iconName}`"
       :size="20"
+      :weight="iconWeight"
       :class="[label ? 'ml-2' : '']"
     ></component>
     <slot />
@@ -80,7 +82,8 @@ const variants = ref({
     $props.outline === false
       ? 'bg-red-600 text-white hover:bg-red-700'
       : 'bg-white border border-red-600 text-red-600 hover:bg-red-600 hover:text-white',
-  light: 'bg-transparent text-slate-600 hover:text-slate-800',
+  light:
+    'bg-transparent text-slate-600 hover:text-slate-800 hover:bg-slate-100',
 });
 
 const sizes = ref({
@@ -94,5 +97,38 @@ const styles = computed(() => {
   const styleVariant = variants.value[$props.variant];
   const styleSize = sizes.value[$props.size];
   return `${styleVariant} ${styleSize}`;
+});
+
+const iconName = computed(() => {
+  const name = $props.icon;
+  if (name) {
+    return name
+      .replace('-thin', '')
+      .replace('-light', '')
+      .replace('-regular', '')
+      .replace('-bold', '')
+      .replace('-fill', '')
+      .replace('-duotone', '');
+  }
+  return name;
+});
+
+const iconWeight = computed(() => {
+  const iconName = $props.icon;
+  if (iconName) {
+    const iconNameSplitted = iconName.split('-');
+    if (iconNameSplitted.includes('thin')) {
+      return 'thin';
+    } else if (iconNameSplitted.includes('light')) {
+      return 'light';
+    } else if (iconNameSplitted.includes('bold')) {
+      return 'bold';
+    } else if (iconNameSplitted.includes('fill')) {
+      return 'fill';
+    } else if (iconNameSplitted.includes('duotone')) {
+      return 'duotone';
+    }
+  }
+  return 'regular';
 });
 </script>

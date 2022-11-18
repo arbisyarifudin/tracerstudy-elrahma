@@ -93,7 +93,7 @@ const $props = defineProps({
     default: false,
   },
   disabled: {
-    type: Boolean,
+    type: [Boolean, Number],
     default: false,
   },
   className: {
@@ -120,8 +120,9 @@ const variants = ref({
 
 const variantUnderline = ref({
   primary:
+    '!border-b-1 border-x-transparent border-t-transparent !rounded-b-none focus:!border-x-transparent focus:!border-t-transparent border-blue-400',
+  secondary:
     '!border-b-1 border-x-transparent border-t-transparent !rounded-b-none focus:!border-x-transparent focus:!border-t-transparent border-gray-400',
-  secondary: '',
 });
 
 const variantUnderlineOnHover = ref({

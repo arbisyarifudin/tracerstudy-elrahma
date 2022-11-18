@@ -233,7 +233,7 @@ class FormAndQuestionSeeder extends Seeder
                                 'text' => 'Berapa rata-rata pendapatan anda per bulan ? (take home pay)',
                                 'code' => 'F5-05',
                                 'hint' => null,
-                                'type' => 'money',
+                                'type' => 'number',
                                 'is_required' => false,
                                 'default_value' => null,
                                 'is_default_value_editable' => null,
@@ -364,7 +364,7 @@ class FormAndQuestionSeeder extends Seeder
                                 'text' => 'Bila berwiraswasta, apa posisi/jabatan Anda saat ini ?',
                                 'code' => 'F5-C',
                                 'hint' => null,
-                                'type' => 'single select',
+                                'type' => 'select',
                                 'is_required' => false,
                                 'default_value' => null,
                                 'is_default_value_editable' => null,
@@ -396,7 +396,7 @@ class FormAndQuestionSeeder extends Seeder
                                 'text' => 'Apa tingkat tempat kerja Anda?',
                                 'code' => 'F5-D',
                                 'hint' => null,
-                                'type' => 'single select',
+                                'type' => 'select',
                                 'is_required' => false,
                                 'default_value' => null,
                                 'is_default_value_editable' => null,
@@ -424,7 +424,7 @@ class FormAndQuestionSeeder extends Seeder
                                 'text' => 'Sebutkan sumber biaya untuk melanjutkan studi?',
                                 'code' => 'F18-A',
                                 'hint' => null,
-                                'type' => 'single select',
+                                'type' => 'select',
                                 'is_required' => false,
                                 'default_value' => null,
                                 'is_default_value_editable' => null,
@@ -1268,6 +1268,7 @@ class FormAndQuestionSeeder extends Seeder
                         if (isset($question['question_childs']) && !empty($question['question_childs'])) {
                             foreach ($question['question_childs'] as $keyQuestionChild => $questionChild) {
                                 $questionChildNew = Question::firstOrCreate([
+                                    'form_section_id' => $formSection->id,
                                     'parent_id' => $questionNew->id,
                                     'text' => $questionChild['text'],
                                     'code' => $questionChild['code'],
