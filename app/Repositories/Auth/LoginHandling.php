@@ -60,9 +60,12 @@ class LoginHandling
       throw new \Exception('Password salah!', 404);
     }
 
-    $token = $findUser->createToken('auth_token')->plainTextToken;
+    // $token = $findUser->createToken('auth_token')->plainTextToken;
+    $accessToken = $findUser->createAuthToken('access_token', now()->addMinutes(10))->plainTextToken;
+    $refreshToken = $findUser->createRefreshToken('refresh_token', now()->addMinutes(30))->plainTextToken;
     $data = [
-      'access_token' => $token,
+      'access_token' => $accessToken,
+      'refresh_token' => $refreshToken,
       'token_type' => 'Bearer'
     ];
     $data['message'] = 'Login success!';

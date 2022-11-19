@@ -20,9 +20,8 @@ const toastOptions = {
 }
 
 /* AXIOS */
-import axios from 'axios'
 import VueAxios from 'vue-axios'
-axios.defaults.baseURL = import.meta.env.VITE_APP_URL
+import axiosInstance from './services/api'
 
 const pinia = createPinia()
 const app = createApp({
@@ -35,7 +34,7 @@ app.use(pinia)
 app.use(router)
 app.use(PhosphorVue)
 app.use(Toast, toastOptions)
-app.use(VueAxios, axios)
+app.use(VueAxios, axiosInstance)
 
 app.directive('click-outside', {
   beforeMount: (el, binding) => {
@@ -52,6 +51,12 @@ app.directive('click-outside', {
     document.removeEventListener('click', el.clickOutsideEvent)
   }
 })
+
+import setupInterceptor from './services/interceptor'
+import { useAuthStore } from './store/auth'
+
+const authStore = useAuthStore()
+setupInterceptor(useAuthStore, router)
 
 app.provide('axios', app.config.globalProperties.axios) // provide 'axios'
 app.mount('#app')

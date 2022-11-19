@@ -21,11 +21,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* AUTH */
+
 Route::group(['prefix' => 'auth'], function ($routes) {
     $routes->post('login', [AuthController::class, 'login']);
     $routes->post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+    $routes->post('refresh-token', [AuthController::class, 'refreshToken'])
+        ->middleware('auth:sanctum')
+        ->name('api.auth.refresh-token');
 });
 
+/* USER */
+Route::group(['prefix' => 'user', 'middleware' => 'auth:sanctum'], function ($routes) {
+    $routes->get('profile', function (Request $request) {
+        return $request->user();
+    });
+});
+
+/* ADMIN */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function ($routes) {
     $routes->group(['prefix' => 'batch'], function ($routes) {
         $routes->get('', [BatchController::class, 'list']);
