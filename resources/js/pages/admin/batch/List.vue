@@ -133,7 +133,7 @@ const pagination = ref({
 const getData = () => {
   showLoading(true);
   axios
-    .get('api/batch', {
+    .get('api/admin/batch', {
       params: {
         size: pagination.value.size,
         page: pagination.value.page,
@@ -192,7 +192,7 @@ const submitBatch = () => {
 
 const saveData = () => {
   axios
-    .post('api/batch', state.value)
+    .post('api/admin/batch', state.value)
     .then((response) => {
       console.log('res', response.data);
       showDialogAdd.value = false;
@@ -217,7 +217,7 @@ const saveData = () => {
 
 const updateData = () => {
   axios
-    .put('api/batch/' + state.value.id, state.value)
+    .put('api/admin/batch/' + state.value.id, state.value)
     .then((response) => {
       console.log('res', response.data);
       showDialogAdd.value = false;
@@ -251,7 +251,7 @@ const deleteBatch = () => {
   loading.value = true;
   showLoading(true);
   axios
-    .delete('api/batch/' + selectedData.value.id)
+    .delete('api/admin/batch/' + selectedData.value.id)
     .then((response) => {
       console.log('res', response.data);
       showDialogDelete.value = false;

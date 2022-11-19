@@ -177,7 +177,7 @@ const { showLoading } = useLoading();
 const getData = () => {
   showLoading(true);
   axios
-    .get('api/form', {
+    .get('api/admin/form', {
       params: {
         size: pagination.value.size,
         page: pagination.value.page,
@@ -239,7 +239,7 @@ const submitBatch = () => {
 
 const saveData = () => {
   axios
-    .post('api/form', state.value)
+    .post('api/admin/form', state.value)
     .then((response) => {
       console.log('res', response.data);
       showDialogAdd.value = false;
@@ -264,7 +264,7 @@ const saveData = () => {
 
 const updateData = () => {
   axios
-    .put('api/form/' + state.value.id, state.value)
+    .put('api/admin/form/' + state.value.id, state.value)
     .then((response) => {
       console.log('res', response.data);
       showDialogAdd.value = false;
@@ -299,7 +299,7 @@ const deleteData = () => {
   loading.value = true;
   showLoading(true);
   axios
-    .delete('api/form/' + selectedData.value.id)
+    .delete('api/admin/form/' + selectedData.value.id)
     .then((response) => {
       console.log('res', response.data);
       showDialogDelete.value = false;

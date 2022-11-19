@@ -326,7 +326,7 @@ const getDetail = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/alumni/' + detailData.value.id)
+    .get('api/admin/alumni/' + detailData.value.id)
     .then((response) => {
       console.log('res', response.data);
       detailData.value = response.data.data;
@@ -354,7 +354,7 @@ const getProvince = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/province', {
+    .get('api/admin/province', {
       params: {
         size: 50,
         page: 1,
@@ -386,7 +386,7 @@ const getRegency = (province_id) => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/regency', {
+    .get('api/admin/regency', {
       params: {
         size: 500,
         page: 1,
@@ -418,7 +418,7 @@ const getBatch = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/batch', {
+    .get('api/admin/batch', {
       params: {
         size: 50,
         page: 1,
@@ -449,7 +449,7 @@ const getMajor = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/major', {
+    .get('api/admin/major', {
       params: {
         size: 50,
         page: 1,
@@ -491,7 +491,7 @@ const onSubmit = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .put('api/alumni/' + detailData.value.id, state.value)
+    .put('api/admin/alumni/' + detailData.value.id, state.value)
     .then((response) => {
       console.log('res', response.data);
       showAlert('Alumni berhasil diperbarui!', { type: 'success' });

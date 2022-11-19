@@ -163,7 +163,7 @@ const { showLoading } = useLoading();
 const getData = () => {
   showLoading(true);
   axios
-    .get('api/alumni', {
+    .get('api/admin/alumni', {
       params: {
         size: pagination.value.size,
         page: pagination.value.page,
@@ -201,7 +201,7 @@ const getBatch = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/batch', {
+    .get('api/admin/batch', {
       params: {
         size: 50,
         page: 1,
@@ -256,7 +256,7 @@ const deleteData = () => {
   loading.value = true;
   showLoading(true);
   axios
-    .delete('api/alumni/' + selectedData.value.id)
+    .delete('api/admin/alumni/' + selectedData.value.id)
     .then((response) => {
       console.log('res', response.data);
       showDialogDelete.value = false;

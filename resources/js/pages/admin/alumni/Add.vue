@@ -318,7 +318,7 @@ const getProvince = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/province', {
+    .get('api/admin/province', {
       params: {
         size: 50,
         page: 1,
@@ -350,7 +350,7 @@ const getRegency = (province_id) => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/regency', {
+    .get('api/admin/regency', {
       params: {
         size: 500,
         page: 1,
@@ -382,7 +382,7 @@ const getBatch = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/batch', {
+    .get('api/admin/batch', {
       params: {
         size: 50,
         page: 1,
@@ -413,7 +413,7 @@ const getMajor = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/major', {
+    .get('api/admin/major', {
       params: {
         size: 50,
         page: 1,
@@ -450,7 +450,7 @@ const onSubmit = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .post('api/alumni', state.value)
+    .post('api/admin/alumni', state.value)
     .then((response) => {
       console.log('res', response.data);
       showAlert('Alumni berhasil ditambahkan!', { type: 'success' });

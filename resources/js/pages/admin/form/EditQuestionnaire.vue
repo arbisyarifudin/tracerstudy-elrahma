@@ -1039,7 +1039,7 @@ const getDetail = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/form/' + detailData.value.id + '/detail')
+    .get('api/admin/form/' + detailData.value.id + '/detail')
     .then((response) => {
       console.log('res', response.data);
       detailData.value = response.data.data;
@@ -1436,7 +1436,7 @@ const onSubmit = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .put('api/form/' + detailData.value.id + '/detail', state.value)
+    .put('api/admin/form/' + detailData.value.id + '/detail', state.value)
     .then((response) => {
       console.log('res', response.data);
       showAlert('Kuisioner formulir berhasil diperbarui!', { type: 'success' });
