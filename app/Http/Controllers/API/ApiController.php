@@ -87,8 +87,11 @@ class ApiController extends Controller
     $format = [
       'status' => $code,
       'message' => $message,
-      'data' => $data,
+      // 'data' => $data,
     ];
+    if (isset($data) && !empty($data)) {
+      $format['data'] = $data;
+    }
 
     return response($format, $code);
   }
@@ -134,6 +137,10 @@ class ApiController extends Controller
       $errorFormat['errors'] = $e->errors();
       $errorFormat['status'] = $validHttpCode;
       $errorFormat['error_code'] = $validHttpCode;
+    }
+
+    if (in_array($validHttpCode, [404, 401, 403, 422])) {
+      unset($errorFormat['developer_message']);
     }
 
     return response($errorFormat, $validHttpCode);
