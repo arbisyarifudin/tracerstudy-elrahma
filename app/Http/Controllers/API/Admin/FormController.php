@@ -9,6 +9,7 @@ use App\Repositories\Admin\Form\ShowDetailHandling;
 use App\Repositories\Admin\Form\ShowHandling;
 use App\Repositories\Admin\Form\StoreHandling;
 use App\Repositories\Admin\Form\UpdateHandling;
+use App\Repositories\Admin\Form\UpdateDetailHandling;
 use Illuminate\Http\Request;
 
 class FormController extends ApiController
@@ -78,6 +79,18 @@ class FormController extends ApiController
   {
     try {
       $executor = new UpdateHandling($request, $id);
+      $data = $executor->handle();
+
+      return $this->responseData($data);
+    } catch (\Exception $e) {
+      return $this->responseException($e);
+    }
+  }
+
+  public function updateDetail(Request $request, $id)
+  {
+    try {
+      $executor = new UpdateDetailHandling($request, $id);
       $data = $executor->handle();
 
       return $this->responseData($data);

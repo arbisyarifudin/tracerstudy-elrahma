@@ -217,13 +217,13 @@ const showDialogAdd = ref(false);
 
 const state = ref({
   name: '',
-  tag: '',
+  // tag: '',
   description: '',
 });
 
 const errors = ref({
   name: null,
-  tag: null,
+  // tag: null,
   description: null,
 });
 

@@ -16,6 +16,7 @@
       :value="modelValue"
       @input="updateValue"
       @change="changeValue"
+      @keyup="keyupValue"
       :min="min"
       :max="max"
       :step="step"
@@ -109,7 +110,7 @@ const $props = defineProps({
   },
 });
 
-const $emit = defineEmits(['update:modelValue', 'change']);
+const $emit = defineEmits(['update:modelValue', 'change', 'keyup']);
 
 const variants = ref({
   primary:
@@ -164,5 +165,8 @@ const updateValue = (event) => {
 };
 const changeValue = (event) => {
   $emit('change', event.target.value);
+};
+const keyupValue = (event) => {
+  $emit('keyup', event.target.value);
 };
 </script>

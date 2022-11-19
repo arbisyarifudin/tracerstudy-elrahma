@@ -52,6 +52,7 @@ Route::group(['prefix' => 'form'], function ($routes) {
     $routes->get('{id}/detail', [FormController::class, 'showDetail']);
     $routes->post('', [FormController::class, 'store']);
     $routes->put('{id}', [FormController::class, 'update']);
+    $routes->put('{id}/detail', [FormController::class, 'updateDetail']);
     $routes->delete('{id}', [FormController::class, 'delete']);
 });
 

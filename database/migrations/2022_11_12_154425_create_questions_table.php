@@ -21,15 +21,9 @@ return new class extends Migration
             $table->string('hint', 255)->nullable();
             $table->integer('order')->default(0);
             $table->string('type')->nullable();
-            $table->boolean('is_required')->default(false);
             $table->string('default_value')->nullable();
             $table->boolean('is_default_value_editable')->nullable()->default(true);
-            $table->boolean('is_displayed_from_start')->default(true);
             $table->unsignedBigInteger('parent_id')->nullable()->index();
-            $table->unsignedBigInteger('default_next_question_id')->nullable()->index();
-            $table->boolean('is_exportable')->default(false);
-            $table->string('export_code')->nullable();
-            $table->integer('export_order')->nullable();
             $table->timestamps();
         });
     }

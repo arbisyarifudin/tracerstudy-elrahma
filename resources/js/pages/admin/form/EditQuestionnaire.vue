@@ -1,21 +1,47 @@
 <template>
   <div class="rounded-xl border shadow-xl p-6 bg-white">
-    <div class="mb-3 border-b pb-3 flex items-center justify-between">
+    <div class="mb-3 border-b pb-3 flex items-center justify-between sticky">
       <h3 class="text-2xl font-semibold">
         Kelola Kuisioner
         <span class="text-sm text-gray-500">/ {{ detailData.name }}</span>
       </h3>
-      <Button
-        label="Kembali"
-        icon="arrow-fat-line-left"
-        size="xs"
-        variant="secondary"
-        @click="$router.push({ name: 'Form List Page' })"
-      />
+      <div class="flex items-center space-x-3">
+        <Button
+          label="Kembali"
+          icon="arrow-fat-line-left"
+          variant="secondary"
+          @click="$router.push({ name: 'Form List Page' })"
+        />
+        <Button
+          v-if="state.sections && state.sections.length > 0"
+          variant="primary"
+          type="submit"
+          label="Simpan"
+          @click="onSubmit"
+          :disabled="loading"
+        />
+      </div>
     </div>
     <form @submit.prevent="onSubmit">
       <!-- <div class="lg:max-w-6xl md:max-w-xl sm:max-w-lg"> -->
       <div class="max-w-6xl">
+        <div
+          v-if="state.sections && state.sections.length < 1"
+          class="bg-gray-100 p-2 border rounded-lg shadow-sm"
+        >
+          <div class="flex justify-center items-center space-x-4 px-4 py-6">
+            <div>Belum ada Kuisioner.</div>
+            <Button
+              variant="secondary"
+              outline
+              label="Tambah Section"
+              size="xs"
+              icon="plus"
+              @click="addSection(sectionIndex)"
+            />
+          </div>
+        </div>
+
         <section
           v-for="(section, sectionIndex) in state.sections"
           :key="sectionIndex"
@@ -48,6 +74,8 @@
                   filled
                   placeholder="Judul Section"
                   v-model="section.title"
+                  :errors="errors[`sections.${sectionIndex}.title`]"
+                  @keyup="errors[`sections.${sectionIndex}.title`] = []"
                 />
                 <Input
                   variant="secondary"
@@ -149,6 +177,16 @@
                           filled
                           placeholder="Tulis Pertanyaan"
                           v-model="question.text"
+                          :errors="
+                            errors[
+                              `sections.${sectionIndex}.questions.${questionIndex}.text`
+                            ]
+                          "
+                          @keyup="
+                            errors[
+                              `sections.${sectionIndex}.questions.${questionIndex}.text`
+                            ] = []
+                          "
                         />
                         <div class="flex justify-end mb-3">
                           <span
@@ -205,6 +243,16 @@
                         :options="questionTypeOptions"
                         placeholder="-- Pilih tipe pertanyaan --"
                         @change="onChangeQuestionType(question)"
+                        :errors="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.type`
+                          ]
+                        "
+                        @keyup="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.type`
+                          ] = []
+                        "
                       />
                     </div>
                     <div
@@ -421,8 +469,17 @@
                                   ? 'Lainnya...'
                                   : 'Label opsi ' + optionIndex
                               "
-                              :disabled="option.is_custom_value"
                               class="flex-1"
+                              :errors="
+                                errors[
+                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.text`
+                                ]
+                              "
+                              @keyup="
+                                errors[
+                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.text`
+                                ] = []
+                              "
                             />
                             <div
                               class="mx-2 text-xs text-gray-400"
@@ -438,6 +495,16 @@
                               v-model="option.value"
                               :placeholder="'Nilai opsi ' + optionIndex"
                               class="flex-1"
+                              :errors="
+                                errors[
+                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.value`
+                                ]
+                              "
+                              @keyup="
+                                errors[
+                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.value`
+                                ] = []
+                              "
                             />
                           </div>
                         </label>
@@ -647,7 +714,7 @@
                       class="text-base text-gray-700 space-y-2"
                       v-else-if="
                         question.type === 'select' ||
-                        question.type === 'select dropdown'
+                        question.type === 'dropdown'
                       "
                     >
                       <li
@@ -927,6 +994,7 @@
           label="Reset Data"
         /> -->
         <Button
+          v-if="state.sections && state.sections.length > 0"
           class="justify-center mb-3"
           variant="primary"
           type="submit"
@@ -963,7 +1031,9 @@ const detailData = ref({
 
 const state = ref({});
 
-const errors = ref({});
+const errors = ref({
+  sections: [],
+});
 
 const getDetail = () => {
   showLoading(true);
@@ -1053,8 +1123,8 @@ const questionTypeOptions = ref([
   },
   {
     label: 'Drop-down',
-    // value: 'dropdown',
-    value: 'select dropdown',
+    // value: 'select',
+    value: 'dropdown',
   },
   {
     label: '───────────────',
@@ -1165,6 +1235,12 @@ const scrollTo = (toX = 0, toY = 0) => {
   window.scrollTo(toX, toY);
 };
 
+const resetErrors = () => {
+  errors.value = {
+    sections: [],
+  };
+};
+
 // FORM SECTION
 
 const questionTemplate = ref({
@@ -1172,7 +1248,7 @@ const questionTemplate = ref({
   text: '',
   hint: null,
   // order: 0,
-  type: 'text',
+  type: 'single-line text',
   // is_required: 0,
   default_value: null,
   is_default_value_editable: null,
@@ -1197,10 +1273,12 @@ const sectionTemplate = ref({
 });
 
 const addSection = (sectionIndex) => {
+  resetErrors();
+
   if (typeof sectionIndex === 'undefined' || sectionIndex === null) {
     state.value.sections.push({
       ...copyObject(sectionTemplate.value),
-      title: 'Judul Section ' + (sectionIndex + 1),
+      title: 'Judul Section 1',
     });
   } else {
     state.value.sections.splice(sectionIndex + 1, 0, {
@@ -1216,10 +1294,14 @@ const deleteSection = (sectionIndex) => {
 // FORM QUESTION
 
 const deleteQuestion = (sectionIndex, questionIndex) => {
+  resetErrors();
+
   state.value.sections[sectionIndex].questions.splice(questionIndex, 1);
 };
 
 const addQuestion = (sectionIndex, questionIndex) => {
+  resetErrors();
+
   let newlyAddedIndex;
   if (typeof questionIndex === 'undefined' || questionIndex === null) {
     newlyAddedIndex = state.value.sections[sectionIndex].questions.push(
@@ -1247,6 +1329,8 @@ const addQuestion = (sectionIndex, questionIndex) => {
 // };
 
 const duplicateQuestion = (sectionIndex, questionIndex, question) => {
+  resetErrors();
+
   let newlyAddedIndex;
   if (typeof questionIndex === 'undefined' || questionIndex === null) {
     newlyAddedIndex = state.value.sections[sectionIndex].questions.push({
@@ -1273,6 +1357,8 @@ const questionOptionTemplate = ref({
 });
 
 const addQuestionOption = (sectionIndex, questionIndex) => {
+  resetErrors();
+
   const options =
     state.value.sections[sectionIndex].questions[questionIndex]
       .question_options;
@@ -1297,20 +1383,23 @@ const questionCustomValueExists = (options) => {
   return found > -1;
 };
 const addQuestionCustomOption = (sectionIndex, questionIndex) => {
+  resetErrors();
+
   const options =
     state.value.sections[sectionIndex].questions[questionIndex]
       .question_options;
   if (questionCustomValueExists(options) === false) {
     options.push({
       ...copyObject(questionOptionTemplate.value),
-      text: '',
-      value: '',
+      text: 'Lainnya, tuliskan:',
+      value: '-',
       is_custom_value: 1,
     });
   }
 };
 
 const deleteQuestionOption = (options, optionIndex) => {
+  resetErrors();
   options.splice(optionIndex, 1);
 };
 
@@ -1318,7 +1407,7 @@ const inputWithOptionTypes = [
   'radio',
   'multiple choice',
   'select',
-  'select dropdown',
+  'dropdown',
   'checkbox',
 ];
 const onChangeQuestionType = (question) => {
@@ -1347,11 +1436,11 @@ const onSubmit = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .put('api/alumni/' + detailData.value.id, state.value)
+    .put('api/form/' + detailData.value.id + '/detail', state.value)
     .then((response) => {
       console.log('res', response.data);
-      showAlert('Formulir berhasil diperbarui!', { type: 'success' });
-      $router.push({ name: 'Form List Page' });
+      showAlert('Kuisioner formulir berhasil diperbarui!', { type: 'success' });
+      // $router.push({ name: 'Form List Page' });
     })
     .catch((error) => {
       console.log('err', error);
