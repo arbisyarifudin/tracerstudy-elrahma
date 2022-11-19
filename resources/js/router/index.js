@@ -1,18 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/pages/Home.vue'
 import About from '@/pages/About.vue'
-import Dashboard from '@/pages/admin/Dashboard.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'home'
-    // component: () => import('@/layouts/DashboardLayout.vue')
+    name: 'home',
+    component: Home
   },
   {
     path: '/about',
     name: 'about',
     component: About
+  },
+  {
+    path: '/auth',
+    component: () => import('@/layouts/AuthLayout.vue'),
+    children: [
+      {
+        path: 'login',
+        name: 'Login Page',
+        meta: {
+          title: 'Login'
+        },
+        component: () => import('@/pages/auth/Login.vue')
+      }
+    ]
   },
   {
     path: '/admin',
@@ -24,7 +37,7 @@ const routes = [
         meta: {
           title: 'Dashboard'
         },
-        component: Dashboard
+        component: () => import('@/pages/admin/Dashboard.vue')
       },
       {
         path: 'batch',
@@ -48,7 +61,7 @@ const routes = [
         meta: {
           title: 'Peminatan'
         },
-        component: Dashboard
+        component: () => import('@/pages/admin/major-interest/List.vue')
       },
       {
         path: 'alumni',
@@ -96,7 +109,7 @@ const routes = [
         meta: {
           title: 'Pengguna'
         },
-        component: Dashboard
+        component: () => import('@/pages/admin/Dashboard.vue')
       }
     ]
   }
