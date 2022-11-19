@@ -1,18 +1,20 @@
 class TokenService {
   getLocalRefreshToken() {
     const token = JSON.parse(localStorage.getItem('token'))
-    return token?.refreshToken
+    return token?.refresh_token
   }
 
   getLocalAccessToken() {
     const token = JSON.parse(localStorage.getItem('token'))
-    return token?.accessToken
+    return token?.access_token
   }
 
   updateLocalAccessToken(token) {
     let tokenData = JSON.parse(localStorage.getItem('token'))
-    tokenData.accessToken = token
-    localStorage.setItem('token', JSON.stringify(tokenData))
+    if (tokenData) {
+      tokenData.access_token = token
+      localStorage.setItem('token', JSON.stringify(tokenData))
+    }
   }
 
   getToken() {

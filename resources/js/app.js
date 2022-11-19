@@ -56,7 +56,7 @@ import setupInterceptor from './services/interceptor'
 import { useAuthStore } from './store/auth'
 
 const authStore = useAuthStore()
-setupInterceptor(useAuthStore, router)
+setupInterceptor(authStore, router)
 
 app.provide('axios', app.config.globalProperties.axios) // provide 'axios'
 app.mount('#app')

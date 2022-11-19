@@ -30,7 +30,7 @@ const routes = [
   {
     path: '/admin',
     meta: {
-      middleware: auth
+      middlewares: [auth]
     },
     component: () => import('@/layouts/DashboardLayout.vue'),
     children: [
@@ -38,8 +38,7 @@ const routes = [
         path: '',
         name: 'Dashboard Page',
         meta: {
-          title: 'Dashboard',
-          middlewares: [auth]
+          title: 'Dashboard'
         },
         component: () => import('@/pages/admin/Dashboard.vue')
       },

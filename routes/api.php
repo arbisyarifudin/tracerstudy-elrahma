@@ -34,7 +34,10 @@ Route::group(['prefix' => 'auth'], function ($routes) {
 /* USER */
 Route::group(['prefix' => 'user', 'middleware' => 'auth:sanctum'], function ($routes) {
     $routes->get('profile', function (Request $request) {
-        return $request->user();
+        return [
+            'message' => 'User profile.',
+            'data' => $request->user()
+        ];
     });
 });
 

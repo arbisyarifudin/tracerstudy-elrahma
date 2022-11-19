@@ -32,10 +32,10 @@ class RefreshTokenHandling
   {
     $this->validate();
     $findUser = Auth::user();
-    // $accessToken = $findUser->createAuthToken('access_token', now()->addMinutes(10))->plainTextToken;
+    $accessToken = $findUser->createAuthToken('access_token', now()->addMinutes(10))->plainTextToken;
     $refreshToken = $findUser->createRefreshToken('refresh_token', now()->addMinutes(30))->plainTextToken;
     $data = [
-      // 'access_token' => $accessToken,
+      'access_token' => $accessToken,
       'refresh_token' => $refreshToken,
       'token_type' => 'Bearer'
     ];

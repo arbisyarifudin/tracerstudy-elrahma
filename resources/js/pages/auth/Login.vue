@@ -14,13 +14,13 @@
     <div class="border-b pb-3 mb-5">
       <h2 class="text-2xl font-bold">Login</h2>
     </div>
-    <form @submit.prevent="">
+    <form @submit.prevent="onSubmit">
       <Input
         label="NIM / Username / Email:"
         placeholder="Masukkan NIM / Username / Email"
-        v-model="state.username"
-        :errors="errors.username"
-        @change="errors.username = null"
+        v-model="state.unameOrEmail"
+        :errors="errors.unameOrEmail"
+        @change="errors.unameOrEmail = null"
         required
       ></Input>
       <Input
@@ -50,15 +50,49 @@
 import Input from '@/components/UI/Input.vue';
 import Button from '@/components/UI/Button.vue';
 import { ref } from '@vue/reactivity';
+import AuthService from '@/services/auth.service';
+import { useRouter } from 'vue-router';
+import useLoading from '@/composables/loading';
+import useAlert from '@/composables/alert';
+
+const $router = useRouter();
 
 const state = ref({
-  username: '',
+  unameOrEmail: '',
   password: '',
 });
 const errors = ref({
-  username: null,
+  unameOrEmail: null,
   password: null,
 });
 
 const loading = ref(false);
+const { showAlert } = useAlert();
+const { showLoading } = useLoading();
+
+const onSubmit = () => {
+  loading.value = true;
+  showLoading(true);
+  // loading.value = false;
+  AuthService.login({
+    unameOrEmail: state.value.unameOrEmail,
+    password: state.value.password,
+  })
+    .then(async (res) => {
+      showAlert('Login sukses!', { type: 'success' });
+      await $router.push({ name: 'Dashboard Page' });
+    })
+    .catch((error) => {
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
+      } else {
+        errors.value = error.response.data.errors;
+      }
+    })
+    .finally(() => {
+      showLoading(false);
+      loading.value = false;
+    });
+};
 </script>

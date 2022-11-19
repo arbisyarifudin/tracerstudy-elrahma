@@ -25,7 +25,7 @@ function middlewarePipeline(context, middlewares, index) {
 router.beforeEach((to, from, next) => {
   if (!to.meta.middlewares) return next()
   const middlewares = to.meta.middlewares
-  const context = { to, from, next }
+  const context = { to, from, next, router }
   return middlewares[0]({
     ...context,
     next: middlewarePipeline(context, middlewares, 1)

@@ -1,17 +1,16 @@
 import { useAuthStore } from '@/store/auth'
-import axios from 'axios'
+import AuthService from '@/services/auth.service'
 
-export default async function auth({ next }) {
+export default async function auth({ next, router }) {
   const authStore = useAuthStore()
   if (authStore.isAuth === false) {
-    await axios
-      .get('api/user/profile')
+    AuthService.profile()
       .then((response) => {
         authStore.setUserProfile(response.data)
         authStore.setIsAuth(true)
       })
-      .catch(async () => {
-        return next({ name: 'Login Page' })
+      .catch(async (err) => {
+        return await router.push({ name: 'Login Page' })
       })
   }
 
