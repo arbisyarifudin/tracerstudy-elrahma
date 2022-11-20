@@ -1,6 +1,7 @@
 import Home from '@/pages/Home.vue'
 import About from '@/pages/About.vue'
 import auth from './middleware/auth'
+import guest from './middleware/guest'
 
 const routes = [
   {
@@ -15,13 +16,17 @@ const routes = [
   },
   {
     path: '/auth',
+    meta: {
+      role: null
+    },
     component: () => import('@/layouts/AuthLayout.vue'),
     children: [
       {
         path: 'login',
         name: 'Login Page',
         meta: {
-          title: 'Login'
+          title: 'Login',
+          middlewares: [guest]
         },
         component: () => import('@/pages/auth/Login.vue')
       }
@@ -30,6 +35,7 @@ const routes = [
   {
     path: '/admin',
     meta: {
+      role: 'Administrator',
       middlewares: [auth]
     },
     component: () => import('@/layouts/DashboardLayout.vue'),
@@ -113,6 +119,24 @@ const routes = [
           title: 'Pengguna'
         },
         component: () => import('@/pages/admin/Dashboard.vue')
+      }
+    ]
+  },
+  {
+    path: '/alumni',
+    meta: {
+      role: 'Alumni',
+      middlewares: [auth]
+    },
+    component: () => import('@/layouts/AlumniDashboardLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Alumni Dashboard Page',
+        meta: {
+          title: 'Dashboard'
+        },
+        component: () => import('@/pages/alumni/Dashboard.vue')
       }
     ]
   }
