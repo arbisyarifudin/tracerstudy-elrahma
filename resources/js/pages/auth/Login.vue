@@ -81,6 +81,7 @@ const onSubmit = () => {
     .then(async (res) => {
       showAlert('Login sukses!', { type: 'success' });
       await $router.push({ name: 'Dashboard Page' });
+      return res;
     })
     .catch((error) => {
       console.log('err', error);

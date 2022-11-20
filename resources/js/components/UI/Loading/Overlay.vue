@@ -3,7 +3,7 @@
     class="
       bg-black/25
       fixed
-      z-90
+      z-[50]
       top-0
       left-0
       flex

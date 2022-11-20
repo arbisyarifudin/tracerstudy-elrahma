@@ -41,10 +41,18 @@
               aria-expanded="false"
             >
               <div
-                class="mr-3 hidden md:flex flex-col justify-start items-start"
+                class="
+                  mr-3
+                  hidden
+                  md:flex
+                  flex-col
+                  justify-start
+                  items-start
+                  whitespace-nowrap
+                "
               >
                 <span class="text-xs text-gray-400">Selamat datang,</span>
-                <span>Administrator</span>
+                <span>{{ authStore?.userProfile?.name }}</span>
               </div>
               <img
                 src="@/assets/img/avatar.jpg"
@@ -171,6 +179,7 @@
           variant="danger"
           type="submit"
           label="Ya, Keluar"
+          :disabled="loading"
           @click="onConfirmLogout"
         />
       </div>
@@ -189,9 +198,11 @@ import useLoading from '@/composables/loading';
 import useAlert from '@/composables/alert';
 
 import AuthService from '@/services/auth.service';
-
+import { useAuthStore } from '@/store/auth';
 const $route = useRoute();
 const $router = useRouter();
+
+const authStore = useAuthStore();
 
 defineProps({
   closed: {
@@ -208,6 +219,7 @@ const closeSidebar = () => {
 const showLogoutDialog = ref(false);
 const { showLoading } = useLoading();
 const { showAlert } = useAlert();
+const loading = ref(false);
 
 const onConfirmLogout = async () => {
   showLoading(true);

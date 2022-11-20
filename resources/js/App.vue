@@ -1,7 +1,6 @@
 <template>
   <router-view></router-view>
-  <!-- <LoadingOverlay v-show="isLoading" /> -->
-  <!-- <Notification /> -->
+  <LoadingOverlay v-show="isLoading" />
 </template>
 
 <script setup>

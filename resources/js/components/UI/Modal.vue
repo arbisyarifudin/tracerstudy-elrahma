@@ -7,7 +7,7 @@
       fixed
       top-0
       left-0
-      z-[60]
+      z-[50]
       overflow-x-hidden overflow-y-auto
       bg-black/[0.5]
     "
