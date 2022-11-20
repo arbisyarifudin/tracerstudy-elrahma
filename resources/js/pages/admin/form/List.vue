@@ -18,7 +18,16 @@
       </template>
       <template v-slot:body-cell-name="props">
         <td>
-          {{ props.row.name }}
+          <div class="flex items-center space-x-4">
+            <span>{{ props.row.name }}</span>
+            <Switch
+              v-model="props.row.is_active"
+              :true-value="1"
+              :false-value="0"
+              @change="toggleActive(props.row)"
+              :title="props.row.is_active === 1 ? 'Nonaktifkan' : 'Aktifkan'"
+            />
+          </div>
         </td>
       </template>
       <template v-slot:body-cell-description="props">
@@ -127,6 +136,7 @@ import Button from '@/components/UI/Button.vue';
 import Modal from '@/components/UI/Modal.vue';
 import Input from '@/components/UI/Input.vue';
 import Select from '@/components/UI/Select.vue';
+import Switch from '@/components/UI/Switch.vue';
 
 import useLoading from '@/composables/loading';
 import useAlert from '@/composables/alert';
@@ -323,6 +333,31 @@ const onCloseDialog = () => {
   showDialogAdd.value = false;
   isEditMode.value = false;
   state.value = {};
+};
+
+/* TOGGLE */
+const toggleActive = (row) => {
+  axios
+    .put('api/admin/form/' + row.id, row)
+    .then((response) => {
+      console.log(row.is_active);
+      showAlert(
+        'Form berhasil ' +
+          (row.is_active === 1 ? 'diaktifkan' : 'dinonaktifkan') +
+          '!',
+        { type: 'success' }
+      );
+      getData();
+    })
+    .catch((error) => {
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
+      }
+    })
+    .finally(() => {
+      showLoading(false);
+    });
 };
 </script>
 

@@ -53,7 +53,7 @@
           </div>
           <div class="flex-1 text-right md:text-center">
             <h5 class="font-bold uppercase text-gray-600">
-              Formulir Tracerstudy
+              Formulir Kuisioner Tracerstudy
             </h5>
             <h3 class="font-bold text-3xl">
               5

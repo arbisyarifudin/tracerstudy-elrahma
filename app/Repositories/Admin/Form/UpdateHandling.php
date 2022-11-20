@@ -36,11 +36,11 @@ class UpdateHandling
 
     $rules = [
       'name' => [
-        'required',
+        'sometimes',
         Rule::unique(Form::class, 'name')->ignore($this->data->id, 'id')
       ],
       'description' => [
-        'nullable'
+        'sometimes'
       ],
       'is_active' => [
         'sometimes',
@@ -60,8 +60,8 @@ class UpdateHandling
   {
     $validated = $this->validate();
 
-    if ($validated['is_active'] == true) {
-      Form::where('is_active', true)->update(['is_active', false]);
+    if (@$validated['is_active'] == true) {
+      Form::where('is_active', true)->update(['is_active' => false]);
     }
     $this->data->update($validated);
 

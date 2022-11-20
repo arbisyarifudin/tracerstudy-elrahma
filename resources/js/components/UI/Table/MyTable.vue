@@ -31,7 +31,7 @@
           >
             <slot
               :name="`body-cell-${column.name}`"
-              :row="row"
+              :row="rowsRaw[i]"
               :index="generateIndex(i)"
             />
           </td>
@@ -128,6 +128,7 @@ const $props = defineProps({
 });
 
 const rows = ref([]);
+const rowsRaw = ref([]);
 
 const columnNames = $props.columns.map((v) => v.name);
 columnNames.push('id');
@@ -136,6 +137,7 @@ watch(
   () => $props.datas,
   (newValue) => {
     rows.value = [];
+    rowsRaw.value = newValue;
     newValue.forEach((item) => {
       const itemFiltered = Object.keys(item)
         .filter((key) => columnNames.includes(key))
