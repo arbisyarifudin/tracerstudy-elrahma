@@ -42,6 +42,10 @@ class UpdateHandling
       'description' => [
         'nullable'
       ],
+      'is_active' => [
+        'sometimes',
+        'boolean'
+      ]
     ];
 
     $messages = [
@@ -56,6 +60,9 @@ class UpdateHandling
   {
     $validated = $this->validate();
 
+    if ($validated['is_active'] == true) {
+      Form::where('is_active', true)->update(['is_active', false]);
+    }
     $this->data->update($validated);
 
     $data = $this->data->refresh();

@@ -48,6 +48,7 @@ class ListHandling extends PagingData
       'name',
       /* 'tag', */
       'slug',
+      'is_active',
       'description',
       'created_at',
       'updated_at',

@@ -61,12 +61,18 @@ class LoginHandling
     }
 
     // $token = $findUser->createToken('auth_token')->plainTextToken;
-    $accessToken = $findUser->createAuthToken('access_token', now()->addMinutes(10))->plainTextToken;
-    $refreshToken = $findUser->createRefreshToken('refresh_token', now()->addMinutes(30))->plainTextToken;
+    $expiredAt = now()->addMinutes(60 * 12);
+    $accessToken = $findUser->createAuthToken('access_token', $expiredAt)->plainTextToken;
+    $refreshToken = $findUser->createRefreshToken('refresh_token', now()->addMinutes(60 * 24))->plainTextToken;
     $data = [
       'access_token' => $accessToken,
       'refresh_token' => $refreshToken,
-      'token_type' => 'Bearer'
+      'token_type' => 'Bearer',
+      'token_expires' => $expiredAt,
+      'user' => [
+        'name' => $findUser->name,
+        'type' => $findUser->type,
+      ]
     ];
     $data['message'] = 'Login success!';
     return $data;

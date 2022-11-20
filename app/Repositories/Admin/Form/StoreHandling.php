@@ -36,6 +36,10 @@ class StoreHandling
       'description' => [
         'nullable'
       ],
+      'is_active' => [
+        'nullable',
+        'boolean'
+      ]
     ];
 
     $messages = [
@@ -50,6 +54,11 @@ class StoreHandling
   public function handle()
   {
     $validated = $this->validate();
+
+    if ($validated['is_active'] == true) {
+      Form::where('is_active', true)->update(['is_active' => false]);
+    }
+
     $validated['slug'] = Str::slug($validated['name']);
     $data = Form::create($validated);
 
