@@ -18,6 +18,7 @@
         "@vitejs/plugin-vue": "^3.2.0",
         "phosphor-vue": "^4.4.0",
         "pinia": "^2.0.23",
+        "tw-elements": "^1.0.0-alpha12",
         "vue": "^3.2.36",
         "vue-axios": "^3.5.2",
         "vue-loader": "^17.0.0",

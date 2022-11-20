@@ -23,8 +23,11 @@ class AuthService {
     })
   }
 
-  logout() {
-    TokenService.removeToken()
+  async logout() {
+    return await api.post('/api/auth/logout').then((response) => {
+      TokenService.removeToken()
+      return response?.data
+    })
   }
 
   register({ uname, email, password }) {

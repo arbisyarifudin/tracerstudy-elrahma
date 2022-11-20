@@ -31,7 +31,7 @@
       @click.stop
     >
       <div
-        class="flex flex-col bg-white border shadow-sm rounded-xl"
+        class="flex flex-1 flex-col bg-white border shadow-sm rounded-xl"
         @keyup.enter="confirmModal"
       >
         <slot name="header">

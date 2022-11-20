@@ -3,10 +3,11 @@ module.exports = {
   content: [
     './resources/**/*.blade.php',
     './resources/**/*.js',
-    './resources/**/*.vue'
+    './resources/**/*.vue',
+    './node_modules/tw-elements/dist/js/**/*.js'
   ],
   theme: {
     extend: {}
   },
-  plugins: []
+  plugins: [require('tw-elements/dist/plugin')]
 }
