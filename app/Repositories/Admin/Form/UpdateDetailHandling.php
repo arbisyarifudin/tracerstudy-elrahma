@@ -10,6 +10,7 @@ use App\Models\Form;
 use App\Models\FormSection;
 use App\Models\Question;
 use App\Models\QuestionOption;
+use App\Models\QuestionRate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -117,6 +118,8 @@ class UpdateDetailHandling
     DB::beginTransaction();
     try {
       FormSection::where('form_id', $this->data->id)->delete();
+
+      // Form Section
       foreach ($this->request->sections as $key => $section) {
         $formSection = FormSection::create([
           'form_id' => $this->data->id,
@@ -125,6 +128,7 @@ class UpdateDetailHandling
           'order' => $key,
         ]);
 
+        // Question
         foreach ($section['questions'] as $key2 => $question) {
           $fomQuestion = Question::create([
             'form_section_id' => $formSection->id,
@@ -135,6 +139,20 @@ class UpdateDetailHandling
             'is_default_value_editable' => $question['is_default_value_editable'],
             'order' => $key2,
           ]);
+
+          // Question rates (for linear scale/rating type)
+          if (isset($question['question_rate']) && !empty($question['question_rate'])) {
+            $questionRate = $question['question_rate'];
+            $fomQuestionRate = QuestionRate::create([
+              'question_id' => $fomQuestion->id,
+              'lowest_rate' => $questionRate['lowest_rate'],
+              'lowest_rate_label' => $questionRate['lowest_rate_label'],
+              'highest_rate' => $questionRate['highest_rate'],
+              'highest_rate_label' => $questionRate['highest_rate_label'],
+            ]);
+          }
+
+          // Question options
           foreach ($question['question_options'] as $key3 => $option) {
             $fomQuestionOption = QuestionOption::create([
               'question_id' => $fomQuestion->id,
@@ -145,6 +163,8 @@ class UpdateDetailHandling
               'order' => $key3,
             ]);
           }
+
+          // Question childs
           foreach ($question['question_childs'] as $key4 => $questionChild) {
             $fomQuestionChild = Question::create([
               'parent_id' => $fomQuestion->id,
@@ -155,6 +175,8 @@ class UpdateDetailHandling
               'is_default_value_editable' => $questionChild['is_default_value_editable'],
               'order' => $key4,
             ]);
+
+            // Question child options
             foreach ($questionChild['question_options'] as $key4 => $questionChildOption) {
               $fomQuestionChildOption = QuestionOption::create([
                 'question_id' => $fomQuestionChild->id,
@@ -163,6 +185,18 @@ class UpdateDetailHandling
                 'value' => $questionChildOption['value'],
                 'is_custom_value' => $questionChildOption['is_custom_value'],
                 'order' => $key4,
+              ]);
+            }
+
+            // Question Child rates (for linear scale/rating type)
+            if (isset($questionChild['question_rate']) && !empty($questionChild['question_rate'])) {
+              $questionChildRate = $questionChild['question_rate'];
+              $fomQuestionRate = QuestionRate::create([
+                'question_id' => $fomQuestionChild->id,
+                'lowest_rate' => $questionChildRate['lowest_rate'],
+                'lowest_rate_label' => $questionChildRate['lowest_rate_label'],
+                'highest_rate' => $questionChildRate['highest_rate'],
+                'highest_rate_label' => $questionChildRate['highest_rate_label'],
               ]);
             }
           }

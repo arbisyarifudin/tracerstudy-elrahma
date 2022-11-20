@@ -41,7 +41,9 @@ class ShowDetailHandling
 
     $data = Form::with([
       'sections.questions.question_options',
-      'sections.questions.question_childs.question_options'
+      'sections.questions.question_rate',
+      'sections.questions.question_childs.question_options',
+      'sections.questions.question_childs.question_rate',
     ])->where('id', $this->data->id)->first();
 
     $data['message'] = 'Form detail data!';

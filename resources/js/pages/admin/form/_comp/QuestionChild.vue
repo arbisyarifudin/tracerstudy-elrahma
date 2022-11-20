@@ -226,22 +226,6 @@
                 placeholder="Jawaban angka"
               />
             </div>
-            <div v-if="questionChild.type === 'phone number'">
-              <input
-                type="number"
-                class="
-                  p-2
-                  border-b border-dashed border-gray-300
-                  text-gray-500 text-sm
-                  bg-transparent
-                  focus:outline-none
-                  block
-                  w-auto
-                  min-w-[200px]
-                "
-                placeholder="Jawaban nomor telepon"
-              />
-            </div>
             <div v-if="questionChild.type === 'date'">
               <input
                 type="date"
@@ -254,18 +238,7 @@
                 "
               />
             </div>
-            <div v-if="questionChild.type === 'time'">
-              <input
-                type="time"
-                class="
-                  p-2
-                  border-b border-dashed border-gray-300
-                  text-gray-500 text-sm
-                  bg-transparent
-                  focus:outline-none
-                "
-              />
-            </div>
+
             <div v-if="questionChild.type === 'year'">
               <input
                 type="number"
@@ -568,7 +541,6 @@
       </div>
       <!-- </transition-group> -->
     </div>
-    {{ errors }}
   </div>
 </template>
 
@@ -909,6 +881,11 @@ const inputWithOptionTypes = [
   'checkbox',
 ];
 const onChangeQuestionType = (question) => {
+  question.question_childs = [];
+  question.question_rate = {};
+  question.question_options = [];
+  question.showQuestionChild = false;
+
   if (allowedDefaultValueTypes.includes(question.type)) {
     question.question_options = [];
   } else if (inputWithOptionTypes.includes(question.type)) {
