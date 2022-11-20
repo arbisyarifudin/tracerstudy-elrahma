@@ -322,6 +322,20 @@
                     >
                       Teks jawaban singkat
                     </div>
+                    <div
+                      v-else-if="
+                        question.type === 'textarea' ||
+                        question.type === 'multi-line text'
+                      "
+                      class="
+                        p-2
+                        border-b border-dashed border-gray-300
+                        text-gray-500 text-sm
+                        h-16
+                      "
+                    >
+                      Teks jawaban panjang
+                    </div>
                     <div v-if="question.type === 'number'">
                       <input
                         type="number"
@@ -335,37 +349,9 @@
                         placeholder="Jawaban angka"
                       />
                     </div>
-                    <div v-if="question.type === 'phone number'">
-                      <input
-                        type="number"
-                        class="
-                          p-2
-                          border-b border-dashed border-gray-300
-                          text-gray-500 text-sm
-                          bg-transparent
-                          focus:outline-none
-                          block
-                          w-auto
-                          min-w-[200px]
-                        "
-                        placeholder="Jawaban nomor telepon"
-                      />
-                    </div>
                     <div v-if="question.type === 'date'">
                       <input
                         type="date"
-                        class="
-                          p-2
-                          border-b border-dashed border-gray-300
-                          text-gray-500 text-sm
-                          bg-transparent
-                          focus:outline-none
-                        "
-                      />
-                    </div>
-                    <div v-if="question.type === 'time'">
-                      <input
-                        type="time"
                         class="
                           p-2
                           border-b border-dashed border-gray-300
@@ -407,312 +393,12 @@
                         readonly
                       />
                     </div>
-                    <div
-                      v-else-if="
-                        question.type === 'textarea' ||
-                        question.type === 'multi-line text'
-                      "
-                      class="
-                        p-2
-                        border-b border-dashed border-gray-300
-                        text-gray-500 text-sm
-                        h-16
-                      "
-                    >
-                      Teks jawaban panjang
-                    </div>
                     <ul
                       class="text-base text-gray-700 space-y-2"
                       v-else-if="
                         question.type === 'radio' ||
-                        question.type === 'multiple choice'
-                      "
-                    >
-                      <li
-                        v-for="(
-                          option, optionIndex
-                        ) in question.question_options"
-                        :key="optionIndex"
-                        class="flex items-center justify-between"
-                      >
-                        <label
-                          :for="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
-                          class="
-                            flex
-                            items-center
-                            flex-1
-                            space-x-4
-                            cursor-pointer
-                          "
-                        >
-                          <input
-                            type="radio"
-                            :name="`option-${sectionIndex}-${questionIndex}`"
-                            disabled
-                            class="w-5 h-5 pointer-events-none"
-                          />
-                          <div class="flex items-center w-full">
-                            <div
-                              class="mr-2 text-xs text-gray-400"
-                              v-if="!option.is_custom_value"
-                            >
-                              Label:
-                            </div>
-                            <Input
-                              :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
-                              variant="secondary"
-                              size="sm"
-                              underline-on-hover
-                              v-model="option.text"
-                              :placeholder="
-                                option.is_custom_value
-                                  ? 'Lainnya...'
-                                  : 'Label opsi ' + optionIndex
-                              "
-                              class="flex-1"
-                              :errors="
-                                errors[
-                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.text`
-                                ]
-                              "
-                              @keyup="
-                                errors[
-                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.text`
-                                ] = []
-                              "
-                            />
-                            <div
-                              class="mx-2 text-xs text-gray-400"
-                              v-if="!option.is_custom_value"
-                            >
-                              Nilai:
-                            </div>
-                            <Input
-                              v-if="!option.is_custom_value"
-                              variant="secondary"
-                              size="sm"
-                              underline-on-hover
-                              v-model="option.value"
-                              :placeholder="'Nilai opsi ' + optionIndex"
-                              class="flex-1"
-                              :errors="
-                                errors[
-                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.value`
-                                ]
-                              "
-                              @keyup="
-                                errors[
-                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.value`
-                                ] = []
-                              "
-                            />
-                          </div>
-                        </label>
-                        <Button
-                          icon="x"
-                          size="xs"
-                          class="
-                            bg-transparent
-                            text-gray-800
-                            hover:bg-gray-50
-                            rounded-full
-                            py-2
-                            text-xs
-                            ml-3
-                          "
-                          @click="
-                            deleteQuestionOption(
-                              question.question_options,
-                              optionIndex
-                            )
-                          "
-                        />
-                      </li>
-                      <li
-                        v-if="
-                          question.question_options &&
-                          question.question_options.length
-                        "
-                      >
-                        <label
-                          :for="`option-${sectionIndex}-${questionIndex}-${question.question_options.length}`"
-                          class="
-                            flex
-                            items-center
-                            flex-1
-                            space-x-3
-                            cursor-pointer
-                            text-sm
-                          "
-                        >
-                          <input
-                            type="radio"
-                            disabled
-                            class="w-5 h-5 pointer-events-none"
-                          />
-                          &nbsp;
-                          <span
-                            class="text-gray-500 cursor-pointer hover:underline"
-                            @click="
-                              addQuestionOption(sectionIndex, questionIndex)
-                            "
-                            >Tambahkan opsi</span
-                          >
-                          <div
-                            v-if="
-                              questionCustomValueExists(
-                                question.question_options
-                              ) === false
-                            "
-                            @click="
-                              addQuestionCustomOption(
-                                sectionIndex,
-                                questionIndex
-                              )
-                            "
-                          >
-                            <span class="mx-2 inline-block">atau</span>
-                            <span class="text-blue-500 cursor-pointer"
-                              >tambahkan "Lainnya"</span
-                            >
-                          </div>
-                        </label>
-                      </li>
-                    </ul>
-                    <ul
-                      class="text-base text-gray-700 space-y-2"
-                      v-else-if="question.type === 'checkbox'"
-                    >
-                      <li
-                        v-for="(
-                          option, optionIndex
-                        ) in question.question_options"
-                        :key="optionIndex"
-                        class="flex items-center justify-between"
-                      >
-                        <label
-                          :for="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
-                          class="
-                            flex
-                            items-center
-                            flex-1
-                            space-x-4
-                            cursor-pointer
-                          "
-                        >
-                          <input
-                            type="checkbox"
-                            :name="`option-${sectionIndex}-${questionIndex}`"
-                            disabled
-                            class="w-5 h-5 pointer-events-none"
-                          />
-                          <div class="flex items-center w-full">
-                            <div
-                              class="mr-2 text-xs text-gray-400"
-                              v-if="!option.is_custom_value"
-                            >
-                              Label:
-                            </div>
-                            <Input
-                              :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
-                              variant="secondary"
-                              size="sm"
-                              underline-on-hover
-                              v-model="option.text"
-                              :placeholder="
-                                option.is_custom_value
-                                  ? 'Lainnya...'
-                                  : 'Label opsi ' + optionIndex
-                              "
-                              :disabled="option.is_custom_value"
-                              class="flex-1"
-                            />
-                            <div
-                              class="mx-2 text-xs text-gray-400"
-                              v-if="!option.is_custom_value"
-                            >
-                              Nilai:
-                            </div>
-                            <Input
-                              v-if="!option.is_custom_value"
-                              variant="secondary"
-                              size="sm"
-                              underline-on-hover
-                              v-model="option.value"
-                              :placeholder="'Nilai opsi ' + optionIndex"
-                              class="flex-1"
-                            />
-                          </div>
-                        </label>
-                        <Button
-                          icon="x"
-                          size="xs"
-                          class="
-                            bg-transparent
-                            text-gray-800
-                            hover:bg-gray-50
-                            rounded-full
-                            py-2
-                            text-xs
-                            ml-3
-                          "
-                          @click="
-                            deleteQuestionOption(
-                              question.question_options,
-                              optionIndex
-                            )
-                          "
-                        />
-                      </li>
-                      <li>
-                        <label
-                          :for="`option-${sectionIndex}-${questionIndex}-${question.question_options.length}`"
-                          class="
-                            flex
-                            items-center
-                            flex-1
-                            space-x-3
-                            cursor-pointer
-                            text-sm
-                          "
-                        >
-                          <input
-                            type="checkbox"
-                            disabled
-                            class="w-5 h-5 pointer-events-none"
-                          />
-                          &nbsp;
-                          <span
-                            class="text-gray-500 cursor-pointer hover:underline"
-                            @click="
-                              addQuestionOption(sectionIndex, questionIndex)
-                            "
-                            >Tambahkan opsi</span
-                          >
-                          <div
-                            v-if="
-                              questionCustomValueExists(
-                                question.question_options
-                              ) === false
-                            "
-                            @click="
-                              addQuestionCustomOption(
-                                sectionIndex,
-                                questionIndex
-                              )
-                            "
-                          >
-                            <span class="mx-2 inline-block">atau</span>
-                            <span class="text-blue-500 cursor-pointer"
-                              >tambahkan "Lainnya"</span
-                            >
-                          </div>
-                        </label>
-                      </li>
-                    </ul>
-                    <ol
-                      class="text-base text-gray-700 space-y-2"
-                      v-else-if="
+                        question.type === 'multiple choice' ||
+                        question.type === 'checkbox' ||
                         question.type === 'select' ||
                         question.type === 'dropdown'
                       "
@@ -734,7 +420,24 @@
                             cursor-pointer
                           "
                         >
-                          <span>{{ optionIndex + 1 }}</span>
+                          <input
+                            v-if="
+                              question.type === 'radio' ||
+                              question.type === 'multiple choice' ||
+                              question.type === 'checkbox'
+                            "
+                            :type="
+                              ['radio', 'multiple choice'].includes(
+                                question.type
+                              )
+                                ? 'radio'
+                                : 'checkbox'
+                            "
+                            :name="`option-${sectionIndex}-${questionIndex}`"
+                            disabled
+                            class="w-5 h-5 pointer-events-none"
+                          />
+                          <span v-else>{{ optionIndex + 1 }}</span>
                           <div class="flex items-center w-full">
                             <div
                               class="mr-2 text-xs text-gray-400"
@@ -748,8 +451,22 @@
                               size="sm"
                               underline-on-hover
                               v-model="option.text"
-                              :placeholder="'Label opsi ' + optionIndex"
+                              :placeholder="
+                                option.is_custom_value
+                                  ? 'Lainnya...'
+                                  : 'Label opsi ' + optionIndex
+                              "
                               class="flex-1"
+                              :errors="
+                                errors[
+                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.text`
+                                ]
+                              "
+                              @keyup="
+                                errors[
+                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.text`
+                                ] = []
+                              "
                             />
                             <div
                               class="mx-2 text-xs text-gray-400"
@@ -765,11 +482,22 @@
                               v-model="option.value"
                               :placeholder="'Nilai opsi ' + optionIndex"
                               class="flex-1"
+                              :errors="
+                                errors[
+                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.value`
+                                ]
+                              "
+                              @keyup="
+                                errors[
+                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.value`
+                                ] = []
+                              "
                             />
                           </div>
                         </label>
                         <Button
                           icon="x"
+                          variant="light"
                           size="xs"
                           class="
                             bg-transparent
@@ -791,7 +519,10 @@
                       <li
                         v-if="
                           question.question_options &&
-                          question.question_options.length
+                          question.question_options.length &&
+                          (question.type === 'radio' ||
+                            question.type === 'multiple choice' ||
+                            question.type === 'checkbox')
                         "
                       >
                         <label
@@ -802,29 +533,49 @@
                             flex-1
                             space-x-3
                             cursor-pointer
-                            text-gray-500
+                            text-sm
                           "
                         >
-                          <span>{{
-                            question.question_options.length + 1
-                          }}</span>
+                          <input
+                            :type="
+                              ['radio', 'multiple choice'].includes(
+                                question.type
+                              )
+                                ? 'radio'
+                                : 'checkbox'
+                            "
+                            disabled
+                            class="w-5 h-5 pointer-events-none"
+                          />
                           &nbsp;
                           <span
-                            class="
-                              text-sm text-gray-500
-                              cursor-pointer
-                              hover:underline
-                              pl-2
-                            "
+                            class="text-gray-500 cursor-pointer hover:underline"
                             @click="
                               addQuestionOption(sectionIndex, questionIndex)
                             "
                             >Tambahkan opsi</span
                           >
+                          <div
+                            v-if="
+                              questionCustomValueExists(
+                                question.question_options
+                              ) === false
+                            "
+                            @click="
+                              addQuestionCustomOption(
+                                sectionIndex,
+                                questionIndex
+                              )
+                            "
+                          >
+                            <span class="mx-2 inline-block">atau</span>
+                            <span class="text-blue-500 cursor-pointer"
+                              >tambahkan "Lainnya"</span
+                            >
+                          </div>
                         </label>
                       </li>
-                    </ol>
-
+                    </ul>
                     <div
                       v-else-if="
                         (question.type === 'rating' ||
@@ -912,9 +663,15 @@
                     </div>
 
                     <!-- QUESTION CHILDS -->
-                    <div
-                      v-else-if="question.type === 'multiple question'"
-                    ></div>
+                    <div v-else-if="question.type === 'multiple question'">
+                      <QuestionChild
+                        :section-index="sectionIndex"
+                        :question-index="questionIndex"
+                        :question="question"
+                        :errors="errors"
+                        @resetErrors="resetErrors"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1015,6 +772,7 @@ const axios = inject('axios');
 import Input from '@/components/UI/Input.vue';
 import Select from '@/components/UI/Select.vue';
 import Button from '@/components/UI/Button.vue';
+import QuestionChild from './_comp/QuestionChild.vue';
 
 import useLoading from '@/composables/loading';
 import useAlert from '@/composables/alert';
@@ -1155,7 +913,23 @@ const questionTypeOptions = ref([
     label: 'Tahun',
     value: 'year',
   },
+  {
+    label: '───────────────',
+    value: null,
+  },
+  {
+    label: 'Pilihan Provinsi',
+    value: 'select province',
+  },
+  {
+    label: 'Pilihan Kab/Kota',
+    value: 'select regency',
+  },
 ]);
+
+const questionChildTypeOptions = ref(
+  questionTypeOptions.value.filter((v) => v.value !== 'multiple question')
+);
 
 const allowedDefaultValueTypes = [
   'text',
@@ -1356,12 +1130,17 @@ const questionOptionTemplate = ref({
   export_code: null,
 });
 
-const addQuestionOption = (sectionIndex, questionIndex) => {
+const addQuestionOption = (
+  sectionIndex,
+  questionIndex,
+  questionChildIndex = null
+) => {
   resetErrors();
 
   const options =
     state.value.sections[sectionIndex].questions[questionIndex]
       .question_options;
+
   const customValueExistIndex = options.findIndex((v) => v.is_custom_value);
   if (customValueExistIndex > -1) {
     options.splice(customValueExistIndex, 0, {
@@ -1411,6 +1190,11 @@ const inputWithOptionTypes = [
   'checkbox',
 ];
 const onChangeQuestionType = (question) => {
+  question.question_childs = [];
+  question.question_rate = {};
+  question.question_options = [];
+  question.showQuestionChild = false;
+
   if (allowedDefaultValueTypes.includes(question.type)) {
     question.question_options = [];
   } else if (inputWithOptionTypes.includes(question.type)) {
@@ -1429,6 +1213,12 @@ const onChangeQuestionType = (question) => {
       highest_rate: 5,
       highest_rate_label: '',
     };
+  } else if (['multiple question'].includes(question.type)) {
+    // question.question_options = [];
+    // question.question_rate = {};
+    // question.question_childs = [];
+    question.showQuestionChild = true;
+    question.question_childs.push(copyObject(questionTemplate.value));
   }
 };
 

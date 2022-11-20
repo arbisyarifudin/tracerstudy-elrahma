@@ -110,7 +110,7 @@ const routes = [
         meta: {
           title: 'Formulir - Kelola Kuisioner'
         },
-        component: () => import('@/pages/admin/form/EditQuestionnaire.vue')
+        component: () => import('@/pages/admin/form/EditQuestion.vue')
       },
       {
         path: 'user',

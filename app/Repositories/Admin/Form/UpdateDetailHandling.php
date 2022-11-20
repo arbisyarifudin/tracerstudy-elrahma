@@ -73,6 +73,26 @@ class UpdateDetailHandling
       'sections.*.questions.*.question_options.*.value' => [
         'required'
       ],
+      'sections.*.questions.*.question_childs' => [
+        'nullable',
+        'array'
+      ],
+      'sections.*.questions.*.question_childs.*.text' => [
+        'required'
+      ],
+      'sections.*.questions.*.question_childs.*.type' => [
+        'required'
+      ],
+      'sections.*.questions.*.question_childs.*.question_options' => [
+        'nullable',
+        'array'
+      ],
+      'sections.*.questions.*.question_childs.*.question_options.*.text' => [
+        'required'
+      ],
+      'sections.*.questions.*.question_childs.*.question_options.*.value' => [
+        'required'
+      ],
     ];
 
     $messages = [
@@ -81,6 +101,10 @@ class UpdateDetailHandling
       'sections.*.questions.*.type.required' => 'Tipe pertanyaan wajib dipilih.',
       'sections.*.questions.*.question_options.*.text.required' => 'Teks opsi wajib diisi.',
       'sections.*.questions.*.question_options.*.value.required' => 'Nilai opsi wajib diisi.',
+      'sections.*.questions.*.question_childs.*.text.required' => 'Judul pertanyaan wajib diisi.',
+      'sections.*.questions.*.question_childs.*.type.required' => 'Tipe pertanyaan wajib dipilih.',
+      'sections.*.questions.*.question_childs.*.question_options.*.text.required' => 'Teks opsi wajib diisi.',
+      'sections.*.questions.*.question_childs.*.question_options.*.value.required' => 'Nilai opsi wajib diisi.',
     ];
     $validated = Validator::make($this->request->all(), $rules, $messages)->validate();
     return $validated;
@@ -131,6 +155,16 @@ class UpdateDetailHandling
               'is_default_value_editable' => $questionChild['is_default_value_editable'],
               'order' => $key4,
             ]);
+            foreach ($questionChild['question_options'] as $key4 => $questionChildOption) {
+              $fomQuestionChildOption = QuestionOption::create([
+                'question_id' => $fomQuestionChild->id,
+                'text' => $questionChildOption['text'],
+                'hint' => $questionChildOption['hint'],
+                'value' => $questionChildOption['value'],
+                'is_custom_value' => $questionChildOption['is_custom_value'],
+                'order' => $key4,
+              ]);
+            }
           }
         }
       }
