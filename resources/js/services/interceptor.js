@@ -25,6 +25,7 @@ const setup = (authStore, router) => {
       if (originalConfig.url !== '/api/auth/login' && err.response) {
         // Access Token was expired
         if (err.response.status === 401) {
+          authStore.setIsAuth(false)
           // router.push({ name: 'Login Page' })
           //     // if (!originalConfig._retry) {
           //     //   originalConfig._retry = true

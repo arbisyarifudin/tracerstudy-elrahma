@@ -1,19 +1,29 @@
-import Home from '@/pages/Home.vue'
-import About from '@/pages/About.vue'
 import auth from './middleware/auth'
 import guest from './middleware/guest'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    meta: {
+      role: null
+    },
+    component: () => import('@/layouts/PublicLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Home Page',
+        meta: {
+          title: 'Beranda'
+        },
+        component: () => import('@/pages/Home.vue')
+      }
+    ]
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: About
-  },
+  // {
+  //   path: '/about',
+  //   name: 'about',
+  //   component: About
+  // },
   {
     path: '/auth',
     meta: {
