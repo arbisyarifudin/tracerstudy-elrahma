@@ -90,6 +90,7 @@ const variants = ref({
   primary:
     'border border-gray-300 focus:border-2 focus:border-blue-500 focus:ring-blue-500 outline-none',
   secondary: '',
+  dark: 'bg-slate-800 border border-slate-500 focus:border-2 focus:border-slate-400 focus:ring-slate-400 outline-none text-slate-300',
 });
 
 const sizes = ref({

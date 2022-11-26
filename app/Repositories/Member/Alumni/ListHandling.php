@@ -44,7 +44,7 @@ class ListHandling extends PagingData
   {
     $this->validate();
     $validated = $this->getValidated();
-    $searchableColumns = ['nim', 'fullname', 'majors.name', 'batches.year'];
+    $searchableColumns = ['nim', 'fullname', 'majors.name', 'majors.name', 'batches.year'];
     $orderableColumns = ['nim', 'fullname', 'created_at'];
 
     $this->setSearchableColumns($searchableColumns);
@@ -54,6 +54,7 @@ class ListHandling extends PagingData
       'alumnis.*',
       'majors.id as major_id',
       'majors.name as major_name',
+      'majors.level as major_level',
       'batches.id as batch_id',
       'batches.year as enter_year',
     ];
@@ -80,6 +81,10 @@ class ListHandling extends PagingData
       foreach ($data as $key => $dataRow) {
         $dataRow->nim = substr($dataRow->nim, 0, 4);
         $dataRow->nim .= '*****';
+
+        $dataRow->fullname = substr($dataRow->fullname, 0, 5);
+        $dataRow->fullname .= ' *****';
+
         $dataRow->phone_number = substr($dataRow->phone_number, 0, 5);
         $dataRow->phone_number .= '*****';
         $dataRow->wa_number = substr($dataRow->wa_number, 0, 5);

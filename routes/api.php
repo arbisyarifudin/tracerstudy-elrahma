@@ -12,6 +12,7 @@ use App\Http\Controllers\API\Admin\RegencyController;
 
 /* MEMBER */
 use App\Http\Controllers\API\Member\AlumniController as MemberAlumniController;
+use App\Http\Controllers\API\Member\BatchController as MemberBatchController;
 
 /* LARAVEL */
 use Illuminate\Http\Request;
@@ -50,12 +51,14 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:sanctum'], function ($ro
 
 /* ADMIN */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function ($routes) {
+    // admin/batch
     $routes->group(['prefix' => 'batch'], function ($routes) {
         $routes->get('', [BatchController::class, 'list']);
         $routes->post('', [BatchController::class, 'store']);
         $routes->put('{id}', [BatchController::class, 'update']);
         $routes->delete('{id}', [BatchController::class, 'delete']);
     });
+    // admin/major
     $routes->group(['prefix' => 'major'], function ($routes) {
         $routes->get('', [MajorController::class, 'list']);
         $routes->post('', [MajorController::class, 'store']);
@@ -90,15 +93,21 @@ Route::group(['prefix' => 'regency'], function ($routes) {
 
 /* Public */
 Route::group(['prefix' => 'public'], function ($routes) {
+    // public/alumni
     $routes->group(['prefix' => 'alumni'], function ($routes) {
         $routes->get('', [MemberAlumniController::class, 'list']);
         $routes->get('{id}', [MemberAlumniController::class, 'show']);
+    });
+    // public/batch
+    $routes->group(['prefix' => 'batch'], function ($routes) {
+        $routes->get('', [MemberBatchController::class, 'list']);
     });
 });
 
 /* Alumni */
 Route::group(['prefix' => 'member'], function ($routes) {
     $routes->group(['middleware' => ['auth:sanctum', 'for-member']], function ($routes) {
+        // member/alumni
         $routes->group(['prefix' => 'alumni'], function ($routes) {
             $routes->get('', [MemberAlumniController::class, 'list']);
             $routes->get('{id}', [MemberAlumniController::class, 'show']);

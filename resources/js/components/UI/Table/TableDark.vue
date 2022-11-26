@@ -1,5 +1,14 @@
 <template>
-  <div class="mytable rounded-xl border shadow-xl p-5 bg-white">
+  <div
+    class="
+      mytable
+      rounded-xl
+      border border-slate-700
+      shadow-xl
+      p-5
+      bg-slate-800
+    "
+  >
     <slot name="header" />
     <table class="table-auto w-full divide-y divide-gray-300">
       <thead class="divide-y divide-gray-300">
@@ -9,14 +18,14 @@
             :key="c"
             :align="column.align"
             :width="column.width"
-            class="p-4 text-sm font-medium text-gray-500"
+            class="p-4 text-sm font-medium text-slate-300"
           >
             {{ column.label }}
           </th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-300">
-        <tr v-for="(row, i) in rows" :key="i" class="hover:bg-slate-100">
+        <tr v-for="(row, i) in rows" :key="i" class="hover:bg-slate-700">
           <td
             v-for="(column, c) in columns"
             :key="c"
@@ -25,7 +34,7 @@
               px-6
               py-4
               whitespace-nowrap
-              text-sm text-gray-800
+              text-sm text-slate-400
               dark:text-gray-200
             "
           >
@@ -39,7 +48,7 @@
         <tr v-if="rows.length < 1">
           <td
             :colspan="columns.length"
-            class="text-center text-gray-500 text-sm py-5"
+            class="text-center text-slate-300 text-sm py-5"
           >
             No data.
           </td>
@@ -47,12 +56,12 @@
       </tbody>
     </table>
     <slot name="pagination">
-      <nav class="flex items-center justify-end space-x-2">
+      <nav class="flex items-center justify-end space-x-2 text-sm">
         <a
-          class="p-4 inline-flex items-center gap-2 rounded-md"
+          class="p-4 inline-flex items-center gap-2 rounded-md text-slate-200"
           :class="[
             pagination.page > 1
-              ? 'text-gray-400 hover:text-blue-800 cursor-pointer'
+              ? 'hover:text-blue-800 cursor-pointer'
               : 'pointer-events-none opacity-50',
           ]"
           @click="pagination.page -= 1"
@@ -76,17 +85,17 @@
           :class="[
             page === pagination.page
               ? 'bg-blue-800 text-white'
-              : 'text-gray-500 hover:text-blue-800 cursor-pointer',
+              : 'text-slate-200 hover:text-blue-800 cursor-pointer',
           ]"
           aria-current="page"
           @click.prevent="pagination.page = page"
           >{{ page }}</a
         >
         <a
-          class="p-4 inline-flex items-center gap-2 rounded-md"
+          class="p-4 inline-flex items-center gap-2 rounded-md text-slate-300"
           :class="[
             pagination.page < pagination.totalPage
-              ? 'text-gray-400 hover:text-blue-800 cursor-pointer'
+              ? 'hover:text-blue-800 cursor-pointer'
               : 'pointer-events-none opacity-50',
           ]"
           @click="pagination.page += 1"

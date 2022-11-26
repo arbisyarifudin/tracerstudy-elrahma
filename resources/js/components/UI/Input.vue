@@ -23,6 +23,7 @@
       :disabled="disabled"
       :required="required"
     />
+    <!-- @keyup="createDebounce(keyupValue($event))" -->
     <div
       class="text-xs mt-1 text-red-500"
       v-for="(error, i) in errors"
@@ -117,6 +118,7 @@ const variants = ref({
     'border border-gray-300 focus:border-2 focus:border-blue-500 focus:ring-blue-500 outline-none',
   secondary:
     'border border-gray-300 focus:border-2 focus:border-gray-800 focus:ring-gray-800 outline-none',
+  dark: 'bg-slate-800 border border-slate-500 focus:border-2 focus:border-slate-400 focus:ring-slate-400 outline-none text-slate-300',
 });
 
 const variantUnderline = ref({
@@ -136,6 +138,7 @@ const variantUnderlineOnHover = ref({
 const variantFilled = ref({
   primary: 'bg-gray-50 focus:bg-gray-100',
   secondary: '',
+  dark: 'bg-slate-800 focus:bg-slate-600',
 });
 
 const sizes = ref({
@@ -159,6 +162,16 @@ const styles = computed(() => {
   const styleSize = sizes.value[$props.size];
   return `${styleVariant} ${styleVariantUnderline} ${styleVariantUnderlineOnHover} ${styleVariantFilled} ${styleSize}`;
 });
+
+function createDebounce() {
+  let timeout = null;
+  return function (fnc, delayMs) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fnc();
+    }, delayMs || 3000);
+  };
+}
 
 const updateValue = (event) => {
   $emit('update:modelValue', event.target.value);
