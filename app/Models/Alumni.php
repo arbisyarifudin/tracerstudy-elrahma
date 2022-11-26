@@ -14,10 +14,10 @@ class Alumni extends Model
     /* RELATIONS */
     public function major()
     {
-        return $this->hasOne(Major::class);
+        return $this->belongsTo(Major::class);
     }
     public function batch()
     {
-        return $this->hasOne(Batch::class);
+        return $this->belongsTo(Batch::class);
     }
 }
