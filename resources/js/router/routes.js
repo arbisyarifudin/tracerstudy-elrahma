@@ -10,13 +10,14 @@ const routes = [
         path: '',
         name: 'Home Page',
         meta: {
-          title: 'Beranda'
+          title: 'Beranda',
+          middlewares: [guest]
         },
         component: () => import('@/pages/Home.vue')
       },
       {
         path: 'alumni',
-        name: 'Alumni Page',
+        name: 'Public Alumni Page',
         meta: {
           title: 'Alumni'
         },
@@ -24,7 +25,7 @@ const routes = [
       },
       {
         path: 'information',
-        name: 'Information Page',
+        name: 'Public Information Page',
         meta: {
           title: 'Alumni'
         },
@@ -145,24 +146,40 @@ const routes = [
     ]
   },
   {
-    path: '/alumni',
+    path: '/member',
     meta: {
       role: 'Alumni',
       middlewares: [auth]
     },
-    component: () => import('@/layouts/AlumniLayout.vue'),
+    component: () => import('@/layouts/MemberLayout.vue'),
     children: [
       {
         path: '',
-        redirect: '/alumni/dashboard'
+        redirect: '/member/dashboard'
       },
       {
         path: 'dashboard',
-        name: 'Alumni Dashboard Page',
+        name: 'Member Dashboard Page',
         meta: {
           title: 'Dashboard'
         },
-        component: () => import('@/pages/alumni/Dashboard.vue')
+        component: () => import('@/pages/member/Dashboard.vue')
+      },
+      {
+        path: 'alumni/list',
+        name: 'Member Alumni List Page',
+        meta: {
+          title: 'Alumni'
+        },
+        component: () => import('@/pages/member/Dashboard.vue')
+      },
+      {
+        path: 'information/list',
+        name: 'Member Information List Page',
+        meta: {
+          title: 'Informasi'
+        },
+        component: () => import('@/pages/member/Dashboard.vue')
       }
     ]
   }

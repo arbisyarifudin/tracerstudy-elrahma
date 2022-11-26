@@ -18,7 +18,6 @@ export default async function auth({ from, to, next, router }) {
       return next({ name: 'Login Page' })
     }
   }
-  console.log(to)
   if (
     authStore.isAuth === true &&
     to.meta?.role &&
@@ -27,7 +26,7 @@ export default async function auth({ from, to, next, router }) {
     if (authStore.userProfile.type === 'Administrator') {
       await router.replace({ name: 'Admin Dashboard Page' })
     } else {
-      await router.replace({ name: 'Alumni Dashboard Page' })
+      await router.replace({ name: 'Member Dashboard Page' })
     }
   }
 

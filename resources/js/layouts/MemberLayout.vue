@@ -48,7 +48,7 @@
           >
             <li>
               <router-link
-                :to="{ path: '/' }"
+                :to="{ name: 'Member Dashboard Page' }"
                 class="
                   flex
                   items-center
@@ -61,7 +61,7 @@
             </li>
             <li>
               <router-link
-                :to="{ path: '/alumni' }"
+                :to="{ name: 'Member Alumni List Page' }"
                 class="
                   flex
                   items-center
@@ -74,7 +74,7 @@
             </li>
             <li>
               <router-link
-                :to="{ path: 'information' }"
+                :to="{ name: 'Member Information List Page' }"
                 class="
                   flex
                   items-center
