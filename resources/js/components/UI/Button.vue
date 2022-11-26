@@ -90,7 +90,7 @@ const sizes = ref({
   xs: 'px-2 py-1 text-xs',
   sm: 'px-3 py-2 text-sm',
   md: 'px-4 py-2 text-base',
-  lg: 'px-5 py-3 text-lg',
+  lg: 'md:px-5 md:py-3 md:text-lg px-4 py-2',
 });
 
 const styles = computed(() => {

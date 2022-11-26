@@ -4,9 +4,6 @@ import guest from './middleware/guest'
 const routes = [
   {
     path: '/',
-    meta: {
-      role: null
-    },
     component: () => import('@/layouts/PublicLayout.vue'),
     children: [
       {
@@ -16,14 +13,25 @@ const routes = [
           title: 'Beranda'
         },
         component: () => import('@/pages/Home.vue')
+      },
+      {
+        path: 'alumni',
+        name: 'Alumni Page',
+        meta: {
+          title: 'Alumni'
+        },
+        component: () => import('@/pages/Alumni.vue')
+      },
+      {
+        path: 'information',
+        name: 'Information Page',
+        meta: {
+          title: 'Alumni'
+        },
+        component: () => import('@/pages/Alumni.vue')
       }
     ]
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   component: About
-  // },
   {
     path: '/auth',
     meta: {
@@ -48,11 +56,15 @@ const routes = [
       role: 'Administrator',
       middlewares: [auth]
     },
-    component: () => import('@/layouts/DashboardLayout.vue'),
+    component: () => import('@/layouts/AdminLayout.vue'),
     children: [
       {
         path: '',
-        name: 'Dashboard Page',
+        redirect: '/admin/dashboard'
+      },
+      {
+        path: 'dashboard',
+        name: 'Admin Dashboard Page',
         meta: {
           title: 'Dashboard'
         },
@@ -138,10 +150,14 @@ const routes = [
       role: 'Alumni',
       middlewares: [auth]
     },
-    component: () => import('@/layouts/AlumniDashboardLayout.vue'),
+    component: () => import('@/layouts/AlumniLayout.vue'),
     children: [
       {
         path: '',
+        redirect: '/alumni/dashboard'
+      },
+      {
+        path: 'dashboard',
         name: 'Alumni Dashboard Page',
         meta: {
           title: 'Dashboard'

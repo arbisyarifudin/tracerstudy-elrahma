@@ -48,6 +48,19 @@
           >
             <li>
               <router-link
+                :to="{ path: '/' }"
+                class="
+                  flex
+                  items-center
+                  hover:text-slate-300
+                  transition-all
+                  duration-300
+                "
+                >Dashboard</router-link
+              >
+            </li>
+            <li>
+              <router-link
                 :to="{ path: '/alumni' }"
                 class="
                   flex

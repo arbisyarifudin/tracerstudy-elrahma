@@ -5,7 +5,7 @@
       main
       w-full
       relative
-      bg-slate-400
+      bg-slate-600
       min-h-screen
       flex
       items-center

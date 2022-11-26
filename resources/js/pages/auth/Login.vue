@@ -16,8 +16,8 @@
     </div>
     <form @submit.prevent="onSubmit">
       <Input
-        label="NIM / Username / Email:"
-        placeholder="Masukkan NIM / Username / Email"
+        label="Username / Email:"
+        placeholder="Masukkan Username / Email"
         v-model="state.unameOrEmail"
         :errors="errors.unameOrEmail"
         @change="errors.unameOrEmail = null"
@@ -80,7 +80,11 @@ const onSubmit = () => {
   })
     .then(async (res) => {
       showAlert('Login sukses!', { type: 'success' });
-      await $router.push({ name: 'Dashboard Page' });
+      if (res.type === 'Alumni') {
+        await $router.push({ name: 'Alumni Dashboard Page' });
+      } else {
+        await $router.push({ name: 'Admin Dashboard Page' });
+      }
       return res;
     })
     .catch((error) => {
