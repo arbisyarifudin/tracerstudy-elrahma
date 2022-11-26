@@ -1,12 +1,19 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
+
+/* ADMIN */
 use App\Http\Controllers\API\Admin\AlumniController;
 use App\Http\Controllers\API\Admin\BatchController;
 use App\Http\Controllers\API\Admin\FormController;
 use App\Http\Controllers\API\Admin\MajorController;
 use App\Http\Controllers\API\Admin\ProvinceController;
 use App\Http\Controllers\API\Admin\RegencyController;
-use App\Http\Controllers\Api\AuthController;
+
+/* MEMBER */
+use App\Http\Controllers\API\Member\AlumniController as MemberAlumniController;
+
+/* LARAVEL */
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +33,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth'], function ($routes) {
     $routes->post('login', [AuthController::class, 'login']);
     $routes->post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-    $routes->post('refresh-token', [AuthController::class, 'refreshToken'])
-        ->middleware('auth:sanctum')
-        ->name('api.auth.refresh-token');
+    // $routes->post('refresh-token', [AuthController::class, 'refreshToken'])
+    //     ->middleware('auth:sanctum')
+    //     ->name('api.auth.refresh-token');
 });
 
 /* USER */
@@ -79,4 +86,22 @@ Route::group(['prefix' => 'province'], function ($routes) {
 });
 Route::group(['prefix' => 'regency'], function ($routes) {
     $routes->get('', [RegencyController::class, 'list']);
+});
+
+/* Public */
+Route::group(['prefix' => 'public'], function ($routes) {
+    $routes->group(['prefix' => 'alumni'], function ($routes) {
+        $routes->get('', [MemberAlumniController::class, 'list']);
+        $routes->get('{id}', [MemberAlumniController::class, 'show']);
+    });
+});
+
+/* Alumni */
+Route::group(['prefix' => 'member'], function ($routes) {
+    $routes->group(['middleware' => ['auth:sanctum', 'for-member']], function ($routes) {
+        $routes->group(['prefix' => 'alumni'], function ($routes) {
+            $routes->get('', [MemberAlumniController::class, 'list']);
+            $routes->get('{id}', [MemberAlumniController::class, 'show']);
+        });
+    });
 });
