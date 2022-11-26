@@ -10,8 +10,8 @@ const routes = [
         path: '',
         name: 'Home Page',
         meta: {
-          title: 'Beranda',
-          middlewares: [guest]
+          title: 'Beranda'
+          // middlewares: [guest]
         },
         component: () => import('@/pages/Home.vue')
       },

@@ -117,7 +117,7 @@ const columns = [
     align: 'left',
   },
   {
-    label: 'Actions',
+    label: '',
     name: 'action',
     align: 'center',
     width: 150,
@@ -138,7 +138,7 @@ const { showLoading } = useLoading();
 const getData = () => {
   showLoading(true);
   axios
-    .get('api/alumni', {
+    .get('api/public/alumni', {
       params: {
         size: pagination.value.size,
         page: pagination.value.page,
@@ -176,7 +176,7 @@ const getBatch = () => {
   showLoading(true);
   loading.value = true;
   axios
-    .get('api/batch', {
+    .get('api/public/batch', {
       params: {
         size: 50,
         page: 1,
