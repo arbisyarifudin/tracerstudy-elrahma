@@ -50,13 +50,15 @@ class AlumniSeeder extends Seeder
         $faker = Factory::create('id_ID');
         for ($i = 0; $i < 10; $i++) {
             $gender = $faker->randomElement(['male', 'female']);
+            $uname = '12345' . str_pad($i, 3, "0", STR_PAD_LEFT);
             $user = User::firstOrCreate([
                 'name' => $faker->name($gender),
                 // 'uname' => '12345' . $i,
-                'uname' => '12345' . str_pad($i, 3, "0", STR_PAD_LEFT),
+                'uname' => $uname,
                 'email_verified_at' => date('Y-m-d H:i:s'),
                 'email' => $faker->safeEmail,
                 'type' => 'Alumni',
+                'password' => Hash::make($uname),
                 'status' => 1 // active or verified by admin
             ]);
             $genderIndo = $gender === 'male' ? 'L' : 'P';
