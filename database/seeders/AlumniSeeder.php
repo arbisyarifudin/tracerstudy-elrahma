@@ -57,6 +57,7 @@ class AlumniSeeder extends Seeder
                 'email_verified_at' => date('Y-m-d H:i:s'),
                 'email' => $faker->safeEmail,
                 'type' => 'Alumni',
+                'status' => 1 // active or verified by admin
             ]);
             $genderIndo = $gender === 'male' ? 'L' : 'P';
             // $phoneNumber = $faker->phoneNumber;

@@ -30,7 +30,8 @@ class UserSeeder extends Seeder
             'email' => 'alumni@example.com',
             'email_verified_at' => date('Y-m-d H:i:s'),
             'type' => 'Alumni',
-            'password' => Hash::make('123456')
+            'password' => Hash::make('123456'),
+            'status' => 1 // active or verified by admin
         ]);
     }
 }
