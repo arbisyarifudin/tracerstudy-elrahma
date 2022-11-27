@@ -42,6 +42,7 @@
           <Input
             label="Tempat Lahir"
             placeholder="Tulis tempat lahir"
+            required
             v-model="state.place_of_birth"
             :errors="errors.place_of_birth"
             @change="errors.place_of_birth = null"
@@ -52,6 +53,7 @@
             label="Tanggal Lahir"
             placeholder="Pilih tanggal lahir"
             type="date"
+            required
             v-model="state.date_of_birth"
             :errors="errors.date_of_birth"
             @change="errors.date_of_birth = null"
@@ -63,6 +65,7 @@
           <Select
             label="Provinsi"
             placeholder="- Pilih provinsi -"
+            required
             v-model="state.province_id"
             :options="provinceOptions"
             :errors="errors.province_id"
@@ -76,6 +79,7 @@
           <Select
             label="Kota / Kabupaten"
             placeholder="- Pilih kota / kabupaten -"
+            required
             v-model="state.regency_id"
             :options="regencyOptions"
             :errors="errors.regency_id"
@@ -90,6 +94,7 @@
             label="Nomor HP"
             placeholder="Tulis nomor HP"
             type="number"
+            required
             v-model="state.phone_number"
             :errors="errors.phone_number"
             @change="errors.phone_number = null"
@@ -100,6 +105,7 @@
             label="Nomor WhatsApp"
             placeholder="Tulis nomor WhatsApp"
             type="number"
+            required
             v-model="state.wa_number"
             :errors="errors.wa_number"
             @change="errors.wa_number = null"
@@ -147,6 +153,7 @@
             label="IPK"
             placeholder="Tulis IPK"
             type="number"
+            required
             v-model="state.gpa"
             :min="0.0"
             :max="4.0"
@@ -465,8 +472,26 @@ onMounted(() => {
 const onSubmit = () => {
   showLoading(true);
   loading.value = true;
+
+  const saveData = new FormData();
+  saveData.append('_method', 'PUT');
+  for (const key in state.value) {
+    if (Object.hasOwnProperty.call(state.value, key)) {
+      const stValue = state.value[key];
+      if (stValue) {
+        saveData.append(key, stValue);
+      }
+    }
+  }
+  if (files.value && files.value[0]) {
+    saveData.append('photo', files.value[0]);
+  }
   axios
-    .put('api/member/profile', state.value)
+    .post('api/member/profile', saveData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
     .then((response) => {
       // console.log('res', response.data);
       showAlert('Profil berhasil diperbarui!', { type: 'success' });
@@ -488,13 +513,15 @@ const onSubmit = () => {
 
 /* HANDLE UPLOADED FILE */
 let previewImage = ref(null);
+const files = ref(null);
 const previewImageDefault = ref('/images/avatar.jpg');
 const handleUploadFile = (e) => {
   errors.value.photo = null;
-  const image = e.target.files[0];
-  if (image) {
+  files.value = e.target.files;
+  if (files.value && files.value[0]) {
+    // state.value.photo = file.value;
     const reader = new FileReader();
-    reader.readAsDataURL(image);
+    reader.readAsDataURL(files.value[0]);
     reader.onload = (e) => {
       previewImage.value = e.target.result;
     };
