@@ -43,17 +43,17 @@ class UpdateHandling
     }
 
     $rules = [
-      'email' => [
-        'email',
-        'required',
-        Rule::unique(User::class, 'email')->ignore($this->user->id, 'id')
-        // ->whereNotNull('email_verified_at')
-      ],
-      'password' => [
-        'nullable',
-        'min:6',
-        'string'
-      ],
+      // 'email' => [
+      //   'email',
+      //   'required',
+      //   Rule::unique(User::class, 'email')->ignore($this->user->id, 'id')
+      //   // ->whereNotNull('email_verified_at')
+      // ],
+      // 'password' => [
+      //   'nullable',
+      //   'min:6',
+      //   'string'
+      // ],
       'nim' => [
         'required',
         'min:6',
@@ -162,10 +162,10 @@ class UpdateHandling
       $user = User::find($this->data->user_id);
       $userUpdateData['uname'] = $this->request->nim;
       $userUpdateData['name'] = $this->request->fullname;
-      $userUpdateData['email'] = $this->request->email;
-      if ($this->request->has('password') && !empty($this->request->password)) {
-        $userUpdateData['password'] = Hash::make($this->request->password);
-      }
+      // $userUpdateData['email'] = $this->request->email;
+      // if ($this->request->has('password') && !empty($this->request->password)) {
+      //   $userUpdateData['password'] = Hash::make($this->request->password);
+      // }
       $user->update($userUpdateData);
 
       DB::commit();

@@ -159,7 +159,7 @@
       <div class="flex flex-row md:space-x-4 flex-wrap md:flex-nowrap">
         <div class="flex-none mb-3">
           <img
-            :src="previewImage ?? previewImageDefault"
+            :src="previewImage ? previewImage : previewImageDefault"
             alt="photo"
             class="max-w-full w-[200px] h-[200px] object-contain"
           />
@@ -176,33 +176,7 @@
         </div>
       </div>
 
-      <hr class="my-4" />
-
-      <h3 class="mb-3 text-2xl font-semibold">Kredensial</h3>
-
-      <div class="flex flex-row md:space-x-4 flex-wrap md:flex-nowrap">
-        <div class="w-full md:w-1/2">
-          <Input
-            label="Email"
-            placeholder="Tulis Email"
-            type="email"
-            v-model="state.email"
-            :errors="errors.email"
-            @change="errors.email = null"
-            disabled
-          ></Input>
-        </div>
-        <div class="w-full md:w-1/2">
-          <Input
-            label="Password (kosongkan jika tidak diubah)"
-            placeholder="Tulis Password"
-            type="password"
-            v-model="state.password"
-            :errors="errors.password"
-            @change="errors.password = null"
-          ></Input>
-        </div>
-      </div>
+      <hr class="my-2" />
 
       <div class="mt-5 flex items-center md:flex-nowrap flex-wrap md:space-x-4">
         <!-- <Button
@@ -333,7 +307,7 @@ const getDetail = () => {
       state.value.photo = null;
       delete state.value.major;
       delete state.value.batch;
-      previewImage.value = detailData.value.photo;
+      previewImage.value = '/' + detailData.value.photo;
       getMajor();
       getBatch();
       getProvince();
