@@ -56,8 +56,19 @@ class LoginHandling
       throw new \Exception('Akun tidak ditemukan!', 404);
     }
 
+    // check password
     if (!Hash::check($validated['password'], $findUser->password)) {
       throw new \Exception('Password salah!', 404);
+    }
+
+    // check email is verified
+    if ($findUser->email_verified_at === null) {
+      throw new \Exception('Email Anda belum di verifikasi! Mohon cek email Anda.', 403);
+    }
+
+    // check status
+    if ($findUser->type == 'Alumni' && $findUser->status === 0) {
+      throw new \Exception('Akun Anda belum di verifikasi oleh Administrator!', 403);
     }
 
     // $token = $findUser->createToken('auth_token')->plainTextToken;
