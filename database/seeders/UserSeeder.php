@@ -24,14 +24,14 @@ class UserSeeder extends Seeder
             'type' => 'Administrator',
             'password' => Hash::make('admin')
         ]);
-        User::firstOrCreate([
-            'name' => 'Test Alumni',
-            'uname' => '123456',
-            'email' => 'alumni@example.com',
-            'email_verified_at' => date('Y-m-d H:i:s'),
-            'type' => 'Alumni',
-            'password' => Hash::make('123456'),
-            'status' => 1 // active or verified by admin
-        ]);
+        // User::firstOrCreate([
+        //     'name' => 'Test Alumni',
+        //     'uname' => '123456',
+        //     'email' => 'alumni@example.com',
+        //     'email_verified_at' => date('Y-m-d H:i:s'),
+        //     'type' => 'Alumni',
+        //     'password' => Hash::make('123456'),
+        //     'status' => 1 // active or verified by admin
+        // ]);
     }
 }

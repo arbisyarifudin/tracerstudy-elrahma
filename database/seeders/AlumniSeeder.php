@@ -37,6 +37,7 @@ class AlumniSeeder extends Seeder
         ]);
         Alumni::firstOrCreate([
             'user_id' => $userAlumni->id,
+            'uname' => $userAlumni->uname,
         ], [
             'fullname' => $userAlumni->name,
             'email' => $userAlumni->email,
