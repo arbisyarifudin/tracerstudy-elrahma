@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth'], function ($routes) {
     $routes->post('login', [AuthController::class, 'login']);
     $routes->post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+    $routes->post('register', [AuthController::class, 'register']);
     // $routes->post('refresh-token', [AuthController::class, 'refreshToken'])
     //     ->middleware('auth:sanctum')
     //     ->name('api.auth.refresh-token');
@@ -50,8 +51,31 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:sanctum'], function ($ro
     });
 });
 
+Route::group(['prefix' => 'province'], function ($routes) {
+    $routes->get('', [ProvinceController::class, 'list']);
+});
+Route::group(['prefix' => 'regency'], function ($routes) {
+    $routes->get('', [RegencyController::class, 'list']);
+});
+
+/* Public */
+Route::group(['prefix' => 'public'], function ($routes) {
+    // public/alumni
+    $routes->group(['prefix' => 'alumni'], function ($routes) {
+        $routes->get('', [MemberAlumniController::class, 'list']);
+        $routes->get('{id}', [MemberAlumniController::class, 'show']);
+    });
+    // public/batch
+    $routes->group(['prefix' => 'batch'], function ($routes) {
+        $routes->get('', [MemberBatchController::class, 'list']);
+    });
+    $routes->group(['prefix' => 'major'], function ($routes) {
+        $routes->get('', [MemberMajorController::class, 'list']);
+    });
+});
+
 /* ADMIN */
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function ($routes) {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum',  'for-admin']], function ($routes) {
     // admin/batch
     $routes->group(['prefix' => 'batch'], function ($routes) {
         $routes->get('', [BatchController::class, 'list']);
@@ -82,29 +106,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function ($r
         $routes->put('{id}', [FormController::class, 'update']);
         $routes->put('{id}/detail', [FormController::class, 'updateDetail']);
         $routes->delete('{id}', [FormController::class, 'delete']);
-    });
-});
-
-Route::group(['prefix' => 'province'], function ($routes) {
-    $routes->get('', [ProvinceController::class, 'list']);
-});
-Route::group(['prefix' => 'regency'], function ($routes) {
-    $routes->get('', [RegencyController::class, 'list']);
-});
-
-/* Public */
-Route::group(['prefix' => 'public'], function ($routes) {
-    // public/alumni
-    $routes->group(['prefix' => 'alumni'], function ($routes) {
-        $routes->get('', [MemberAlumniController::class, 'list']);
-        $routes->get('{id}', [MemberAlumniController::class, 'show']);
-    });
-    // public/batch
-    $routes->group(['prefix' => 'batch'], function ($routes) {
-        $routes->get('', [MemberBatchController::class, 'list']);
-    });
-    $routes->group(['prefix' => 'major'], function ($routes) {
-        $routes->get('', [MemberMajorController::class, 'list']);
     });
 });
 
