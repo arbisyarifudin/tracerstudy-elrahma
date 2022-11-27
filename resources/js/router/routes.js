@@ -29,7 +29,15 @@ const routes = [
         meta: {
           title: 'Alumni'
         },
-        component: () => import('@/pages/Alumni.vue')
+        component: () => import('@/pages/Information.vue')
+      },
+      {
+        path: 'contact',
+        name: 'Public Contact Page',
+        meta: {
+          title: 'Contact'
+        },
+        component: () => import('@/pages/Contact.vue')
       }
     ]
   },
