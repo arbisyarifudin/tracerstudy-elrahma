@@ -47,8 +47,10 @@ class ShowHandling
       $data->nim = substr($data->nim, 0, 4);
       $data->nim .= '*****';
       $data->phone_number = substr($data->phone_number, 0, 5);
+      $data->phone_number = !empty($data->phone_number) ? $data->phone_number : '*****';
       $data->phone_number .= '*****';
-      $data->wa_number = substr($data->wa_number, 0, 5);
+      $data->wa_number = !empty($data->wa_number) ? $data->wa_number : '*****';
+      $data->wa_number = $data->wa_number ?? '*****';
       $data->wa_number .= '*****';
     }
 

@@ -86,8 +86,10 @@ class ListHandling extends PagingData
         $dataRow->fullname .= ' *****';
 
         $dataRow->phone_number = substr($dataRow->phone_number, 0, 5);
+        $dataRow->phone_number .= $dataRow->phone_number ?? '*****';
         $dataRow->phone_number .= '*****';
         $dataRow->wa_number = substr($dataRow->wa_number, 0, 5);
+        $dataRow->wa_number = $dataRow->wa_number ?? '*****';
         $dataRow->wa_number .= '*****';
       }
     }
