@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Mr. Admin',
             'uname' => 'admin',
             'email' => 'admin@example.com',
+            'email_verified_at' => date('Y-m-d H:i:s'),
             'type' => 'Administrator',
             'password' => Hash::make('admin')
         ]);
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
             'name' => 'Test Alumni',
             'uname' => '123456',
             'email' => 'alumni@example.com',
+            'email_verified_at' => date('Y-m-d H:i:s'),
             'type' => 'Alumni',
             'password' => Hash::make('123456')
         ]);
