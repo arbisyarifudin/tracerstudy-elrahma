@@ -6,6 +6,7 @@ use App\Http\Controllers\API\ApiController;
 use App\Repositories\Auth\LoginHandling;
 use App\Repositories\Auth\LogoutHandling;
 use App\Repositories\Auth\RefreshTokenHandling;
+use App\Repositories\Auth\RegisterHandling;
 use Illuminate\Http\Request;
 
 class AuthController extends ApiController
@@ -36,6 +37,18 @@ class AuthController extends ApiController
   {
     try {
       $executor = new RefreshTokenHandling($request);
+      $data = $executor->handle();
+
+      return $this->responseData($data);
+    } catch (\Exception $e) {
+      return $this->responseException($e);
+    }
+  }
+
+  public function register(Request $request)
+  {
+    try {
+      $executor = new RegisterHandling($request);
       $data = $executor->handle();
 
       return $this->responseData($data);

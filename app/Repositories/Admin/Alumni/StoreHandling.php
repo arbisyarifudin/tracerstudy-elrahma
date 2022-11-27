@@ -65,6 +65,8 @@ class StoreHandling
       'email' => [
         'nullable',
         'email',
+        Rule::unique(User::class, 'email')
+        // ->whereNotNull('email_verified_at')
       ],
       'password' => [
         'nullable',
@@ -110,11 +112,6 @@ class StoreHandling
         $photoName = time() . '.' . $photo->getClientOriginalExtension();
         $photo->move(public_path($uploadDir), $photoName);
         $alumniData['photo'] =  $uploadDir . $photoName;
-
-        // $product = Product::find($id);
-        // if (file_exists(public_path($product->photo_filelink)) && !empty($product->photo_filelink)) {
-        //   unlink(public_path($product->photo_filelink));
-        // }
       }
 
       $data = Alumni::create($alumniData);
