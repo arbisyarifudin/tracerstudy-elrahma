@@ -585,6 +585,7 @@ const onCloseDialogRegister = () => {
 let previewImage = ref(null);
 const previewImageDefault = ref('/images/avatar.jpg');
 const handleUploadFile = (e) => {
+  errors.value.photo = null;
   const image = e.target.files[0];
   if (image) {
     const reader = new FileReader();

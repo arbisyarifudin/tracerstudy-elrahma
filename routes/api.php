@@ -14,7 +14,8 @@ use App\Http\Controllers\API\Admin\RegencyController;
 use App\Http\Controllers\API\Member\AlumniController as MemberAlumniController;
 use App\Http\Controllers\API\Member\BatchController as MemberBatchController;
 use App\Http\Controllers\API\Member\MajorController as MemberMajorController;
-
+use App\Http\Controllers\API\Member\ProfileController as MemberProfileController;
+use App\Models\Alumni;
 /* LARAVEL */
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -44,9 +45,17 @@ Route::group(['prefix' => 'auth'], function ($routes) {
 /* USER */
 Route::group(['prefix' => 'user', 'middleware' => 'auth:sanctum'], function ($routes) {
     $routes->get('profile', function (Request $request) {
+
+        $user = $request->user();
+        // if ($user->type === 'Alumni') {
+        //     $user->alumni = Alumni::with([
+        //         'major',
+        //         'batch'
+        //     ])->where('user_id', $user->id)->first();
+        // }
         return [
             'message' => 'User profile.',
-            'data' => $request->user()
+            'data' => $user
         ];
     });
 });
@@ -116,6 +125,11 @@ Route::group(['prefix' => 'member'], function ($routes) {
         $routes->group(['prefix' => 'alumni'], function ($routes) {
             $routes->get('', [MemberAlumniController::class, 'list']);
             $routes->get('{id}', [MemberAlumniController::class, 'show']);
+        });
+        // member/profile
+        $routes->group(['prefix' => 'profile'], function ($routes) {
+            $routes->get('', [MemberProfileController::class, 'show']);
+            $routes->put('', [MemberProfileController::class, 'update']);
         });
     });
 });

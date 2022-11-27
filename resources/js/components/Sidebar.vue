@@ -190,6 +190,7 @@ const routeActiveName = computed(() => {
 });
 const checkRouteActiveName = () => {
   switch ($route.name) {
+    /* ADMIN */
     case 'Dashboard Page':
       navigationStore.setRouteActiveName('Dashboard');
       break;
@@ -209,6 +210,16 @@ const checkRouteActiveName = () => {
     case 'Form List Page':
       navigationStore.setRouteActiveName('Form');
       break;
+
+    /* MEMBER */
+    case 'Member Biodata Page':
+    case 'Member Biodata Education Page':
+    case 'Member Biodata Job Page':
+    case 'Member Biodata Feedback Page':
+      navigationStore.setRouteActiveName('Biodata');
+      break;
+
+    /* DEFAULT */
     default:
       navigationStore.setRouteActiveName(null);
       break;

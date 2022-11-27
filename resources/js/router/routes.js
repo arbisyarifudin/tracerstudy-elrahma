@@ -174,20 +174,36 @@ const routes = [
         component: () => import('@/pages/member/Dashboard.vue')
       },
       {
-        path: 'alumni/list',
-        name: 'Member Alumni List Page',
+        path: 'biodata',
+        name: 'Member Biodata Page',
         meta: {
-          title: 'Alumni'
+          title: 'Profil Alumni'
         },
-        component: () => import('@/pages/member/Dashboard.vue')
+        component: () => import('@/pages/member/biodata/Index.vue')
       },
       {
-        path: 'information/list',
-        name: 'Member Information List Page',
+        path: 'biodata/education',
+        name: 'Member Biodata Education Page',
         meta: {
-          title: 'Informasi'
+          title: 'Riwayat Pendidikan'
         },
-        component: () => import('@/pages/member/Dashboard.vue')
+        component: () => import('@/pages/member/biodata/Education.vue')
+      },
+      {
+        path: 'biodata/job',
+        name: 'Member Biodata Job Page',
+        meta: {
+          title: 'Riwayat Pendidikan'
+        },
+        component: () => import('@/pages/member/biodata/Job.vue')
+      },
+      {
+        path: 'biodata/feedback',
+        name: 'Member Biodata Feedback Page',
+        meta: {
+          title: 'Riwayat Pendidikan'
+        },
+        component: () => import('@/pages/member/biodata/Feedback.vue')
       }
     ]
   }
