@@ -15,7 +15,6 @@
               class="md:mb-0"
               variant="dark"
               v-model="filter.search"
-              @keyup="getData"
             />
             <Select
               class="md:mb-0"
@@ -93,6 +92,13 @@
                 <td width="150" class="font-semibold">NIM</td>
                 <td width="50" class="text-center">:</td>
                 <td>{{ detailData.nim }}</td>
+              </tr>
+              <tr>
+                <td width="150" class="font-semibold">Program Studi</td>
+                <td width="50" class="text-center">:</td>
+                <td v-if="detailData.major">
+                  {{ detailData.major.level }} {{ detailData.major.name }}
+                </td>
               </tr>
               <tr>
                 <td width="150" class="font-semibold">No. Telp/HP</td>
@@ -278,6 +284,12 @@ const getBatch = () => {
 
 watch(
   () => filter.value.batch_id,
+  (val) => {
+    getData();
+  }
+);
+watch(
+  () => filter.value.search,
   (val) => {
     getData();
   }
