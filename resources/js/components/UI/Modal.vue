@@ -23,11 +23,11 @@
         opacity-0
         ease-out
         transition-all
-        sm:max-w-lg sm:w-full
+        sm:w-full
         m-3
         sm:mx-auto
       "
-      :class="[vCenteredClass]"
+      :class="[styles, vCenteredClass]"
       @click.stop
     >
       <div
@@ -72,7 +72,7 @@
 
 <script setup>
 import Button from '@/components/UI/Button.vue';
-import { computed } from '@vue/runtime-core';
+import { computed, ref } from '@vue/runtime-core';
 
 const $props = defineProps({
   show: {
@@ -91,10 +91,25 @@ const $props = defineProps({
     type: String,
     default: 'Title',
   },
+  size: {
+    type: String,
+    default: 'md',
+  },
 });
 
 const vCenteredClass = computed(() => {
   return $props.vCentered && 'flex items-center min-h-[calc(100%-3.5rem)]';
+});
+
+const sizes = ref({
+  sm: 'max-w-sm',
+  md: 'max-w-lg',
+  lg: 'max-w-2xl',
+});
+
+const styles = computed(() => {
+  const sizeStyle = sizes.value[$props.size];
+  return `${sizeStyle}`;
 });
 
 const $emit = defineEmits(['close', 'confirm']);

@@ -294,11 +294,11 @@ const errors = ref({
 const genderOptions = ref([
   {
     label: 'Laki-laki',
-    value: 'Laki-laki',
+    value: 'L',
   },
   {
     label: 'Perempuan',
-    value: 'Perempuan',
+    value: 'P',
   },
 ]);
 
@@ -423,7 +423,7 @@ const getMajor = () => {
       console.log('res', response.data);
       majorOptions.value = response.data.data.map((v) => {
         return {
-          label: v.name,
+          label: v.level + ' ' + v.name,
           value: v.id,
         };
       });

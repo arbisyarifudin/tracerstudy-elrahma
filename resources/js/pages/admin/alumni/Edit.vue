@@ -299,11 +299,11 @@ const errors = ref({
 const genderOptions = ref([
   {
     label: 'Laki-laki',
-    value: 'Laki-laki',
+    value: 'L',
   },
   {
     label: 'Perempuan',
-    value: 'Perempuan',
+    value: 'P',
   },
 ]);
 

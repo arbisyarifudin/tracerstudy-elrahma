@@ -13,6 +13,7 @@ use App\Http\Controllers\API\Admin\RegencyController;
 /* MEMBER */
 use App\Http\Controllers\API\Member\AlumniController as MemberAlumniController;
 use App\Http\Controllers\API\Member\BatchController as MemberBatchController;
+use App\Http\Controllers\API\Member\MajorController as MemberMajorController;
 
 /* LARAVEL */
 use Illuminate\Http\Request;
@@ -101,6 +102,9 @@ Route::group(['prefix' => 'public'], function ($routes) {
     // public/batch
     $routes->group(['prefix' => 'batch'], function ($routes) {
         $routes->get('', [MemberBatchController::class, 'list']);
+    });
+    $routes->group(['prefix' => 'major'], function ($routes) {
+        $routes->get('', [MemberMajorController::class, 'list']);
     });
 });
 

@@ -9,14 +9,16 @@
     </div>
     <input
       :id="id"
-      :type="type"
       class="block w-full rounded-md transition duration-500"
+      :type="type"
+      :name="name"
       :class="[styles, errors && errors.length > 0 ? '!border-red-500' : '']"
       :placeholder="placeholder"
       :value="modelValue"
       @input="updateValue"
       @change="changeValue"
       @keyup="keyupValue"
+      :accept="accept"
       :min="min"
       :max="max"
       :step="step"
@@ -45,6 +47,14 @@ const $props = defineProps({
   type: {
     type: String,
     default: 'text',
+  },
+  name: {
+    type: String,
+    default: null,
+  },
+  accept: {
+    type: String,
+    default: null,
   },
   label: {
     type: String,
@@ -177,7 +187,11 @@ const updateValue = (event) => {
   $emit('update:modelValue', event.target.value);
 };
 const changeValue = (event) => {
-  $emit('change', event.target.value);
+  if ($props.type === 'file') {
+    $emit('change', event);
+  } else {
+    $emit('change', event.target.value);
+  }
 };
 const keyupValue = (event) => {
   $emit('keyup', event.target.value);
