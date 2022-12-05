@@ -191,7 +191,7 @@ const routeActiveName = computed(() => {
 const checkRouteActiveName = () => {
   switch ($route.name) {
     /* ADMIN */
-    case 'Dashboard Page':
+    case 'Admin Dashboard Page':
       navigationStore.setRouteActiveName('Dashboard');
       break;
     case 'Batch List Page':

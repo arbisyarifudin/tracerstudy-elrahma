@@ -30,11 +30,21 @@ const app = createApp({
   }
 })
 
+/* RECAPTCHA V3 */
+import { VueReCaptcha } from 'vue-recaptcha-v3'
+
 app.use(pinia)
 app.use(router)
 app.use(PhosphorVue)
 app.use(Toast, toastOptions)
 app.use(VueAxios, axiosInstance)
+app.use(VueReCaptcha, {
+  siteKey: '6LcpB1ojAAAAACg0Yo_1LKmmcDW2BQLQ965BjgKi',
+  loaderOptions: {
+    useRecaptchaNet: true,
+    autoHideBadge: true
+  }
+})
 
 app.directive('click-outside', {
   beforeMount: (el, binding) => {

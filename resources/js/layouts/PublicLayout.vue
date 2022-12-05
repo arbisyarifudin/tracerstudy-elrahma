@@ -104,7 +104,7 @@
                   md:opacity-7
                   md:rounded-lg
                 "
-                ><ph-sign-in class="mr-1" /> Login</router-link
+                ><ph-sign-in class="mr-1" /> Masuk</router-link
               >
             </li>
           </ul>

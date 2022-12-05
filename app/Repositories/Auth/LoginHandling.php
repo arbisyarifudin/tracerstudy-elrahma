@@ -34,6 +34,9 @@ class LoginHandling
       'password' => [
         'required'
       ],
+      'recaptchaToken' => [
+        'sometimes'
+      ]
     ];
 
     $messages = [
@@ -53,12 +56,14 @@ class LoginHandling
     $findUser = User::where('email', $validated['unameOrEmail'])
       ->orWhere('uname', $validated['unameOrEmail'])->first();
     if (!$findUser) {
-      throw new \Exception('Akun tidak ditemukan!', 404);
+      // throw new \Exception('Akun tidak ditemukan!', 404);
+      throw new \Exception('Kredensial tidak valid!', 404);
     }
 
     // check password
     if (!Hash::check($validated['password'], $findUser->password)) {
-      throw new \Exception('Password salah!', 404);
+      // throw new \Exception('Password salah!', 404);
+      throw new \Exception('Kredensial tidak valid!', 404);
     }
 
     // check email is verified
@@ -69,6 +74,12 @@ class LoginHandling
     // check status
     if ($findUser->type == 'Alumni' && $findUser->status === 0) {
       throw new \Exception('Akun Anda belum di verifikasi oleh Administrator!', 403);
+    }
+
+    // google recaptcha check
+    $captchVerified = $this->__verifyCaptcha(@$validated['recaptchaToken']);
+    if (!$captchVerified) {
+      throw new \Exception('Ups! Anda terindikasi sebagai spam oleh sistem kami.', 403);
     }
 
     // $token = $findUser->createToken('auth_token')->plainTextToken;
@@ -87,5 +98,21 @@ class LoginHandling
     ];
     $data['message'] = 'Login success!';
     return $data;
+  }
+
+  private function __verifyCaptcha($captcha = null)
+  {
+    if (!$captcha) return false;
+
+    $secret   = env('GOOGLE_RECAPTCHA');
+    $response = file_get_contents(
+      "https://www.google.com/recaptcha/api/siteverify?secret=" . $secret . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']
+    );
+    $response = json_decode($response);
+    if ($response->success == false) return false;
+    if ($response->success == true && $response->score <= 0.5) {
+      return false;
+    }
+    return true;
   }
 }

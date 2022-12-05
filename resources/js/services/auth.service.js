@@ -6,7 +6,8 @@ class AuthService {
     return await api
       .post('/api/auth/login', {
         unameOrEmail,
-        password
+        password,
+        ...arguments[0]
       })
       .then((response) => {
         if (response?.data?.data?.access_token) {

@@ -22,7 +22,7 @@ const menus = ref([
     title: 'Dashboard',
     icon: 'circles-four',
     path: {
-      name: 'Dashboard Page',
+      name: 'Admin Dashboard Page',
     },
     activeName: 'Dashboard',
     expand: false,

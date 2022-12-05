@@ -47,11 +47,16 @@
 </template>
 
 <script setup>
+import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3';
+
 import Input from '@/components/UI/Input.vue';
 import Button from '@/components/UI/Button.vue';
-import { ref } from '@vue/reactivity';
+
 import AuthService from '@/services/auth.service';
+
+import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
+
 import useLoading from '@/composables/loading';
 import useAlert from '@/composables/alert';
 
@@ -60,6 +65,7 @@ const $router = useRouter();
 const state = ref({
   unameOrEmail: '',
   password: '',
+  recaptchaToken: '',
 });
 const errors = ref({
   unameOrEmail: null,
@@ -70,18 +76,20 @@ const loading = ref(false);
 const { showAlert } = useAlert();
 const { showLoading } = useLoading();
 
-const onSubmit = () => {
+const onSubmit = async () => {
   loading.value = true;
   showLoading(true);
   // loading.value = false;
+  await initiateRecaptcha();
   AuthService.login({
     unameOrEmail: state.value.unameOrEmail,
     password: state.value.password,
+    recaptchaToken: state.value.recaptchaToken,
   })
     .then(async (res) => {
       showAlert('Login sukses!', { type: 'success' });
       if (res.type === 'Alumni') {
-        await $router.push({ name: 'Alumni Dashboard Page' });
+        await $router.push({ name: 'Member Dashboard Page' });
       } else {
         await $router.push({ name: 'Admin Dashboard Page' });
       }
@@ -99,5 +107,18 @@ const onSubmit = () => {
       showLoading(false);
       loading.value = false;
     });
+};
+
+/* GOOGLE RECAPTCHA v3 */
+const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
+const initiateRecaptcha = async () => {
+  // (optional) Wait until recaptcha has been loaded.
+  await recaptchaLoaded();
+  // Execute reCAPTCHA with action "login".
+  const token = await executeRecaptcha();
+  console.log(token);
+
+  // Do stuff with the received token.
+  state.value.recaptchaToken = token;
 };
 </script>

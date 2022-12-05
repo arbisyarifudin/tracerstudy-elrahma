@@ -36,8 +36,14 @@
       <Button
         label="Daftar Sekarang"
         size="lg"
-        class="rounded-3xl !px-8"
+        class="hidden rounded-3xl !px-8"
         @click="isOpenDialogRegister = true"
+      />
+      <Button
+        label="Masuk sebagai Alumni"
+        size="lg"
+        class="rounded-3xl !px-8"
+        @click="isOpenDialogLogin = true"
       />
     </div>
 
@@ -322,13 +328,62 @@
       </div>
     </template>
   </Modal>
+  <Modal
+    title="Login Alumni"
+    size="md"
+    :show="isOpenDialogLogin"
+    :loading="loading"
+    @close="onCloseDialogLogin"
+  >
+    <template #content>
+      <div class="p-4">
+        <form @submit.prevent="onSubmitLogin" @keyup.enter="onSubmitLogin">
+          <Input
+            label="NIM / Email"
+            name="unameOrEmail"
+            placeholder="Masukan NIM atau Email"
+            required
+            v-model="stateLogin.unameOrEmail"
+            :errors="errorsLogin.unameOrEmail"
+            @change="errorsLogin.unameOrEmail = null"
+          ></Input>
+          <Input
+            label="Kata Sandi"
+            name="password"
+            placeholder="Masukkan kata sandi"
+            required
+            v-model="stateLogin.password"
+            :errors="errorsLogin.password"
+            @change="errorsLogin.password = null"
+          ></Input>
+        </form>
+      </div>
+    </template>
+    <template #footer>
+      <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t">
+        <Button
+          variant="primary"
+          type="submit"
+          class="block w-full justify-center !py-4"
+          label="Login"
+          @click="onSubmitLogin"
+          :disabled="loading"
+        />
+      </div>
+    </template>
+  </Modal>
 </template>
 
 <script setup>
+import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3';
+
 import Button from '@/components/UI/Button.vue';
 import Input from '@/components/UI/Input.vue';
 import Select from '@/components/UI/Select.vue';
 import Modal from '@/components/UI/Modal.vue';
+
+import AuthService from '@/services/auth.service';
+
 import { ref } from '@vue/reactivity';
 import { inject, onMounted, watch } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
@@ -539,10 +594,13 @@ const getMajor = () => {
 };
 
 onMounted(() => {
-  getMajor();
-  getBatch();
-  getProvince();
+  // populate data which required for register modal
+  // getMajor();
+  // getBatch();
+  // getProvince();
 });
+
+/* REGISTER */
 
 const onSubmit = () => {
   showLoading(true);
@@ -596,6 +654,70 @@ const handleUploadFile = (e) => {
   } else {
     previewImage.value = null;
   }
+};
+
+/* LOGIN */
+const stateLogin = ref({
+  unameOrEmail: '',
+  password: '',
+  recaptchaToken: '',
+});
+const errorsLogin = ref({
+  unameOrEmail: '',
+  password: '',
+});
+const isOpenDialogLogin = ref(false);
+const onCloseDialogLogin = () => {
+  isOpenDialogLogin.value = false;
+  stateLogin.value = {};
+  errorsLogin.value = {};
+};
+
+const onSubmitLogin = async () => {
+  showLoading(true);
+  loading.value = true;
+  await initiateRecaptcha();
+  AuthService.login({
+    unameOrEmail: stateLogin.value.unameOrEmail,
+    password: stateLogin.value.password,
+    recaptchaToken: stateLogin.value.recaptchaToken,
+  })
+    .then(async (res) => {
+      showAlert('Berhasil login!', { type: 'success' });
+      if (res.type === 'Alumni') {
+        await $router.push({ name: 'Member Dashboard Page' });
+      } else {
+        await $router.push({ name: 'Admin Dashboard Page' });
+      }
+      return res;
+    })
+    .catch((error) => {
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
+        errorsLogin.value.password = [error.response.data.message];
+      } else {
+        errorsLogin.value = error.response.data.errors;
+        showAlert('Permintaan tidak valid! Mohon cek kembali.');
+      }
+    })
+    .finally(() => {
+      showLoading(false);
+      loading.value = false;
+    });
+};
+
+/* GOOGLE RECAPTCHA v3 */
+const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
+const initiateRecaptcha = async () => {
+  // (optional) Wait until recaptcha has been loaded.
+  await recaptchaLoaded();
+  // Execute reCAPTCHA with action "login".
+  const token = await executeRecaptcha();
+  console.log(token);
+
+  // Do stuff with the received token.
+  stateLogin.value.recaptchaToken = token;
 };
 </script>
 
