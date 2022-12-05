@@ -52,6 +52,12 @@ class LoginHandling
   {
     $validated = $this->validate();
 
+    // google recaptcha check
+    $captchVerified = $this->__verifyCaptcha(@$validated['recaptchaToken']);
+    if (!$captchVerified) {
+      throw new \Exception('Ups! Anda terindikasi sebagai spam oleh sistem kami.', 403);
+    }
+
     // check email/username
     $findUser = User::where('email', $validated['unameOrEmail'])
       ->orWhere('uname', $validated['unameOrEmail'])->first();
@@ -74,12 +80,6 @@ class LoginHandling
     // check status
     if ($findUser->type == 'Alumni' && $findUser->status === 0) {
       throw new \Exception('Akun Anda belum di verifikasi oleh Administrator!', 403);
-    }
-
-    // google recaptcha check
-    $captchVerified = $this->__verifyCaptcha(@$validated['recaptchaToken']);
-    if (!$captchVerified) {
-      throw new \Exception('Ups! Anda terindikasi sebagai spam oleh sistem kami.', 403);
     }
 
     // $token = $findUser->createToken('auth_token')->plainTextToken;

@@ -714,7 +714,7 @@ const initiateRecaptcha = async () => {
   await recaptchaLoaded();
   // Execute reCAPTCHA with action "login".
   const token = await executeRecaptcha();
-  console.log(token);
+  // console.log(token);
 
   // Do stuff with the received token.
   stateLogin.value.recaptchaToken = token;
