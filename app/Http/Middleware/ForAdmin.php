@@ -19,7 +19,7 @@ class ForAdmin
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->type !== 'Admin') {
+            if ($user->type !== 'Administrator') {
                 return response()->json([
                     'message' => 'Unauthorized user type.',
                 ], 403);

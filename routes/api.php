@@ -84,7 +84,7 @@ Route::group(['prefix' => 'public'], function ($routes) {
 });
 
 /* ADMIN */
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum',  'for-admin']], function ($routes) {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'for-admin']], function ($routes) {
     // admin/batch
     $routes->group(['prefix' => 'batch'], function ($routes) {
         $routes->get('', [BatchController::class, 'list']);
