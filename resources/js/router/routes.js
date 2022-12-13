@@ -206,6 +206,15 @@ const routes = [
         component: () => import('@/pages/member/biodata/Feedback.vue')
       }
     ]
+  },
+  // Always leave this as last one,
+  // but you can also remove it
+  {
+    meta: {
+      title: 'Page Not Found'
+    },
+    path: '/:catchAll(.*)*',
+    component: () => import('@/pages/error/404.vue')
   }
 ]
 

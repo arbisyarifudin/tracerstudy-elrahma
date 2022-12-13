@@ -15,6 +15,7 @@ use App\Http\Controllers\API\Member\AlumniController as MemberAlumniController;
 use App\Http\Controllers\API\Member\BatchController as MemberBatchController;
 use App\Http\Controllers\API\Member\MajorController as MemberMajorController;
 use App\Http\Controllers\API\Member\ProfileController as MemberProfileController;
+use App\Http\Controllers\API\Member\EducationController as MemberEducationController;
 use App\Models\Alumni;
 /* LARAVEL */
 use Illuminate\Http\Request;
@@ -130,6 +131,14 @@ Route::group(['prefix' => 'member'], function ($routes) {
         $routes->group(['prefix' => 'profile'], function ($routes) {
             $routes->get('', [MemberProfileController::class, 'show']);
             $routes->put('', [MemberProfileController::class, 'update']);
+        });
+        // member/education
+        $routes->group(['prefix' => 'education'], function ($routes) {
+            $routes->get('', [MemberEducationController::class, 'list']);
+            $routes->get('{id}', [MemberEducationController::class, 'show']);
+            $routes->post('', [MemberEducationController::class, 'store']);
+            $routes->put('{id}', [MemberEducationController::class, 'update']);
+            $routes->delete('{id}', [MemberEducationController::class, 'delete']);
         });
     });
 });

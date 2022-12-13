@@ -144,3 +144,27 @@
 - form_response_id **
 - form_question_id **
 - form_response_answer
+
+
+<!-- CONTENT / INFORMATION -->
+
+## contents
+- id
+- title
+- excerpt
+- body
+- created_by **
+- last_update_by **
+- created_at
+- updated_at
+
+## categories
+- id
+- title
+- description
+- type
+
+## content_has_categories
+- id *
+- content_id **
+- category_id **
