@@ -19,6 +19,7 @@
         v-model="state.nim"
         :errors="errors.nim"
         @change="errors.nim = null"
+        disabled
       ></Input>
       <Input
         label="Nama Lengkap"

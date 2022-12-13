@@ -10,9 +10,13 @@
     <input
       :id="id"
       class="block w-full rounded-md transition duration-500"
+      :class="[
+        styles,
+        errors && errors.length > 0 ? '!border-red-500' : '',
+        disabled ? 'cursor-not-allowed' : '',
+      ]"
       :type="type"
       :name="name"
-      :class="[styles, errors && errors.length > 0 ? '!border-red-500' : '']"
       :placeholder="placeholder"
       :value="modelValue"
       @input="updateValue"
