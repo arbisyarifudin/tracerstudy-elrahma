@@ -53,9 +53,11 @@ class LoginHandling
     $validated = $this->validate();
 
     // google recaptcha check
-    $captchVerified = $this->__verifyCaptcha(@$validated['recaptchaToken']);
-    if (!$captchVerified) {
-      throw new \Exception('Ups! Anda terindikasi sebagai spam oleh sistem kami.', 403);
+    if (isset($validated['recaptchaToken']) && !empty($validated['recaptchaToken'])) {
+      $captchVerified = $this->__verifyCaptcha(@$validated['recaptchaToken']);
+      if (!$captchVerified) {
+        throw new \Exception('Ups! Anda terindikasi sebagai spam oleh sistem kami.', 403);
+      }
     }
 
     // check email/username

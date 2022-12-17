@@ -10,4 +10,8 @@ class AlumniJob extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'institution_contacts' => 'json'
+    ];
 }

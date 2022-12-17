@@ -16,6 +16,7 @@ use App\Http\Controllers\API\Member\BatchController as MemberBatchController;
 use App\Http\Controllers\API\Member\MajorController as MemberMajorController;
 use App\Http\Controllers\API\Member\ProfileController as MemberProfileController;
 use App\Http\Controllers\API\Member\EducationController as MemberEducationController;
+use App\Http\Controllers\API\Member\JobController as MemberJobController;
 use App\Models\Alumni;
 /* LARAVEL */
 use Illuminate\Http\Request;
@@ -139,6 +140,14 @@ Route::group(['prefix' => 'member'], function ($routes) {
             $routes->post('', [MemberEducationController::class, 'store']);
             $routes->put('{id}', [MemberEducationController::class, 'update']);
             $routes->delete('{id}', [MemberEducationController::class, 'delete']);
+        });
+        // member/job
+        $routes->group(['prefix' => 'job'], function ($routes) {
+            $routes->get('', [MemberJobController::class, 'list']);
+            $routes->get('{id}', [MemberJobController::class, 'show']);
+            $routes->post('', [MemberJobController::class, 'store']);
+            $routes->put('{id}', [MemberJobController::class, 'update']);
+            $routes->delete('{id}', [MemberJobController::class, 'delete']);
         });
     });
 });

@@ -112,7 +112,7 @@
           <Input
             label="Tahun Lulus"
             type="number"
-            hint="Kosongkan jika tidak belum lulus"
+            hint="Kosongkan jika belum lulus"
             v-model="state.graduate_year"
             :errors="errors.graduate_year"
             @change="errors.graduate_year = null"
@@ -128,7 +128,7 @@
     >
       <template #content>
         <div class="p-4">
-          Apakah anda yakin ingin menghapus angkatan
+          Apakah anda yakin ingin menghapus
           {{ selectedData.institution_name }}
         </div>
       </template>
@@ -253,7 +253,6 @@ const showDialogAdd = ref(false);
 
 const state = ref({
   enter_year: new Date().getFullYear(),
-  graduate_year: new Date().getFullYear(),
   institution_name: '',
   institution_address: '',
   major_name: '',
@@ -264,7 +263,6 @@ const state = ref({
 
 const errors = ref({
   enter_year: null,
-  graduate_year: null,
   institution_name: null,
   institution_address: null,
   major_name: null,
