@@ -95,14 +95,14 @@ const routes = [
         },
         component: () => import('@/pages/admin/major/List.vue')
       },
-      {
-        path: 'major-interest',
-        name: 'Major Interest List Page',
-        meta: {
-          title: 'Peminatan'
-        },
-        component: () => import('@/pages/admin/major-interest/List.vue')
-      },
+      // {
+      //   path: 'major-interest',
+      //   name: 'Major Interest List Page',
+      //   meta: {
+      //     title: 'Peminatan'
+      //   },
+      //   component: () => import('@/pages/admin/major-interest/List.vue')
+      // },
       {
         path: 'alumni',
         name: 'Alumni List Page',
