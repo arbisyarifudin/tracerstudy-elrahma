@@ -18,6 +18,7 @@ use App\Http\Controllers\API\Member\ProfileController as MemberProfileController
 use App\Http\Controllers\API\Member\EducationController as MemberEducationController;
 use App\Http\Controllers\API\Member\JobController as MemberJobController;
 use App\Http\Controllers\API\Member\FeedbackController as MemberFeedbackController;
+use App\Http\Controllers\API\Member\FormController as MemberFormController;
 use App\Models\Alumni;
 /* LARAVEL */
 use Illuminate\Http\Request;
@@ -137,7 +138,7 @@ Route::group(['prefix' => 'member'], function ($routes) {
         // member/education
         $routes->group(['prefix' => 'education'], function ($routes) {
             $routes->get('', [MemberEducationController::class, 'list']);
-            $routes->get('{id}', [MemberEducationController::class, 'show']);
+            // $routes->get('{id}', [MemberEducationController::class, 'show']);
             $routes->post('', [MemberEducationController::class, 'store']);
             $routes->put('{id}', [MemberEducationController::class, 'update']);
             $routes->delete('{id}', [MemberEducationController::class, 'delete']);
@@ -145,7 +146,7 @@ Route::group(['prefix' => 'member'], function ($routes) {
         // member/job
         $routes->group(['prefix' => 'job'], function ($routes) {
             $routes->get('', [MemberJobController::class, 'list']);
-            $routes->get('{id}', [MemberJobController::class, 'show']);
+            // $routes->get('{id}', [MemberJobController::class, 'show']);
             $routes->post('', [MemberJobController::class, 'store']);
             $routes->put('{id}', [MemberJobController::class, 'update']);
             $routes->delete('{id}', [MemberJobController::class, 'delete']);
@@ -154,6 +155,14 @@ Route::group(['prefix' => 'member'], function ($routes) {
         $routes->group(['prefix' => 'feedback'], function ($routes) {
             $routes->get('', [MemberFeedbackController::class, 'show']);
             $routes->put('', [MemberFeedbackController::class, 'update']);
+        });
+        // member/form
+        $routes->group(['prefix' => 'form'], function ($routes) {
+            // $routes->get('', [MemberFormController::class, 'list']);
+            // $routes->get('{id}', [MemberFormController::class, 'show']);
+            // $routes->post('', [MemberFormController::class, 'store']);
+            $routes->get('active', [MemberFormController::class, 'showActive']);
+            $routes->put('{id}', [MemberFormController::class, 'update']);
         });
     });
 });
