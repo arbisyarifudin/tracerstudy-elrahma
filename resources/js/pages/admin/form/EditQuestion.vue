@@ -679,7 +679,7 @@
                     form-question__footer
                     flex
                     items-center
-                    justify-end
+                    justify-between
                     border-t
                     mt-8
                     pt-3
@@ -687,29 +687,39 @@
                     px-4
                   "
                 >
-                  <Button
-                    variant="light"
-                    size="lg"
-                    class="rounded-full"
-                    icon="plus"
-                    @click="addQuestion(sectionIndex, questionIndex)"
-                  />
-                  <Button
-                    variant="light"
-                    size="lg"
-                    class="rounded-full"
-                    icon="copy-simple"
-                    @click="
-                      duplicateQuestion(sectionIndex, questionIndex, question)
-                    "
-                  />
-                  <Button
-                    variant="light"
-                    size="lg"
-                    class="rounded-full"
-                    icon="trash"
-                    @click="deleteQuestion(sectionIndex, questionIndex)"
-                  />
+                  <div class="">
+                    <Input
+                      v-model="question.code"
+                      placeholder="Kode pertanyaan"
+                      size="sm"
+                      style="width: 150px"
+                    />
+                  </div>
+                  <div class="flex">
+                    <Button
+                      variant="light"
+                      size="lg"
+                      class="rounded-full"
+                      icon="plus"
+                      @click="addQuestion(sectionIndex, questionIndex)"
+                    />
+                    <Button
+                      variant="light"
+                      size="lg"
+                      class="rounded-full"
+                      icon="copy-simple"
+                      @click="
+                        duplicateQuestion(sectionIndex, questionIndex, question)
+                      "
+                    />
+                    <Button
+                      variant="light"
+                      size="lg"
+                      class="rounded-full"
+                      icon="trash"
+                      @click="deleteQuestion(sectionIndex, questionIndex)"
+                    />
+                  </div>
                 </div>
                 <!-- </div> -->
                 <!-- </transition> -->
@@ -738,7 +748,12 @@
               />
             </div>
           </div>
-          <div class="text-center my-3 text-gray-500">***</div>
+          <div
+            class="text-center my-3 text-gray-500"
+            v-if="sectionIndex !== state.sections.length - 1"
+          >
+            ***
+          </div>
         </section>
       </div>
 

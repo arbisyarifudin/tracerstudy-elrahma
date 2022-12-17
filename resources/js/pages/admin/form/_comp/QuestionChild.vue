@@ -506,7 +506,7 @@
             form-question__footer
             flex
             items-center
-            justify-end
+            justify-between
             border-t
             mt-8
             pt-3
@@ -514,27 +514,37 @@
             px-4
           "
         >
-          <Button
-            variant="light"
-            size="lg"
-            class="rounded-full"
-            icon="plus"
-            @click="addQuestion(questionChildIndex)"
-          />
-          <Button
-            variant="light"
-            size="lg"
-            class="rounded-full"
-            icon="copy-simple"
-            @click="duplicateQuestion(questionChildIndex, questionChild)"
-          />
-          <Button
-            variant="light"
-            size="lg"
-            class="rounded-full"
-            icon="trash"
-            @click="deleteQuestion(questionChildIndex)"
-          />
+          <div class="">
+            <Input
+              v-model="questionChild.code"
+              placeholder="Kode pertanyaan"
+              size="sm"
+              style="width: 150px"
+            />
+          </div>
+          <div class="flex">
+            <Button
+              variant="light"
+              size="lg"
+              class="rounded-full"
+              icon="plus"
+              @click="addQuestion(questionChildIndex)"
+            />
+            <Button
+              variant="light"
+              size="lg"
+              class="rounded-full"
+              icon="copy-simple"
+              @click="duplicateQuestion(questionChildIndex, questionChild)"
+            />
+            <Button
+              variant="light"
+              size="lg"
+              class="rounded-full"
+              icon="trash"
+              @click="deleteQuestion(questionChildIndex)"
+            />
+          </div>
         </div>
         <!-- </div> -->
         <!-- </transition> -->
