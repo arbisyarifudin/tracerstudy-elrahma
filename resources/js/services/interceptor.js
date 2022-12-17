@@ -22,31 +22,10 @@ const setup = (authStore, router) => {
     },
     async (err) => {
       const originalConfig = err.config
-      if (originalConfig.url !== '/api/auth/login' && err.response) {
+      if (err.response) {
         // Access Token was expired
         if (err.response.status === 401) {
           authStore.setIsAuth(false)
-          // router.push({ name: 'Login Page' })
-          //     // if (!originalConfig._retry) {
-          //     //   originalConfig._retry = true
-          //     //   try {
-          //     //     const response = await axiosInstance.post(
-          //     //       '/api/auth/refresh-token',
-          //     //       {
-          //     //         headers: {
-          //     //           Authorization:
-          //     //             'Bearer ' + TokenService.getLocalRefreshToken()
-          //     //         }
-          //     //       }
-          //     //     )
-          //     //     const { refresh_token: refreshToken } = response.data
-          //     //     authStore.setRefreshToken(refreshToken)
-          //     //     TokenService.updateLocalAccessToken(refreshToken)
-          //     //     return axiosInstance(originalConfig)
-          //     //   } catch (_error) {
-          //     //     return Promise.reject(_error)
-          //     //   }
-          //     // }
         }
       }
 

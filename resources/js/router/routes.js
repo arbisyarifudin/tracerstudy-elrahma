@@ -193,7 +193,7 @@ const routes = [
         path: 'biodata/job',
         name: 'Member Biodata Job Page',
         meta: {
-          title: 'Riwayat Pendidikan'
+          title: 'Riwayat Pekerjaan'
         },
         component: () => import('@/pages/member/biodata/Job.vue')
       },
@@ -201,7 +201,7 @@ const routes = [
         path: 'biodata/feedback',
         name: 'Member Biodata Feedback Page',
         meta: {
-          title: 'Riwayat Pendidikan'
+          title: 'Saran & Masukan'
         },
         component: () => import('@/pages/member/biodata/Feedback.vue')
       }

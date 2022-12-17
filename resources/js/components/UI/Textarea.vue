@@ -23,6 +23,8 @@
       @keyup="keyupValue"
       :disabled="disabled"
       :required="required"
+      :rows="rows"
+      :cols="cols"
     ></textarea>
     <!-- @keyup="createDebounce(keyupValue($event))" -->
     <div
@@ -70,6 +72,14 @@ const $props = defineProps({
   required: {
     type: Boolean,
     default: false,
+  },
+  rows: {
+    type: Number,
+    default: null,
+  },
+  cols: {
+    type: Number,
+    default: null,
   },
   underline: {
     type: Boolean,

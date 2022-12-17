@@ -17,6 +17,7 @@ use App\Http\Controllers\API\Member\MajorController as MemberMajorController;
 use App\Http\Controllers\API\Member\ProfileController as MemberProfileController;
 use App\Http\Controllers\API\Member\EducationController as MemberEducationController;
 use App\Http\Controllers\API\Member\JobController as MemberJobController;
+use App\Http\Controllers\API\Member\FeedbackController as MemberFeedbackController;
 use App\Models\Alumni;
 /* LARAVEL */
 use Illuminate\Http\Request;
@@ -148,6 +149,11 @@ Route::group(['prefix' => 'member'], function ($routes) {
             $routes->post('', [MemberJobController::class, 'store']);
             $routes->put('{id}', [MemberJobController::class, 'update']);
             $routes->delete('{id}', [MemberJobController::class, 'delete']);
+        });
+        // member/feedback
+        $routes->group(['prefix' => 'feedback'], function ($routes) {
+            $routes->get('', [MemberFeedbackController::class, 'show']);
+            $routes->put('', [MemberFeedbackController::class, 'update']);
         });
     });
 });

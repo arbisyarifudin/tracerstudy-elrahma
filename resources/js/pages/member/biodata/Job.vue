@@ -65,7 +65,7 @@
       :show="showDialogAdd"
       :loading="loading"
       @close="onCloseDialog"
-      @confirm="submitBatch"
+      @confirm="onSubmit"
     >
       <template #content>
         <div class="p-4">
@@ -229,7 +229,7 @@ onMounted(() => {
 const loading = ref(false);
 const isEditMode = ref(false);
 
-/* ADD & EDIT ANGKATAN */
+/* ADD & EDIT DATA */
 const { showLoading } = useLoading();
 const showDialogAdd = ref(false);
 
@@ -250,42 +250,7 @@ const errors = ref({
   end_year: null,
 });
 
-const majorLevelOptions = ref([
-  {
-    label: 'SD/Sederajat',
-    value: 'SD/Sederajat',
-  },
-  {
-    label: 'SMP/Sederajat',
-    value: 'SMP/Sederajat',
-  },
-  {
-    label: 'SMA/Sederajat',
-    value: 'SMA/Sederajat',
-  },
-  {
-    label: 'D3',
-    value: 'D3',
-  },
-  {
-    label: 'S1',
-    value: 'S1',
-  },
-  {
-    label: 'S2',
-    value: 'S2',
-  },
-  {
-    label: 'S3',
-    value: 'S3',
-  },
-  {
-    label: 'Profesi',
-    value: 'Profesi',
-  },
-]);
-
-const submitBatch = () => {
+const onSubmit = () => {
   loading.value = true;
   showLoading(true);
   if (isEditMode.value === true) {
@@ -348,7 +313,7 @@ const updateData = () => {
     });
 };
 
-/* DELETE ANGKATAN */
+/* DELETE DATA */
 const selectedData = ref({
   id: null,
   year: null,

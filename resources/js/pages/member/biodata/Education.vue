@@ -70,7 +70,7 @@
       :show="showDialogAdd"
       :loading="loading"
       @close="onCloseDialog"
-      @confirm="submitBatch"
+      @confirm="onSubmit"
     >
       <template #content>
         <div class="p-4">
@@ -247,7 +247,7 @@ onMounted(() => {
 const loading = ref(false);
 const isEditMode = ref(false);
 
-/* ADD & EDIT ANGKATAN */
+/* ADD & EDIT DATA */
 const { showLoading } = useLoading();
 const showDialogAdd = ref(false);
 
@@ -306,7 +306,7 @@ const majorLevelOptions = ref([
   },
 ]);
 
-const submitBatch = () => {
+const onSubmit = () => {
   loading.value = true;
   showLoading(true);
   if (isEditMode.value === true) {
@@ -369,7 +369,7 @@ const updateData = () => {
     });
 };
 
-/* DELETE ANGKATAN */
+/* DELETE DATA */
 const selectedData = ref({
   id: null,
   year: null,
