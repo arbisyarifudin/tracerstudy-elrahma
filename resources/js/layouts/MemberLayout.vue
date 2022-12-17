@@ -67,7 +67,7 @@ const menus = ref([
     title: 'Tracer Study',
     icon: 'pencil',
     path: {
-      name: 'Member Dashboard Page',
+      name: 'Member Form Page',
     },
     activeName: 'Form',
     expand: false,
@@ -76,7 +76,7 @@ const menus = ref([
     title: 'Pesan',
     icon: 'chat',
     path: {
-      name: 'Member Dashboard Page',
+      name: 'Member Contact Page',
     },
     activeName: 'Pesan',
     expand: false,

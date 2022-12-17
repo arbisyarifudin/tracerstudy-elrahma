@@ -204,6 +204,30 @@ const routes = [
           title: 'Saran & Masukan'
         },
         component: () => import('@/pages/member/biodata/Feedback.vue')
+      },
+      {
+        path: 'form',
+        name: 'Member Form Page',
+        meta: {
+          title: 'Formulir Tracerstudy'
+        },
+        component: () => import('@/pages/member/form/Index.vue')
+      },
+      {
+        path: 'form',
+        name: 'Member Form Question Page',
+        meta: {
+          title: 'Pertanyaan Tracerstudy'
+        },
+        component: () => import('@/pages/member/form/Index.vue')
+      },
+      {
+        path: 'contact',
+        name: 'Member Contact Page',
+        meta: {
+          title: 'Pesan'
+        },
+        component: () => import('@/pages/member/contact/Index.vue')
       }
     ]
   },
