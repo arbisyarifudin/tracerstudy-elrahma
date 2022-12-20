@@ -23,7 +23,7 @@
     >
       <option value="" v-show="placeholder" v-text="placeholder"></option>
       <option
-        v-for="(option, i) in options"
+        v-for="(option, i) in optionsData"
         :key="i"
         v-text="option.label"
         :value="option.value"
@@ -82,6 +82,18 @@ const $props = defineProps({
     type: [String, Object, Array],
     default: {},
   },
+  mapOptions: {
+    type: Boolean,
+    default: false,
+  },
+  optionLabel: {
+    type: String,
+    default: 'label',
+  },
+  optionValue: {
+    type: String,
+    default: 'value',
+  },
 });
 
 const $emit = defineEmits(['update:modelValue', 'change']);
@@ -112,4 +124,16 @@ const updateValue = (event) => {
 const changeValue = (event) => {
   $emit('change', event.target.value);
 };
+
+const optionsData = computed(() => {
+  if ($props.mapOptions) {
+    return $props.options.map((v) => {
+      return {
+        label: v[$props.optionLabel],
+        value: v[$props.optionValue],
+      };
+    });
+  }
+  return $props.options;
+});
 </script>
