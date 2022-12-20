@@ -264,59 +264,49 @@
               questionChild.question_rate
             "
           >
-            <div class="flex items-center space-x-3">
-              <Select
-                class="mb-0"
-                size="sm"
-                v-model="questionChild.question_rate.lowest_rate"
-                :options="lowRateOptions"
-              />
-              <span>sampai</span>
-              <Select
-                class="mb-0"
-                size="sm"
-                v-model="questionChild.question_rate.highest_rate"
-                :options="highRateOptions"
-              />
-            </div>
             <div class="mt-2">
-              <ol class="text-base text-gray-700 space-y-2">
-                <li class="flex items-center justify-between max-w-xs">
+              <ol
+                class="
+                  text-base text-gray-700
+                  space-x-5
+                  flex
+                  items-center
+                  justify-center
+                "
+              >
+                <li
+                  class="flex items-center justify-between max-w-xs"
+                  v-for="rate in questionChild.question_rate.highest_rate"
+                  :key="rate"
+                >
                   <label
-                    :for="`option-${sectionIndex}-${questionIndex}-${questionChildIndex}-1`"
-                    class="flex items-center flex-1 space-x-4 cursor-pointer"
+                    :for="`option-${sectionIndex}-${questionIndex}-${questionChildIndex}-${rate}`"
+                    class="flex flex-col items-center cursor-pointer"
                   >
-                    <span>{{ questionChild.question_rate.lowest_rate }}</span>
-                    <Input
-                      :id="`option-${sectionIndex}-${questionIndex}-${questionChildIndex}-1`"
-                      variant="secondary"
-                      size="sm"
-                      underline
-                      placeholder="Label (opsional)"
-                      class="flex-1"
-                      v-model="questionChild.question_rate.lowest_rate_label"
+                    <input
+                      :id="`option-${sectionIndex}-${questionIndex}-${questionChildIndex}-${rate}`"
+                      :name="`option-${sectionIndex}-${questionIndex}-${questionChildIndex}`"
+                      type="radio"
+                      :value="rate"
+                      v-model="questionChild.response"
+                      class="w-10 h-10 mb-3 cursor-pointer"
                     />
-                  </label>
-                </li>
-                <li class="flex items-center justify-between max-w-xs">
-                  <label
-                    :for="`option-${sectionIndex}-${questionIndex}-${questionChildIndex}-2`"
-                    class="flex items-center flex-1 space-x-4 cursor-pointer"
-                  >
-                    <span>{{ questionChild.question_rate.highest_rate }}</span>
-                    <Input
-                      :id="`option-${sectionIndex}-${questionIndex}-${questionChildIndex}-2`"
-                      variant="secondary"
-                      size="sm"
-                      underline
-                      placeholder="Label (opsional)"
-                      class="flex-1"
-                      v-model="questionChild.question_rate.highest_rate_label"
-                    />
+                    <span>{{ rate }}</span>
                   </label>
                 </li>
               </ol>
+              <div class="flex items-center justify-center mt-3">
+                <b>{{ questionChild.question_rate.lowest_rate_label }}</b>
+                <div class="mx-8">ke</div>
+                <b>{{ questionChild.question_rate.highest_rate_label }}</b>
+              </div>
             </div>
+          </div>
+          <div v-else-if="questionChild.type === 'select province'">
+            <div class="mt-2">- work in progress -</div>
+          </div>
+          <div v-else-if="questionChild.type === 'select regency'">
+            <div class="mt-2">- work in progress -</div>
           </div>
         </div>
       </div>

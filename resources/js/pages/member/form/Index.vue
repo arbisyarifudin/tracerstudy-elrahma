@@ -60,27 +60,7 @@
               </div>
             </div>
             <div class="ml-4 form-question mt-6">
-              <div
-                class="
-                  text-xl
-                  font-semibold
-                  mb-4
-                  flexx
-                  items-center
-                  cursor-pointer
-                  hidden
-                "
-                @click="section.showQuestion = !section.showQuestion"
-              >
-                <Button
-                  variant="light"
-                  :icon="
-                    section.showQuestion
-                      ? 'caret-down-fill'
-                      : 'caret-right-fill'
-                  "
-                  class="mr-2"
-                />
+              <div class="text-base mb-4 items-center cursor-pointer">
                 <span>Pertanyaan:</span>
               </div>
               <div
@@ -386,83 +366,49 @@
                         question.question_rate
                       "
                     >
-                      <div class="flex items-center space-x-3">
-                        <Select
-                          class="mb-0"
-                          size="sm"
-                          v-model="question.question_rate.lowest_rate"
-                          :options="lowRateOptions"
-                        />
-                        <span>sampai</span>
-                        <Select
-                          class="mb-0"
-                          size="sm"
-                          v-model="question.question_rate.highest_rate"
-                          :options="highRateOptions"
-                        />
-                      </div>
                       <div class="mt-2">
-                        <ol class="text-base text-gray-700 space-y-2">
+                        <ol
+                          class="
+                            text-base text-gray-700
+                            space-x-5
+                            flex
+                            items-center
+                            justify-center
+                          "
+                        >
                           <li
                             class="flex items-center justify-between max-w-xs"
+                            v-for="rate in question.question_rate.highest_rate"
+                            :key="rate"
                           >
                             <label
-                              :for="`option-${sectionIndex}-${questionIndex}-1`"
-                              class="
-                                flex
-                                items-center
-                                flex-1
-                                space-x-4
-                                cursor-pointer
-                              "
+                              :for="`option-${sectionIndex}-${questionIndex}-${rate}`"
+                              class="flex flex-col items-center cursor-pointer"
                             >
-                              <span>{{
-                                question.question_rate.lowest_rate
-                              }}</span>
-                              <Input
-                                :id="`option-${sectionIndex}-${questionIndex}-1`"
-                                variant="secondary"
-                                size="sm"
-                                underline
-                                placeholder="Label (opsional)"
-                                class="flex-1"
-                                v-model="
-                                  question.question_rate.lowest_rate_label
-                                "
+                              <input
+                                :id="`option-${sectionIndex}-${questionIndex}-${rate}`"
+                                :name="`option-${sectionIndex}-${questionIndex}`"
+                                type="radio"
+                                :value="rate"
+                                v-model="question.response"
+                                class="w-10 h-10 mb-3 cursor-pointer"
                               />
-                            </label>
-                          </li>
-                          <li
-                            class="flex items-center justify-between max-w-xs"
-                          >
-                            <label
-                              :for="`option-${sectionIndex}-${questionIndex}-2`"
-                              class="
-                                flex
-                                items-center
-                                flex-1
-                                space-x-4
-                                cursor-pointer
-                              "
-                            >
-                              <span>{{
-                                question.question_rate.highest_rate
-                              }}</span>
-                              <Input
-                                :id="`option-${sectionIndex}-${questionIndex}-2`"
-                                variant="secondary"
-                                size="sm"
-                                underline
-                                placeholder="Label (opsional)"
-                                class="flex-1"
-                                v-model="
-                                  question.question_rate.highest_rate_label
-                                "
-                              />
+                              <span>{{ rate }}</span>
                             </label>
                           </li>
                         </ol>
+                        <div class="flex items-center justify-center mt-3">
+                          <b>{{ question.question_rate.lowest_rate_label }}</b>
+                          <div class="mx-8">ke</div>
+                          <b>{{ question.question_rate.highest_rate_label }}</b>
+                        </div>
                       </div>
+                    </div>
+                    <div v-else-if="question.type === 'select province'">
+                      <div class="mt-2">- work in progress -</div>
+                    </div>
+                    <div v-else-if="question.type === 'select regency'">
+                      <div class="mt-2">- work in progress -</div>
                     </div>
 
                     <!-- QUESTION CHILDS -->
@@ -973,6 +919,10 @@ const updateResponseOptionCustom = (question) => {
 };
 
 const onSubmit = () => {
+  showAlert('Fitur ini belum selesai dan masih proses pengerjaan.', {
+    type: 'info',
+  });
+  return;
   showLoading(true);
   loading.value = true;
   axios
