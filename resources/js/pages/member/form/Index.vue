@@ -25,14 +25,6 @@
         >
           <div class="flex justify-center items-center space-x-4 px-4 py-6">
             <div>Belum ada Kuisioner.</div>
-            <Button
-              variant="secondary"
-              outline
-              label="Tambah Section"
-              size="xs"
-              icon="plus"
-              @click="addSection(sectionIndex)"
-            />
           </div>
         </div>
 
@@ -41,7 +33,7 @@
           :key="sectionIndex"
           class="form-section"
         >
-          <div class="bg-white pt-6 px-6 border rounded-lg mb-5 shadow-lg">
+          <div class="bg-white py-6 px-6 border rounded-lg mb-5 shadow-lg">
             <div class="flex items-start">
               <div
                 class="
@@ -58,91 +50,45 @@
                   mt-2
                 "
               >
-                <!-- {{ question.code }} -->
                 {{ sectionIndex + 1 }}
               </div>
               <div class="w-full">
-                <Input
-                  variant="secondary"
-                  underline
-                  filled
-                  placeholder="Judul Section"
-                  v-model="section.title"
-                  :errors="errors[`sections.${sectionIndex}.title`]"
-                  @keyup="errors[`sections.${sectionIndex}.title`] = []"
-                />
-                <Input
-                  variant="secondary"
-                  underline
-                  size="xs"
-                  placeholder="Deskripsi (optional)"
-                  v-model="section.description"
-                />
+                <div class="text-2xl">{{ section.title }}</div>
+                <div class="text-base text-gray-500">
+                  {{ section.description }}
+                </div>
               </div>
             </div>
-            <div
-              class="
-                form-section__actions
-                flex
-                items-center
-                justify-end
-                border-t
-                mt-8
-                pt-3
-                pb-3
-                px-4
-              "
-            >
-              <Button
-                variant="light"
-                size="lg"
-                class="rounded-full"
-                icon="plus"
-                @click="addSection(sectionIndex)"
-              />
-              <Button
-                variant="light"
-                size="lg"
-                class="rounded-full"
-                icon="trash"
-                @click="deleteSection(sectionIndex)"
-              />
-            </div>
-          </div>
-          <div class="ml-4 form-question">
-            <div
-              class="
-                text-xl
-                font-semibold
-                mb-4
-                flex
-                items-center
-                cursor-pointer
-              "
-              @click="section.showQuestion = !section.showQuestion"
-            >
-              <Button
-                variant="light"
-                :icon="
-                  section.showQuestion ? 'caret-down-fill' : 'caret-right-fill'
-                "
-                class="mr-2"
-              />
-              <span>Pertanyaan:</span>
-            </div>
-            <div v-show="section.showQuestion">
-              <!-- <transition-group tag="span" name="slide-fade" mode="out-in"> -->
+            <div class="ml-4 form-question mt-6">
               <div
-                class="bg-white pt-6 px-6 border rounded-lg shadow-lg mb-8"
+                class="
+                  text-xl
+                  font-semibold
+                  mb-4
+                  flexx
+                  items-center
+                  cursor-pointer
+                  hidden
+                "
+                @click="section.showQuestion = !section.showQuestion"
+              >
+                <Button
+                  variant="light"
+                  :icon="
+                    section.showQuestion
+                      ? 'caret-down-fill'
+                      : 'caret-right-fill'
+                  "
+                  class="mr-2"
+                />
+                <span>Pertanyaan:</span>
+              </div>
+              <div
+                class="bg-white py-6 px-6 border rounded-lg shadow-lg mb-8"
                 :class="`${question.additionClassNames}`"
                 v-for="(question, questionIndex) in section.questions"
                 :key="questionIndex"
               >
-                <!-- <transition tag="div" name="slide-fade" mode="out-in" appear>
-                  <div :key="questionIndex" v-show="true"> -->
-                <div class="drag-handle cursor-pointer -mt-5">
-                  <ph-dots-six :size="30" class="fill-gray-400 mx-auto" />
-                </div>
                 <div class="flex items-start w-full">
                   <div
                     class="
@@ -156,151 +102,19 @@
                       min-w-8
                       text-center
                       mr-3
-                      mt-2
+                      mt-1
                     "
                   >
-                    <!-- {{ question.code }} -->
                     {{ sectionIndex + 1 + '-' + (questionIndex + 1) }}
                   </div>
-                  <div class="flex-1">
-                    <div class="flex space-x-5">
-                      <div class="w-3/4">
-                        <Input
-                          variant="secondary"
-                          underline
-                          filled
-                          placeholder="Tulis Pertanyaan"
-                          v-model="question.text"
-                          :errors="
-                            errors[
-                              `sections.${sectionIndex}.questions.${questionIndex}.text`
-                            ]
-                          "
-                          @keyup="
-                            errors[
-                              `sections.${sectionIndex}.questions.${questionIndex}.text`
-                            ] = []
-                          "
-                        />
-                        <div class="flex justify-end mb-3">
-                          <span
-                            class="
-                              flex
-                              items-center
-                              text-xs text-gray-400
-                              cursor-pointer
-                              ml-2
-                            "
-                            @click="question.showHint = !question.showHint"
-                          >
-                            <ph-plus
-                              v-if="!question.showHint"
-                              class="text-lime-500"
-                            />
-                            <ph-x v-else class="text-red-500" />
-                            {{
-                              !question.showHint ? 'Tampilkan' : 'Sembunyikan'
-                            }}
-                            teks bantuan</span
-                          >
-                          <span
-                            v-if="
-                              allowedDefaultValueTypes.includes(question.type)
-                            "
-                            class="
-                              flex
-                              items-center
-                              text-xs text-gray-400
-                              cursor-pointer
-                              ml-2
-                            "
-                            @click="
-                              question.showDefaultValue =
-                                !question.showDefaultValue
-                            "
-                          >
-                            <ph-plus
-                              v-if="!question.showDefaultValue"
-                              class="text-lime-500"
-                            />
-                            <ph-x v-else class="text-red-500" />
-                            {{
-                              !question.showDefaultValue ? 'Tambahkan' : 'Hapus'
-                            }}
-                            nilai bawaan</span
-                          >
-                        </div>
-                      </div>
-                      <Select
-                        class="w-1/4"
-                        v-model="question.type"
-                        :options="questionTypeOptions"
-                        placeholder="-- Pilih tipe pertanyaan --"
-                        @change="onChangeQuestionType(question)"
-                        :errors="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.type`
-                          ]
-                        "
-                        @keyup="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.type`
-                          ] = []
-                        "
-                      />
-                    </div>
-                    <div
-                      class="mb-4 mt-2"
-                      v-if="question.showHint || question.showDefaultValue"
-                    >
+                  <div class="flex-1 pl-2">
+                    <div class="mb-3">
+                      <div class="text-lg">{{ question.text }}</div>
                       <div
-                        v-if="question.showHint"
-                        class="flex items-center mb-2"
+                        class="text-xs text-gray-400 tracking-wide mt-1"
+                        v-if="question.hint"
                       >
-                        <ph-info :size="15" class="-mt-2" />
-                        <Input
-                          variant="secondary"
-                          class="pl-2 flex-1"
-                          underline
-                          size="xs"
-                          placeholder="Teks bantuan (opsional)"
-                          v-model="question.hint"
-                        />
-                      </div>
-                      <div
-                        v-if="question.showDefaultValue"
-                        class="flex items-center mb-2"
-                      >
-                        <div class="w-1/2 flex items-center">
-                          <ph-pencil-simple-line :size="15" class="-mt-2" />
-                          <Input
-                            variant="secondary"
-                            class="pl-2 flex-1"
-                            underline
-                            size="xs"
-                            placeholder="Nilai bawaan (opsional)"
-                            v-model="question.default_value"
-                            :disabled="question.is_default_value_editable"
-                          />
-                        </div>
-                        <label
-                          :for="`lock-default-value-${sectionIndex}-${questionIndex}`"
-                          class="
-                            flex
-                            items-center
-                            text-xs text-gray-500
-                            cursor-pointer
-                            ml-3
-                          "
-                        >
-                          <input
-                            :id="`lock-default-value-${sectionIndex}-${questionIndex}`"
-                            type="checkbox"
-                            class="mr-2 inline-block"
-                            v-model="question.is_default_value_editable"
-                          />
-                          Kunci nilai bawaan
-                        </label>
+                        {{ question.hint }}
                       </div>
                     </div>
                     <div
@@ -308,13 +122,24 @@
                         question.type === 'text' ||
                         question.type === 'single-line text'
                       "
-                      class="
-                        p-2
-                        border-b border-dashed border-gray-300
-                        text-gray-500 text-sm
-                      "
                     >
-                      Teks jawaban singkat
+                      <Input
+                        variant="secondary"
+                        underline
+                        filled
+                        placeholder="Tulis Jawaban"
+                        v-model="question.response"
+                        :errors="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ]
+                        "
+                        @keyup="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ] = []
+                        "
+                      />
                     </div>
                     <div
                       v-else-if="
@@ -328,73 +153,113 @@
                         h-16
                       "
                     >
-                      Teks jawaban panjang
+                      <Textarea
+                        variant="secondary"
+                        underline
+                        filled
+                        placeholder="Tulis Jawaban"
+                        v-model="question.response"
+                        :errors="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ]
+                        "
+                        @keyup="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ] = []
+                        "
+                      />
                     </div>
                     <div v-if="question.type === 'number'">
-                      <input
+                      <Input
                         type="number"
-                        class="
-                          p-2
-                          border-b border-dashed border-gray-300
-                          text-gray-500 text-sm
-                          bg-transparent
-                          focus:outline-none
+                        variant="secondary"
+                        underline
+                        filled
+                        placeholder="Tulis Jawaban"
+                        v-model="question.response"
+                        :errors="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ]
                         "
-                        placeholder="Jawaban angka"
+                        @keyup="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ] = []
+                        "
                       />
                     </div>
                     <div v-if="question.type === 'date'">
-                      <input
+                      <Input
                         type="date"
-                        class="
-                          p-2
-                          border-b border-dashed border-gray-300
-                          text-gray-500 text-sm
-                          bg-transparent
-                          focus:outline-none
+                        variant="secondary"
+                        underline
+                        filled
+                        v-model="question.response"
+                        :errors="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ]
+                        "
+                        @keyup="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ] = []
                         "
                       />
                     </div>
                     <div v-if="question.type === 'year'">
-                      <input
+                      <Input
                         type="number"
                         :min="2000"
                         :max="maxYear"
                         :minlength="4"
                         :maxlength="4"
-                        class="
-                          p-2
-                          border-b border-dashed border-gray-300
-                          text-gray-500 text-sm
-                          bg-transparent
-                          focus:outline-none
+                        variant="secondary"
+                        underline
+                        filled
+                        placeholder="Tulis Jawaban"
+                        v-model="question.response"
+                        :errors="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ]
                         "
-                        :value="thisYear"
+                        @keyup="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ] = []
+                        "
                       />
                     </div>
                     <div v-if="question.type === 'email'">
-                      <input
+                      <Input
                         type="email"
-                        class="
-                          p-2
-                          border-b border-dashed border-gray-300
-                          text-gray-500 text-sm
-                          bg-transparent
-                          focus:outline-none
-                          w-full
+                        variant="secondary"
+                        underline
+                        filled
+                        placeholder="Tulis Jawaban"
+                        v-model="question.response"
+                        :errors="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ]
                         "
-                        placeholder="Jawaban email"
-                        readonly
+                        @keyup="
+                          errors[
+                            `sections.${sectionIndex}.questions.${questionIndex}.response`
+                          ] = []
+                        "
                       />
                     </div>
                     <ul
-                      class="text-base text-gray-700 space-y-2"
+                      class="text-base text-gray-700 space-y-4"
                       v-else-if="
                         question.type === 'radio' ||
                         question.type === 'multiple choice' ||
-                        question.type === 'checkbox' ||
-                        question.type === 'select' ||
-                        question.type === 'dropdown'
+                        question.type === 'checkbox'
                       "
                     >
                       <li
@@ -416,9 +281,10 @@
                         >
                           <input
                             v-if="
-                              question.type === 'radio' ||
-                              question.type === 'multiple choice' ||
-                              question.type === 'checkbox'
+                              (question.type === 'radio' ||
+                                question.type === 'multiple choice' ||
+                                question.type === 'checkbox') &&
+                              !option.is_custom_value
                             "
                             :type="
                               ['radio', 'multiple choice'].includes(
@@ -427,90 +293,46 @@
                                 ? 'radio'
                                 : 'checkbox'
                             "
-                            :name="`option-${sectionIndex}-${questionIndex}`"
-                            disabled
-                            class="w-5 h-5 pointer-events-none"
+                            :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                            :name="
+                              ['radio', 'multiple choice'].includes(
+                                question.type
+                              )
+                                ? `option-${sectionIndex}-${questionIndex}`
+                                : `option-${sectionIndex}-${questionIndex}[]`
+                            "
+                            class="w-5 h-5"
+                            :value="option.value"
+                            v-model="question.response"
+                            @change="updateResponseOption(question)"
                           />
-                          <span v-else>{{ optionIndex + 1 }}</span>
+                          <span v-else-if="!option.is_custom_value">{{
+                            optionIndex + 1
+                          }}</span>
                           <div class="flex items-center w-full">
                             <div
-                              class="mr-2 text-xs text-gray-400"
-                              v-if="!option.is_custom_value"
-                            >
-                              Label:
-                            </div>
+                              v-text="option.text"
+                              :class="!option.is_custom_value ? 'flex-1' : ''"
+                            ></div>
                             <Input
+                              v-if="option.is_custom_value"
+                              class="flex-1 ml-4"
+                              type="text"
+                              variant="secondary"
+                              underline
+                              filled
+                              size="sm"
+                              placeholder="Tulis Jawaban Lainnya"
                               :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
-                              variant="secondary"
-                              size="sm"
-                              underline-on-hover
-                              v-model="option.text"
-                              :placeholder="
-                                option.is_custom_value
-                                  ? 'Lainnya...'
-                                  : 'Label opsi ' + optionIndex
-                              "
-                              class="flex-1"
-                              :errors="
-                                errors[
-                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.text`
-                                ]
-                              "
-                              @keyup="
-                                errors[
-                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.text`
-                                ] = []
-                              "
-                            />
-                            <div
-                              class="mx-2 text-xs text-gray-400"
-                              v-if="!option.is_custom_value"
-                            >
-                              Nilai:
-                            </div>
-                            <Input
-                              v-if="!option.is_custom_value"
-                              variant="secondary"
-                              size="sm"
-                              underline-on-hover
-                              v-model="option.value"
-                              :placeholder="'Nilai opsi ' + optionIndex"
-                              class="flex-1"
-                              :errors="
-                                errors[
-                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.value`
-                                ]
-                              "
-                              @keyup="
-                                errors[
-                                  `sections.${sectionIndex}.questions.${questionIndex}.question_options.${optionIndex}.value`
-                                ] = []
-                              "
+                              :name="`option-${sectionIndex}-${questionIndex}`"
+                              v-model="question.responseOptionCustom"
+                              @keyup="updateResponseOptionCustom(question)"
                             />
                           </div>
                         </label>
-                        <Button
-                          icon="x"
-                          variant="light"
-                          size="xs"
-                          class="
-                            bg-transparent
-                            text-gray-800
-                            hover:bg-gray-50
-                            rounded-full
-                            py-2
-                            text-xs
-                            ml-3
-                          "
-                          @click="
-                            deleteQuestionOption(
-                              question.question_options,
-                              optionIndex
-                            )
-                          "
-                        />
                       </li>
                       <li
+                        class="hidden"
                         v-if="
                           question.question_options &&
                           question.question_options.length &&
@@ -530,46 +352,33 @@
                             text-sm
                           "
                         >
-                          <input
-                            :type="
-                              ['radio', 'multiple choice'].includes(
-                                question.type
-                              )
-                                ? 'radio'
-                                : 'checkbox'
-                            "
-                            disabled
-                            class="w-5 h-5 pointer-events-none"
+                          <div>Lainnya:</div>
+                          <Input
+                            type="text"
+                            variant="secondary"
+                            underline
+                            filled
+                            size="sm"
+                            placeholder="Tulis Jawaban Lainnya"
+                            :id="`option-${sectionIndex}-${questionIndex}-${question.question_options.length}`"
+                            :name="`option-${sectionIndex}-${questionIndex}`"
+                            v-model="question.responseOptionCustom"
+                            @keyup="updateResponseOptionCustom(question)"
                           />
-                          &nbsp;
-                          <span
-                            class="text-gray-500 cursor-pointer hover:underline"
-                            @click="
-                              addQuestionOption(sectionIndex, questionIndex)
-                            "
-                            >Tambahkan opsi</span
-                          >
-                          <div
-                            v-if="
-                              questionCustomValueExists(
-                                question.question_options
-                              ) === false
-                            "
-                            @click="
-                              addQuestionCustomOption(
-                                sectionIndex,
-                                questionIndex
-                              )
-                            "
-                          >
-                            <span class="mx-2 inline-block">atau</span>
-                            <span class="text-blue-500 cursor-pointer"
-                              >tambahkan "Lainnya"</span
-                            >
-                          </div>
                         </label>
                       </li>
                     </ul>
+                    <Select
+                      v-else-if="
+                        question.type === 'select' ||
+                        question.type === 'dropdown'
+                      "
+                      :options="question.question_options"
+                      mapOptions
+                      optionLabel="text"
+                      optionValue="value"
+                      placeholder="-- Pilih --"
+                    />
                     <div
                       v-else-if="
                         (question.type === 'rating' ||
@@ -668,82 +477,15 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="
-                    form-question__footer
-                    flex
-                    items-center
-                    justify-end
-                    border-t
-                    mt-8
-                    pt-3
-                    pb-3
-                    px-4
-                  "
-                >
-                  <Button
-                    variant="light"
-                    size="lg"
-                    class="rounded-full"
-                    icon="plus"
-                    @click="addQuestion(sectionIndex, questionIndex)"
-                  />
-                  <Button
-                    variant="light"
-                    size="lg"
-                    class="rounded-full"
-                    icon="copy-simple"
-                    @click="
-                      duplicateQuestion(sectionIndex, questionIndex, question)
-                    "
-                  />
-                  <Button
-                    variant="light"
-                    size="lg"
-                    class="rounded-full"
-                    icon="trash"
-                    @click="deleteQuestion(sectionIndex, questionIndex)"
-                  />
-                </div>
-                <!-- </div> -->
-                <!-- </transition> -->
               </div>
-              <!-- </transition-group> -->
             </div>
           </div>
 
-          <div class="bg-gray-100 p-2 border rounded-lg shadow-sm mb-[50px]">
-            <div class="flex justify-between">
-              <Button
-                variant="secondary"
-                outline
-                label="Tambah Section"
-                size="sm"
-                icon="plus"
-                @click="addSection(sectionIndex)"
-              />
-              <Button
-                variant="secondary"
-                outline
-                label="Tambah Pertanyaan"
-                size="sm"
-                icon="plus"
-                @click="addQuestion(sectionIndex)"
-              />
-            </div>
-          </div>
           <div class="text-center my-3 text-gray-500">***</div>
         </section>
       </div>
 
       <div class="mt-5 flex items-center md:flex-nowrap flex-wrap md:space-x-4">
-        <!-- <Button
-          class="w-full justify-center mb-3"
-          variant="primary"
-          outline
-          type="reset"
-          label="Reset Data"
-        /> -->
         <Button
           v-if="state.sections && state.sections.length > 0"
           class="justify-center mb-3"
@@ -764,6 +506,7 @@ import { computed, inject, onMounted, watch } from '@vue/runtime-core';
 const axios = inject('axios');
 
 import Input from '@/components/UI/Input.vue';
+import Textarea from '@/components/UI/Textarea.vue';
 import Select from '@/components/UI/Select.vue';
 import Button from '@/components/UI/Button.vue';
 import QuestionChild from './_comp/QuestionChild.vue';
@@ -806,6 +549,7 @@ const getDetail = () => {
                 ...question,
                 showDefaultValue: !!question.default_value,
                 showHint: !!question.hint,
+                response: ['checkbox'].includes(question.type) ? [] : '',
               };
             }),
           };
@@ -1208,6 +952,23 @@ const onChangeQuestionType = (question) => {
     // question.question_childs = [];
     question.showQuestionChild = true;
     question.question_childs.push(copyObject(questionTemplate.value));
+  }
+};
+
+/* UPDATE QUESTION RESPONSE FROM OPTION */
+const updateResponseOption = (question) => {
+  question.responseOptionCustom = '';
+};
+const updateResponseOptionCustom = (question) => {
+  if (
+    question.responseOptionCustom &&
+    question.responseOptionCustom.length > 0
+  ) {
+    if (['checkbox'].includes(question.type)) {
+      question.response = [];
+    } else {
+      question.response = '';
+    }
   }
 };
 
