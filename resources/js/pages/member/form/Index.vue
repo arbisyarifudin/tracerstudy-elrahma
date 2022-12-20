@@ -397,7 +397,13 @@
                             </label>
                           </li>
                         </ol>
-                        <div class="flex items-center justify-center mt-3">
+                        <div
+                          class="flex items-center justify-center mt-3"
+                          v-if="
+                            question.question_rate.lowest_rate_label &&
+                            question.question_rate.highest_rate_label
+                          "
+                        >
                           <b>{{ question.question_rate.lowest_rate_label }}</b>
                           <div class="mx-8">ke</div>
                           <b>{{ question.question_rate.highest_rate_label }}</b>
