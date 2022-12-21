@@ -6,6 +6,7 @@ use App\Models\Form;
 use App\Models\FormSection;
 use App\Models\Question;
 use App\Models\QuestionOption;
+use App\Models\QuestionRate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -627,6 +628,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1761',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Keahlian berdasarkan Bidang Ilmu',
@@ -642,6 +649,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1763',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Bahasa Inggris',
@@ -657,6 +670,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1765',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Penggunaan Teknologi Informasi',
@@ -672,6 +691,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1767',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Komunikasi',
@@ -687,6 +712,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1769',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Kerjasama Tim',
@@ -702,6 +733,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1771',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Pengembangan Diri',
@@ -717,6 +754,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1773',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                 ]
                             ],
@@ -748,6 +791,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1762',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Keahlian berdasarkan Bidang Ilmu',
@@ -763,6 +812,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1763',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Bahasa Inggris',
@@ -778,6 +833,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1766',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Penggunaan Teknologi Informasi',
@@ -793,6 +854,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1768',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Komunikasi',
@@ -808,6 +875,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1770',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Kerjasama Tim',
@@ -823,6 +896,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1772',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                     [
                                         'text' => 'Pengembangan Diri',
@@ -838,6 +917,12 @@ class FormAndQuestionSeeder extends Seeder
                                         // 'default_next_question_id' => null,
                                         // 'is_exportable' => true,
                                         // 'export_code' => 'f1774',
+                                        'question_rate' => [
+                                            'lowest_rate' => 1,
+                                            'lowest_rate_label' => 'Rendah',
+                                            'highest_rate' => 5,
+                                            'highest_rate_label' => 'Tinggi',
+                                        ]
                                     ],
                                 ]
                             ],
@@ -1249,12 +1334,14 @@ class FormAndQuestionSeeder extends Seeder
             ]
         ];
 
-        Schema::disableForeignKeyConstraints();
-        QuestionOption::truncate();
-        Question::truncate();
-        FormSection::truncate();
-        Form::truncate();
-        Schema::enableForeignKeyConstraints();
+        if (env('APP_ENV') !== 'production') {
+            Schema::disableForeignKeyConstraints();
+            QuestionOption::truncate();
+            Question::truncate();
+            FormSection::truncate();
+            Form::truncate();
+            Schema::enableForeignKeyConstraints();
+        }
         DB::beginTransaction();
         try {
             foreach ($data as $dataRow) {
@@ -1263,7 +1350,8 @@ class FormAndQuestionSeeder extends Seeder
                     'slug' => $dataRow['slug'],
                     'name' => $dataRow['name'],
                 ], [
-                    'description' => $dataRow['description']
+                    'description' => $dataRow['description'],
+                    'is_active' => true
                 ]);
                 foreach ($dataRow['sections'] as $keySection => $section) {
                     $formSection = FormSection::firstOrCreate([
@@ -1308,6 +1396,20 @@ class FormAndQuestionSeeder extends Seeder
                                 ]);
                             }
                         }
+
+                        // Question rates (for linear scale/rating type)
+                        if (isset($question['question_rate']) && !empty($question['question_rate'])) {
+                            $questionRate = $question['question_rate'];
+                            QuestionRate::firstOrCreate([
+                                'question_id' => $questionNew->id,
+                            ], [
+                                'lowest_rate' => $questionRate['lowest_rate'],
+                                'lowest_rate_label' => $questionRate['lowest_rate_label'],
+                                'highest_rate' => $questionRate['highest_rate'],
+                                'highest_rate_label' => $questionRate['highest_rate_label'],
+                            ]);
+                        }
+
                         if (isset($question['question_childs']) && !empty($question['question_childs'])) {
                             foreach ($question['question_childs'] as $keyQuestionChild => $questionChild) {
                                 $questionChildNew = Question::firstOrCreate([
@@ -1345,6 +1447,19 @@ class FormAndQuestionSeeder extends Seeder
                                         ]);
                                         // var_dump($questionChildOption);
                                     }
+                                }
+
+                                // Question Child rates (for linear scale/rating type)
+                                if (isset($questionChild['question_rate']) && !empty($questionChild['question_rate'])) {
+                                    $questionChildRate = $questionChild['question_rate'];
+                                    QuestionRate::firstOrCreate([
+                                        'question_id' => $questionChildNew->id,
+                                    ], [
+                                        'lowest_rate' => $questionChildRate['lowest_rate'],
+                                        'lowest_rate_label' => $questionChildRate['lowest_rate_label'],
+                                        'highest_rate' => $questionChildRate['highest_rate'],
+                                        'highest_rate_label' => $questionChildRate['highest_rate_label'],
+                                    ]);
                                 }
                             }
                         }
