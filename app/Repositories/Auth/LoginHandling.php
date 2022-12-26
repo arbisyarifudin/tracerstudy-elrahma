@@ -84,15 +84,12 @@ class LoginHandling
       throw new \Exception('Akun Anda belum di verifikasi oleh Administrator!', 403);
     }
 
-    // $token = $findUser->createToken('auth_token')->plainTextToken;
-    $expiredAt = now()->addMinutes((60 * 12));
-    $accessToken = $findUser->createAuthToken('access_token', $expiredAt)->plainTextToken;
-    $refreshToken = $findUser->createRefreshToken('refresh_token', now()->addMinutes((60 * 24)))->plainTextToken;
+    // dd($findUser->createToken('access_token'));
+    $token = $findUser->createToken('access_token');
+    $accessToken = $token->plainTextToken;
     $data = [
       'access_token' => $accessToken,
-      'refresh_token' => $refreshToken,
       'token_type' => 'Bearer',
-      'token_expires' => $expiredAt,
       'user' => [
         'name' => $findUser->name,
         'type' => $findUser->type,
