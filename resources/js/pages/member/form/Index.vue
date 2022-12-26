@@ -925,17 +925,57 @@ const updateResponseOptionCustom = (question) => {
 };
 
 const onSubmit = () => {
-  showAlert('Fitur ini belum selesai dan masih proses pengerjaan.', {
-    type: 'info',
-  });
-  return;
+  // showAlert('Fitur ini belum selesai dan masih proses pengerjaan.', {
+  //   type: 'info',
+  // });
+  // return;
+  console.log('state', state.value);
   showLoading(true);
   loading.value = true;
+
+  const questions = [];
+  for (let i = 0; i < state.value.sections.length; i++) {
+    const sections = state.value.sections[i];
+    for (let x = 0; x < sections.questions.length; x++) {
+      const question = sections.questions[x];
+      questions.push(question);
+    }
+  }
+
+  console.log('questions', questions);
+
+  const submitData = {
+    id: detailData.value.id,
+    questions: questions.map((question) => {
+      return {
+        id: question.id,
+        is_required: question.is_required,
+        response:
+          question.responseOptionCustom &&
+          question.responseOptionCustom.length > 0
+            ? question.responseOptionCustom
+            : question.response,
+        question_childs: question.question_childs.map((child) => {
+          return {
+            id: child.id,
+            is_required: child.is_required,
+            response:
+              child.responseOptionCustom &&
+              child.responseOptionCustom.length > 0
+                ? child.responseOptionCustom
+                : child.response,
+          };
+        }),
+      };
+    }),
+  };
+  console.log('submitData', submitData);
+
   axios
-    .put('api/admin/form/' + detailData.value.id + '/detail', state.value)
+    .post('api/member/form/submit', submitData)
     .then((response) => {
       console.log('res', response.data);
-      showAlert('Kuisioner formulir berhasil diperbarui!', { type: 'success' });
+      showAlert('Data berhasil dikirimkan!', { type: 'success' });
       // $router.push({ name: 'Form List Page' });
     })
     .catch((error) => {

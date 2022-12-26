@@ -161,8 +161,9 @@ Route::group(['prefix' => 'member'], function ($routes) {
             // $routes->get('', [MemberFormController::class, 'list']);
             // $routes->get('{id}', [MemberFormController::class, 'show']);
             // $routes->post('', [MemberFormController::class, 'store']);
+            $routes->post('submit', [MemberFormController::class, 'submit']);
             $routes->get('active', [MemberFormController::class, 'showActive']);
-            $routes->put('{id}', [MemberFormController::class, 'update']);
+            // $routes->put('{id}', [MemberFormController::class, 'update']);
         });
     });
 });

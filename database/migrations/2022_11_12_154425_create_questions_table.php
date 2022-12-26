@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('hint', 255)->nullable();
             $table->integer('order')->default(0);
             $table->string('type')->nullable();
+            $table->boolean('is_required')->default(false);
             $table->string('default_value')->nullable();
             $table->boolean('is_default_value_editable')->nullable()->default(true);
             $table->unsignedBigInteger('parent_id')->nullable()->index();
