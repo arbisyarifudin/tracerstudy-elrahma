@@ -492,20 +492,21 @@ const getDetail = () => {
       detailData.value = response.data.data;
       state.value = { ...detailData.value };
       if (detailData.value) {
-        state.value.sections = state.value.sections.map((section) => {
-          return {
-            ...section,
-            showQuestion: true,
-            questions: section.questions.map((question) => {
-              return {
-                ...question,
-                showDefaultValue: !!question.default_value,
-                showHint: !!question.hint,
-                response: ['checkbox'].includes(question.type) ? [] : '',
-              };
-            }),
-          };
-        });
+        // state.value.sections = state.value.sections.map((section) => {
+        //   return {
+        //     ...section,
+        //     questions: section.questions.map((question) => {
+        //       if (!question.response) {
+        //         question.response = ['checkbox'].includes(question.type)
+        //           ? []
+        //           : '';
+        //       }
+        //       return {
+        //         ...question,
+        //       };
+        //     }),
+        //   };
+        // });
         console.log(state.value);
       }
     })
@@ -969,7 +970,7 @@ const onSubmit = () => {
       };
     }),
   };
-  console.log('submitData', submitData);
+  // console.log('submitData', submitData);
 
   axios
     .post('api/member/form/submit', submitData)

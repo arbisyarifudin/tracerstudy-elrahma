@@ -7,7 +7,10 @@
 namespace App\Repositories\Member\Form;
 
 use App\Models\Form;
+use App\Models\FormResponse;
+use App\Models\FormResponseAnswer;
 use App\Models\Question;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -80,7 +83,9 @@ class SubmitHandling
     DB::beginTransaction();
     try {
       $questionData = $this->request->input('questions');
+
       $errorMessages = [];
+      // validate required question 
       foreach ($questionData as $key => $question) {
         if ($question['is_required'] == 1 && empty($question['response'])) {
           // if (empty($question['question_childs'])) {
@@ -99,8 +104,54 @@ class SubmitHandling
           }
         }
       }
+
+      // throw validation error
       if (!empty($errorMessages)) {
         throw ValidationException::withMessages($errorMessages);
+      }
+
+      $user = User::getProfile();
+
+      // save question answer (response)
+      $formResponse = FormResponse::where(['form_id' => $validated['id'], 'alumni_id' => $user->alumni->id])->first();
+      $formResponseExists = false;
+      if ($formResponse) {
+        $formResponseExists = true;
+      } else {
+        $formResponse =  FormResponse::create([
+          'form_id' => $validated['id'],
+          'alumni_id' => $user->alumni->id
+        ]);
+      }
+
+      if ($formResponseExists) {
+        foreach ($questionData as $key => $question) {
+          $questionDetailData = Question::find($question['id']);
+          FormResponseAnswer::where([
+            'form_response_id' => $formResponse->id,
+            'question_id' => $question['id'],
+          ])->update([
+            'question_text' => $questionDetailData?->text,
+            'question_code' => $questionDetailData?->code,
+            'response_answer' => $question['response']
+          ]);
+        }
+      } else {
+        $formResponseAnswerInsertData = [];
+        foreach ($questionData as $key => $question) {
+          $questionDetailData = Question::find($question['id']);
+          $formResponseAnswerInsertData[] = [
+            'form_response_id' => $formResponse->id,
+            'question_id' => $question['id'],
+            'question_text' => $questionDetailData?->text,
+            'question_code' => $questionDetailData?->code,
+            'response_answer' => $question['response']
+          ];
+        }
+
+        if (!empty($formResponseAnswerInsertData)) {
+          FormResponseAnswer::insert($formResponseAnswerInsertData);
+        }
       }
 
       DB::commit();
