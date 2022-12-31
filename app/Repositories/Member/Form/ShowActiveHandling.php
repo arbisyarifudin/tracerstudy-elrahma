@@ -108,14 +108,14 @@ class ShowActiveHandling
       $defaultValue = str_replace('{', '', $defaultValue);
       $defaultValue = str_replace('}', '', $defaultValue);
 
+      $defaultValueArr = explode('.', $defaultValue);
       $defaultValueVar = $this;
-      foreach (explode('.', $defaultValue) as $key => $value) {
+      foreach ($defaultValueArr as $key => $value) {
         $defaultValueVar = $defaultValueVar->{$value};
       }
-      // var_dump($this->{$defaultValue});
-      // var_dump($this->alumni->batch->year);
-      // var_dump($defaultValue);
-      return $defaultValueVar;
+      if (count($defaultValueArr) > 0) {
+        return $defaultValueVar;
+      }
     }
     return $defaultValue;
   }
