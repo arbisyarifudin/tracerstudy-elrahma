@@ -73,12 +73,23 @@ const menus = ref([
     expand: false,
   },
   {
-    title: 'Pesan',
+    title: 'Kontak',
     icon: 'chat',
     path: {
-      name: 'Member Contact Page',
+      // name: 'Member Contact Page',
+      name: 'Public Contact Page',
     },
-    activeName: 'Pesan',
+    activeName: 'Kontak',
+    expand: false,
+  },
+  {
+    title: 'Informasi',
+    icon: 'newspaper',
+    path: {
+      // name: 'Member Information Page',
+      name: 'Public Information Page',
+    },
+    activeName: 'Informasi',
     expand: false,
   },
 ]);

@@ -19,6 +19,7 @@ use App\Http\Controllers\API\Member\EducationController as MemberEducationContro
 use App\Http\Controllers\API\Member\JobController as MemberJobController;
 use App\Http\Controllers\API\Member\FeedbackController as MemberFeedbackController;
 use App\Http\Controllers\API\Member\FormController as MemberFormController;
+use App\Http\Controllers\API\Member\ContentController as MemberContentController;
 use App\Models\Alumni;
 /* LARAVEL */
 use Illuminate\Http\Request;
@@ -84,6 +85,10 @@ Route::group(['prefix' => 'public'], function ($routes) {
     });
     $routes->group(['prefix' => 'major'], function ($routes) {
         $routes->get('', [MemberMajorController::class, 'list']);
+    });
+    $routes->group(['prefix' => 'content'], function ($routes) {
+        $routes->get('', [MemberContentController::class, 'list']);
+        $routes->get('{slug}', [MemberContentController::class, 'showBySlug']);
     });
 });
 

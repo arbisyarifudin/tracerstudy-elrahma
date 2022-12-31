@@ -27,15 +27,23 @@ const routes = [
         path: 'information',
         name: 'Public Information Page',
         meta: {
-          title: 'Alumni'
+          title: 'Informasi'
         },
         component: () => import('@/pages/Information.vue')
+      },
+      {
+        path: 'information/:slug',
+        name: 'Public Information Detail Page',
+        meta: {
+          title: 'Detail Informasi'
+        },
+        component: () => import('@/pages/InformationDetail.vue')
       },
       {
         path: 'contact',
         name: 'Public Contact Page',
         meta: {
-          title: 'Contact'
+          title: 'Kontak '
         },
         component: () => import('@/pages/Contact.vue')
       }
