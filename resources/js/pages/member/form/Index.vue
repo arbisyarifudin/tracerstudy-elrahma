@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-xl border shadow-xl p-6 bg-white">
+  <div class="rounded-xl border shadow-xl p-6 bg-white relative">
     <div class="mb-3 border-b pb-3 flex items-center justify-between sticky">
       <h3 class="text-2xl font-semibold">
         Isi Kuisioner
@@ -10,13 +10,14 @@
           v-if="state.sections && state.sections.length > 0"
           variant="primary"
           type="submit"
-          label="Simpan"
+          label="Simpan &amp; Kirim Jawaban"
+          icon="paper-plane-right"
           @click="onSubmit"
           :disabled="loading"
         />
       </div>
     </div>
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="onSubmit" class="pb-5">
       <!-- <div class="lg:max-w-6xl md:max-w-xl sm:max-w-lg"> -->
       <div class="max-w-6xl">
         <div
@@ -119,6 +120,7 @@
                             `sections.${sectionIndex}.questions.${questionIndex}.response`
                           ] = []
                         "
+                        :readonly="question.is_default_value_editable === 0"
                       />
                     </div>
                     <div
@@ -149,6 +151,7 @@
                             `sections.${sectionIndex}.questions.${questionIndex}.response`
                           ] = []
                         "
+                        :readonly="question.is_default_value_editable === 0"
                       />
                     </div>
                     <div v-if="question.type === 'number'">
@@ -169,6 +172,7 @@
                             `sections.${sectionIndex}.questions.${questionIndex}.response`
                           ] = []
                         "
+                        :readonly="question.is_default_value_editable === 0"
                       />
                     </div>
                     <div v-if="question.type === 'date'">
@@ -188,6 +192,7 @@
                             `sections.${sectionIndex}.questions.${questionIndex}.response`
                           ] = []
                         "
+                        :readonly="question.is_default_value_editable === 0"
                       />
                     </div>
                     <div v-if="question.type === 'year'">
@@ -212,6 +217,7 @@
                             `sections.${sectionIndex}.questions.${questionIndex}.response`
                           ] = []
                         "
+                        :readonly="question.is_default_value_editable === 0"
                       />
                     </div>
                     <div v-if="question.type === 'email'">
@@ -232,6 +238,7 @@
                             `sections.${sectionIndex}.questions.${questionIndex}.response`
                           ] = []
                         "
+                        :readonly="question.is_default_value_editable === 0"
                       />
                     </div>
                     <ul
@@ -358,6 +365,7 @@
                       optionLabel="text"
                       optionValue="value"
                       placeholder="-- Pilih --"
+                      v-model="question.response"
                     />
                     <div
                       v-else-if="
@@ -437,7 +445,9 @@
         </section>
       </div>
 
-      <div class="mt-5 flex items-center md:flex-nowrap flex-wrap md:space-x-4">
+      <div
+        class="hidden mt-5 items-center md:flex-nowrap flex-wrap md:space-x-4"
+      >
         <Button
           v-if="state.sections && state.sections.length > 0"
           class="justify-center mb-3"
@@ -449,6 +459,31 @@
         />
       </div>
     </form>
+    <div class="float-button">
+      <div
+        class="
+          fixedContainer
+          px-3
+          py-3
+          flex
+          items-center
+          justify-end
+          bg-white
+          w-full
+          shadow-lg
+        "
+      >
+        <Button
+          v-if="state.sections && state.sections.length > 0"
+          variant="primary"
+          type="submit"
+          label="Simpan &amp; Kirim Jawaban"
+          icon="paper-plane-right"
+          @click="onSubmit"
+          :disabled="loading"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -492,21 +527,29 @@ const getDetail = () => {
       detailData.value = response.data.data;
       state.value = { ...detailData.value };
       if (detailData.value) {
-        // state.value.sections = state.value.sections.map((section) => {
-        //   return {
-        //     ...section,
-        //     questions: section.questions.map((question) => {
-        //       if (!question.response) {
-        //         question.response = ['checkbox'].includes(question.type)
-        //           ? []
-        //           : '';
-        //       }
-        //       return {
-        //         ...question,
-        //       };
-        //     }),
-        //   };
-        // });
+        state.value.sections = state.value.sections.map((section) => {
+          return {
+            ...section,
+            questions: section.questions.map((question) => {
+              if (!question.response) {
+                question.response = ['checkbox'].includes(question.type)
+                  ? []
+                  : '';
+              }
+              if (
+                question.question_options.length > 0 &&
+                !question.question_options.find(
+                  (v) => v.value === question.response
+                )
+              ) {
+                question.responseOptionCustom = question.response;
+              }
+              return {
+                ...question,
+              };
+            }),
+          };
+        });
         console.log(state.value);
       }
     })
@@ -930,7 +973,7 @@ const onSubmit = () => {
   //   type: 'info',
   // });
   // return;
-  console.log('state', state.value);
+  // console.log('state', state.value);
   showLoading(true);
   loading.value = true;
 
@@ -943,7 +986,7 @@ const onSubmit = () => {
     }
   }
 
-  console.log('questions', questions);
+  // console.log('questions', questions);
 
   const submitData = {
     id: detailData.value.id,
@@ -1012,5 +1055,12 @@ const onSubmit = () => {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+}
+
+.fixedContainer {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0%);
 }
 </style>
