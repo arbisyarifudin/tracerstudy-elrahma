@@ -14,6 +14,7 @@
         styles,
         errors && errors.length > 0 ? '!border-red-500' : '',
         disabled ? 'cursor-not-allowed' : '',
+        readonly ? 'cursor-not-allowed bg-gray-50' : '',
       ]"
       :type="type"
       :name="name"
@@ -27,6 +28,7 @@
       :max="max"
       :step="step"
       :disabled="disabled"
+      :readonly="readonly"
       :required="required"
     />
     <!-- @keyup="createDebounce(keyupValue($event))" -->
@@ -109,6 +111,10 @@ const $props = defineProps({
     default: false,
   },
   disabled: {
+    type: [Boolean, Number],
+    default: false,
+  },
+  readonly: {
     type: [Boolean, Number],
     default: false,
   },

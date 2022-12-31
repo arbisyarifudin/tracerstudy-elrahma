@@ -127,14 +127,48 @@ class SubmitHandling
       if ($formResponseExists) {
         foreach ($questionData as $key => $question) {
           $questionDetailData = Question::find($question['id']);
-          FormResponseAnswer::where([
+          $formResponseAnswerDetailData = FormResponseAnswer::where([
             'form_response_id' => $formResponse->id,
             'question_id' => $question['id'],
-          ])->update([
-            'question_text' => $questionDetailData?->text,
-            'question_code' => $questionDetailData?->code,
-            'response_answer' => $question['response']
           ]);
+          if ($formResponseAnswerDetailData->count() > 0) {
+            $formResponseAnswerDetailData->update([
+              'question_text' => $questionDetailData?->text,
+              'question_code' => $questionDetailData?->code,
+              'response_answer' => @$question['response']
+            ]);
+          } else {
+            FormResponseAnswer::create([
+              'form_response_id' => $formResponse->id,
+              'question_id' => $question['id'],
+              'question_text' => $questionDetailData?->text,
+              'question_code' => $questionDetailData?->code,
+              'response_answer' => @$question['response']
+            ]);
+          }
+
+          foreach ($question['question_childs'] as $key => $questionChild) {
+            $questionChildDetailData = Question::find($questionChild['id']);
+            $formResponseAnswer2DetailData = FormResponseAnswer::where([
+              'form_response_id' => $formResponse->id,
+              'question_id' => $questionChild['id'],
+            ]);
+            if ($formResponseAnswer2DetailData->count() > 0) {
+              $formResponseAnswer2DetailData->update([
+                'question_text' => $questionChildDetailData?->text,
+                'question_code' => $questionChildDetailData?->code,
+                'response_answer' => @$questionChild['response']
+              ]);
+            } else {
+              FormResponseAnswer::create([
+                'form_response_id' => $formResponse->id,
+                'question_id' => $questionChild['id'],
+                'question_text' => $questionChildDetailData?->text,
+                'question_code' => $questionChildDetailData?->code,
+                'response_answer' => @$questionChild['response']
+              ]);
+            }
+          }
         }
       } else {
         $formResponseAnswerInsertData = [];
@@ -145,8 +179,19 @@ class SubmitHandling
             'question_id' => $question['id'],
             'question_text' => $questionDetailData?->text,
             'question_code' => $questionDetailData?->code,
-            'response_answer' => $question['response']
+            'response_answer' => @$question['response']
           ];
+
+          foreach ($question['question_childs'] as $key => $questionChild) {
+            $questionChildDetailData = Question::find($questionChild['id']);
+            $formResponseAnswerInsertData[] = [
+              'form_response_id' => $formResponse->id,
+              'question_id' => $questionChild['id'],
+              'question_text' => $questionChildDetailData?->text,
+              'question_code' => $questionChildDetailData?->code,
+              'response_answer' => @$questionChild['response']
+            ];
+          }
         }
 
         if (!empty($formResponseAnswerInsertData)) {

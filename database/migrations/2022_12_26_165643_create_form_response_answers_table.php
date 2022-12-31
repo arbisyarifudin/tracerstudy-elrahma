@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('question_id')->constrained('questions', 'id')->cascadeOnDelete();
             $table->string('question_text');
             $table->string('question_code')->nullable();
-            $table->longText('response_answer');
+            $table->longText('response_answer')->nullable();
             $table->timestamps();
         });
     }

@@ -256,6 +256,7 @@
             optionLabel="text"
             optionValue="value"
             placeholder="-- Pilih --"
+            v-model="questionChild.response"
           />
           <div
             v-else-if="
@@ -681,6 +682,23 @@ const onChangeQuestionType = (question) => {
       highest_rate: 5,
       highest_rate_label: '',
     };
+  }
+};
+
+/* UPDATE QUESTION RESPONSE FROM OPTION */
+const updateResponseOption = (question) => {
+  question.responseOptionCustom = '';
+};
+const updateResponseOptionCustom = (question) => {
+  if (
+    question.responseOptionCustom &&
+    question.responseOptionCustom.length > 0
+  ) {
+    if (['checkbox'].includes(question.type)) {
+      question.response = [];
+    } else {
+      question.response = '';
+    }
   }
 };
 </script>
