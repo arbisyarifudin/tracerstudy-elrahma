@@ -110,15 +110,9 @@
                         filled
                         placeholder="Tulis Jawaban"
                         v-model="question.response"
-                        :errors="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ]
-                        "
+                        :errors="errors[`questions.${question.key}.response`]"
                         @keyup="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ] = []
+                          errors[`questions.${question.key}.response`] = []
                         "
                         :readonly="question.is_default_value_editable === 0"
                       />
@@ -141,15 +135,9 @@
                         filled
                         placeholder="Tulis Jawaban"
                         v-model="question.response"
-                        :errors="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ]
-                        "
+                        :errors="errors[`questions.${question.key}.response`]"
                         @keyup="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ] = []
+                          errors[`questions.${question.key}.response`] = []
                         "
                         :readonly="question.is_default_value_editable === 0"
                       />
@@ -162,15 +150,9 @@
                         filled
                         placeholder="Tulis Jawaban"
                         v-model="question.response"
-                        :errors="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ]
-                        "
+                        :errors="errors[`questions.${question.key}.response`]"
                         @keyup="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ] = []
+                          errors[`questions.${question.key}.response`] = []
                         "
                         :readonly="question.is_default_value_editable === 0"
                       />
@@ -182,15 +164,9 @@
                         underline
                         filled
                         v-model="question.response"
-                        :errors="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ]
-                        "
+                        :errors="errors[`questions.${question.key}.response`]"
                         @keyup="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ] = []
+                          errors[`questions.${question.key}.response`] = []
                         "
                         :readonly="question.is_default_value_editable === 0"
                       />
@@ -207,15 +183,9 @@
                         filled
                         placeholder="Tulis Jawaban"
                         v-model="question.response"
-                        :errors="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ]
-                        "
+                        :errors="errors[`questions.${question.key}.response`]"
                         @keyup="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ] = []
+                          errors[`questions.${question.key}.response`] = []
                         "
                         :readonly="question.is_default_value_editable === 0"
                       />
@@ -228,133 +198,138 @@
                         filled
                         placeholder="Tulis Jawaban"
                         v-model="question.response"
-                        :errors="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ]
-                        "
+                        :errors="errors[`questions.${question.key}.response`]"
                         @keyup="
-                          errors[
-                            `sections.${sectionIndex}.questions.${questionIndex}.response`
-                          ] = []
+                          errors[`questions.${question.key}.response`] = []
                         "
                         :readonly="question.is_default_value_editable === 0"
                       />
                     </div>
-                    <ul
-                      class="text-base text-gray-700 space-y-4"
+                    <div
+                      class=""
                       v-else-if="
                         question.type === 'radio' ||
                         question.type === 'multiple choice' ||
                         question.type === 'checkbox'
                       "
                     >
-                      <li
-                        v-for="(
-                          option, optionIndex
-                        ) in question.question_options"
-                        :key="optionIndex"
-                        class="flex items-center justify-between"
-                      >
-                        <label
-                          :for="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
-                          class="
-                            flex
-                            items-center
-                            flex-1
-                            space-x-4
-                            cursor-pointer
+                      <ul class="text-base text-gray-700 space-y-4">
+                        <li
+                          v-for="(
+                            option, optionIndex
+                          ) in question.question_options"
+                          :key="optionIndex"
+                          class="flex items-center justify-between"
+                        >
+                          <label
+                            :for="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                            class="
+                              flex
+                              items-center
+                              flex-1
+                              space-x-4
+                              cursor-pointer
+                            "
+                          >
+                            <input
+                              v-if="
+                                (question.type === 'radio' ||
+                                  question.type === 'multiple choice' ||
+                                  question.type === 'checkbox') &&
+                                !option.is_custom_value
+                              "
+                              :type="
+                                ['radio', 'multiple choice'].includes(
+                                  question.type
+                                )
+                                  ? 'radio'
+                                  : 'checkbox'
+                              "
+                              :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                              :name="
+                                ['radio', 'multiple choice'].includes(
+                                  question.type
+                                )
+                                  ? `option-${sectionIndex}-${questionIndex}`
+                                  : `option-${sectionIndex}-${questionIndex}[]`
+                              "
+                              class="w-5 h-5"
+                              :value="option.value"
+                              v-model="question.response"
+                              @change="updateResponseOption(question)"
+                            />
+                            <span v-else-if="!option.is_custom_value">{{
+                              optionIndex + 1
+                            }}</span>
+                            <div class="flex items-center w-full">
+                              <div
+                                v-text="option.text"
+                                :class="!option.is_custom_value ? 'flex-1' : ''"
+                              ></div>
+                              <Input
+                                v-if="option.is_custom_value"
+                                class="flex-1 ml-4"
+                                type="text"
+                                variant="secondary"
+                                underline
+                                filled
+                                size="sm"
+                                placeholder="Tulis Jawaban Lainnya"
+                                :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                                :name="`option-${sectionIndex}-${questionIndex}`"
+                                v-model="question.responseOptionCustom"
+                                @keyup="updateResponseOptionCustom(question)"
+                              />
+                            </div>
+                          </label>
+                        </li>
+                        <li
+                          class="hidden"
+                          v-if="
+                            question.question_options &&
+                            question.question_options.length &&
+                            (question.type === 'radio' ||
+                              question.type === 'multiple choice' ||
+                              question.type === 'checkbox')
                           "
                         >
-                          <input
-                            v-if="
-                              (question.type === 'radio' ||
-                                question.type === 'multiple choice' ||
-                                question.type === 'checkbox') &&
-                              !option.is_custom_value
+                          <label
+                            :for="`option-${sectionIndex}-${questionIndex}-${question.question_options.length}`"
+                            class="
+                              flex
+                              items-center
+                              flex-1
+                              space-x-3
+                              cursor-pointer
+                              text-sm
                             "
-                            :type="
-                              ['radio', 'multiple choice'].includes(
-                                question.type
-                              )
-                                ? 'radio'
-                                : 'checkbox'
-                            "
-                            :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
-                            :name="
-                              ['radio', 'multiple choice'].includes(
-                                question.type
-                              )
-                                ? `option-${sectionIndex}-${questionIndex}`
-                                : `option-${sectionIndex}-${questionIndex}[]`
-                            "
-                            class="w-5 h-5"
-                            :value="option.value"
-                            v-model="question.response"
-                            @change="updateResponseOption(question)"
-                          />
-                          <span v-else-if="!option.is_custom_value">{{
-                            optionIndex + 1
-                          }}</span>
-                          <div class="flex items-center w-full">
-                            <div
-                              v-text="option.text"
-                              :class="!option.is_custom_value ? 'flex-1' : ''"
-                            ></div>
+                          >
+                            <div>Lainnya:</div>
                             <Input
-                              v-if="option.is_custom_value"
-                              class="flex-1 ml-4"
                               type="text"
                               variant="secondary"
                               underline
                               filled
                               size="sm"
                               placeholder="Tulis Jawaban Lainnya"
-                              :id="`option-${sectionIndex}-${questionIndex}-${optionIndex}`"
+                              :id="`option-${sectionIndex}-${questionIndex}-${question.question_options.length}`"
                               :name="`option-${sectionIndex}-${questionIndex}`"
                               v-model="question.responseOptionCustom"
                               @keyup="updateResponseOptionCustom(question)"
                             />
-                          </div>
-                        </label>
-                      </li>
-                      <li
-                        class="hidden"
-                        v-if="
-                          question.question_options &&
-                          question.question_options.length &&
-                          (question.type === 'radio' ||
-                            question.type === 'multiple choice' ||
-                            question.type === 'checkbox')
-                        "
+                          </label>
+                        </li>
+                      </ul>
+                      <div
+                        class="text-sm text-red-500"
+                        v-for="(error, i) in errors[
+                          `questions.${question.key}.response`
+                        ]"
+                        :key="i"
                       >
-                        <label
-                          :for="`option-${sectionIndex}-${questionIndex}-${question.question_options.length}`"
-                          class="
-                            flex
-                            items-center
-                            flex-1
-                            space-x-3
-                            cursor-pointer
-                            text-sm
-                          "
-                        >
-                          <div>Lainnya:</div>
-                          <Input
-                            type="text"
-                            variant="secondary"
-                            underline
-                            filled
-                            size="sm"
-                            placeholder="Tulis Jawaban Lainnya"
-                            :id="`option-${sectionIndex}-${questionIndex}-${question.question_options.length}`"
-                            :name="`option-${sectionIndex}-${questionIndex}`"
-                            v-model="question.responseOptionCustom"
-                            @keyup="updateResponseOptionCustom(question)"
-                          />
-                        </label>
-                      </li>
-                    </ul>
+                        <span v-html="error"></span>
+                      </div>
+                    </div>
                     <Select
                       v-else-if="
                         question.type === 'select' ||
@@ -366,6 +341,7 @@
                       optionValue="value"
                       placeholder="-- Pilih --"
                       v-model="question.response"
+                      :errors="errors[`questions.${question.key}.response`]"
                     />
                     <div
                       v-else-if="
@@ -415,6 +391,15 @@
                           <b>{{ question.question_rate.lowest_rate_label }}</b>
                           <div class="mx-8">ke</div>
                           <b>{{ question.question_rate.highest_rate_label }}</b>
+                        </div>
+                        <div
+                          class="text-sm text-red-500"
+                          v-for="(error, i) in errors[
+                            `questions.${question.key}.response`
+                          ]"
+                          :key="i"
+                        >
+                          <span v-html="error"></span>
                         </div>
                       </div>
                     </div>
@@ -527,6 +512,7 @@ const getDetail = () => {
       detailData.value = response.data.data;
       state.value = { ...detailData.value };
       if (detailData.value) {
+        let questionKey = -1;
         state.value.sections = state.value.sections.map((section) => {
           return {
             ...section,
@@ -544,8 +530,10 @@ const getDetail = () => {
               ) {
                 question.responseOptionCustom = question.response;
               }
+              questionKey++;
               return {
                 ...question,
+                key: questionKey,
               };
             }),
           };

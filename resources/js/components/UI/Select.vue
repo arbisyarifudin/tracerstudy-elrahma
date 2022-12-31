@@ -31,7 +31,7 @@
       ></option>
     </select>
     <div class="text-sm text-red-500" v-for="(error, i) in errors" :key="i">
-      <span v-text="error"></span>
+      <span v-html="error"></span>
     </div>
   </div>
 </template>

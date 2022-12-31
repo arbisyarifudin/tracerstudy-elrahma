@@ -87,18 +87,22 @@ class SubmitHandling
       $errorMessages = [];
       // validate required question 
       foreach ($questionData as $key => $question) {
-        if ($question['is_required'] == 1 && empty($question['response'])) {
+        $questionDetailData = Question::find($question['id']);
+        if ($questionDetailData->is_required == 1 && empty($question['response'])) {
           // if (empty($question['question_childs'])) {
           $errorMessages["questions.$key.response"] = [
-            'Jawaban untuk pertanyaan ini diperlukan.'
+            // "Jawaban untuk pertanyaan <b>{$questionDetailData->text}</b> diperlukan."
+            "Jawaban untuk pertanyaan ini diperlukan."
           ];
           // }
         }
         if (count($question['question_childs']) > 0) {
           foreach ($question['question_childs'] as $key2 => $questionChild) {
-            if ($questionChild['is_required'] == 1 && empty($questionChild['response'])) {
+            $questionChildDetailData = Question::find($questionChild['id']);
+            if ($questionChildDetailData->is_required == 1 && empty($questionChild['response'])) {
               $errorMessages["questions.$key.question_childs.$key2.response"] = [
-                'Jawaban untuk pertanyaan ini diperlukan.'
+                // "Jawaban untuk pertanyaan <b>{$questionChildDetailData->text}</b> diperlukan."
+                "Jawaban untuk pertanyaan ini diperlukan."
               ];
             }
           }
