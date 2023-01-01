@@ -35,7 +35,8 @@ class LoginHandling
         'required'
       ],
       'recaptchaToken' => [
-        'sometimes'
+        'nullable',
+        'string'
       ]
     ];
 

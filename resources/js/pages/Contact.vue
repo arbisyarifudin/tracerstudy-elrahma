@@ -36,6 +36,15 @@
           @change="errors.fullname = null"
         ></Input>
         <Input
+          label="NIM Mahasiswa"
+          name="nim"
+          placeholder="Tuliskan NIM Anda"
+          required
+          v-model="state.nim"
+          :errors="errors.nim"
+          @change="errors.nim = null"
+        ></Input>
+        <Input
           label="Email Aktif"
           name="email"
           placeholder="Tuliskan Email Aktif"
@@ -69,12 +78,23 @@
 </template>
 
 <script setup>
+import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3';
+
 import Button from '@/components/UI/Button.vue';
 import Input from '@/components/UI/Input.vue';
 import Select from '@/components/UI/Select.vue';
 import Textarea from '@/components/UI/Textarea.vue';
 
 import { ref } from '@vue/reactivity';
+import { inject, onMounted, watch } from '@vue/runtime-core';
+
+const axios = inject('axios');
+
+import useLoading from '@/composables/loading';
+import useAlert from '@/composables/alert';
+
+const { showLoading } = useLoading();
+const { showAlert } = useAlert();
 
 const state = ref({
   subject: '',
@@ -82,6 +102,7 @@ const state = ref({
   email: '',
   message: '',
   attachment: null,
+  recaptchaToken: '',
 });
 const errors = ref({
   subject: '',
@@ -100,5 +121,56 @@ const categoryOptions = ref([
 
 const loading = ref(false);
 
-const onSubmit = () => {};
+const onSubmit = async () => {
+  showLoading(true);
+  loading.value = true;
+  await initiateRecaptcha();
+
+  axios
+    .post('api/public/contact', state.value)
+    .then((response) => {
+      console.log('res', response.data);
+      showAlert('Pesan berhasil dikirim!', { type: 'success' });
+      state.value = {
+        subject: '',
+        fullname: '',
+        email: '',
+        message: '',
+        attachment: null,
+        recaptchaToken: '',
+      };
+    })
+    .catch((error) => {
+      console.log('err', error);
+      if (error?.response?.status !== 422) {
+        showAlert(error.response.data.message);
+      } else {
+        errors.value = error.response.data.errors;
+        // for (const key in errors.value) {
+        showAlert('Permintaan tidak valid! Mohon cek kembali.');
+        //   if (Object.hasOwnProperty.call(errors.value, key)) {
+        //     const msg = errors.value[key];
+        //     showAlert(msg[0]);
+        //   }
+        // }
+      }
+    })
+    .finally(() => {
+      showLoading(false);
+      loading.value = false;
+    });
+};
+
+/* GOOGLE RECAPTCHA v3 */
+const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
+const initiateRecaptcha = async () => {
+  // (optional) Wait until recaptcha has been loaded.
+  await recaptchaLoaded();
+  // Execute reCAPTCHA with action "login".
+  const token = await executeRecaptcha();
+  // console.log(token);
+
+  // Do stuff with the received token.
+  state.value.recaptchaToken = token;
+};
 </script>
