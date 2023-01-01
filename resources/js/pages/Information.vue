@@ -9,7 +9,7 @@
         :key="index"
       >
         <div class="text-2xl mb-3">{{ row.title }}</div>
-        <div class="text-base leading-7">
+        <div class="text-sm text-gray-500 leading-7">
           <span v-html="row.excerpt + ' ...'"></span>
         </div>
         <div class="flex justify-between mt-2">
@@ -18,7 +18,8 @@
             <li
               v-for="(category, index2) in row.categories"
               :key="index2"
-              class="bg-slate-500 text-white px-2 py-1 rounded-lg"
+              class="px-2 py-1 rounded-lg"
+              :class="bgCategory(category.id)"
             >
               {{ category.title }}
             </li>
@@ -91,4 +92,23 @@ const getData = () => {
 onMounted(() => {
   getData();
 });
+
+/* CATEGORY */
+const bgCategory = (id) => {
+  switch (id) {
+    case 1:
+    case id > 5 && id % 2 != 0:
+      return 'bg-blue-500 text-white ';
+    case 2:
+    case id > 6 && id % 2 == 0:
+      return 'bg-green-500 text-white ';
+    case 3:
+      return 'bg-orange-500 text-white ';
+    case 4:
+      return 'bg-red-500 text-white ';
+    default:
+      return 'bg-blue-500 text-white ';
+      break;
+  }
+};
 </script>
