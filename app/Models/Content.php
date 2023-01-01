@@ -15,6 +15,6 @@ class Content extends Model
     // categories
     public function categories()
     {
-        return $this->hasManyThrough(Categories::class, ContentHasCategories::class, 'category_id', 'id');
+        return $this->hasManyThrough(Categories::class, ContentHasCategories::class, 'category_id', 'id', 'content_id', 'category_id');
     }
 }

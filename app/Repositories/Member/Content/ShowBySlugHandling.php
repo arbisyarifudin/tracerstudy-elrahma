@@ -7,6 +7,7 @@
 namespace App\Repositories\Member\Content;
 
 use App\Models\Content;
+use App\Models\ContentHasCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,10 +40,21 @@ class ShowBySlugHandling
     $this->validate();
 
     $data = Content::with([
-      'categories',
-    ])->where('slug', $this->slug)->first();
+      // 'categories',
+    ])->where('contents.slug', $this->slug)
+      ->first();
+
+    // if ($data->categories->count() < 1) {
+    $data->categories = ContentHasCategories::select([
+      'categories.id',
+      'categories.title'
+    ])
+      ->join('categories', 'categories.id', '=', 'category_id')
+      ->where('content_id', $data->id)->get();
+    // }
 
     $data['message'] = 'Content detail data!';
+
     return $data;
   }
 }
