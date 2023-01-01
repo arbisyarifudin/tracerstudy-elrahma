@@ -168,3 +168,34 @@
 - id *
 - content_id **
 - category_id **
+
+
+<!-- TICKETS -->
+
+## tickets
+- id
+- subject
+- sender_id ** NULLABLE
+- category
+- status [open, closed]
+
+## ticket_messages
+- id
+- ticket_id **
+- message
+
+## ticket_message_files
+- id
+- ticket_message_id **
+- file_name
+- file_link
+- file_size
+
+<!-- inboxes -->
+## inboxes
+- id
+- subject
+- fullname
+- email
+- message
+- category
