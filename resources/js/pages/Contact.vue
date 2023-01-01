@@ -86,19 +86,24 @@ import Select from '@/components/UI/Select.vue';
 import Textarea from '@/components/UI/Textarea.vue';
 
 import { ref } from '@vue/reactivity';
-import { inject, onMounted, watch } from '@vue/runtime-core';
-
-const axios = inject('axios');
+import { computed, inject, onMounted, watch } from '@vue/runtime-core';
 
 import useLoading from '@/composables/loading';
 import useAlert from '@/composables/alert';
 
+import { useAuthStore } from '@/store/auth';
+
+const axios = inject('axios');
+
 const { showLoading } = useLoading();
 const { showAlert } = useAlert();
+
+const authStore = useAuthStore();
 
 const state = ref({
   subject: '',
   fullname: '',
+  nim: '',
   email: '',
   message: '',
   attachment: null,
@@ -107,6 +112,7 @@ const state = ref({
 const errors = ref({
   subject: '',
   fullname: '',
+  nim: '',
   email: '',
   message: '',
   attachment: '',
@@ -114,8 +120,20 @@ const errors = ref({
 
 const categoryOptions = ref([
   {
-    label: 'A',
-    value: 'a',
+    label: 'Bantuan',
+    value: 'Bantuan',
+  },
+  {
+    label: 'Informasi',
+    value: 'Informasi',
+  },
+  {
+    label: 'Kritik & Saran / Masukkan',
+    value: 'Kritik & Saran / Masukkan',
+  },
+  {
+    label: 'Lainnya',
+    value: 'Lainnya',
   },
 ]);
 
@@ -160,6 +178,18 @@ const onSubmit = async () => {
       loading.value = false;
     });
 };
+
+// User profile
+watch(
+  () => authStore.isAuth,
+  (val) => {
+    if (val === true) {
+      state.value.fullname = authStore.userProfile.name;
+      state.value.nim = authStore.userProfile.uname;
+      state.value.email = authStore.userProfile.email;
+    }
+  }
+);
 
 /* GOOGLE RECAPTCHA v3 */
 const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
