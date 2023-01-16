@@ -35,6 +35,18 @@
           {{ props.row.description }}
         </td>
       </template>
+      <template v-slot:body-cell-response="props">
+        <td>
+          <router-link
+            class="underline text-blue-800"
+            :to="{
+              name: 'Form Response Page',
+              params: { id: props.row.id },
+            }"
+            >{{ props.row.total_responses }} responden</router-link
+          >
+        </td>
+      </template>
       <template v-slot:body-cell-action="props">
         <td>
           <div class="flex">
@@ -164,6 +176,11 @@ const columns = [
   {
     label: 'Description',
     name: 'description',
+    align: 'left',
+  },
+  {
+    label: 'Responden',
+    name: 'response',
     align: 'left',
   },
   {

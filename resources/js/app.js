@@ -42,7 +42,7 @@ app.use(VueReCaptcha, {
   siteKey: '6LcpB1ojAAAAACg0Yo_1LKmmcDW2BQLQ965BjgKi',
   loaderOptions: {
     useRecaptchaNet: true,
-    autoHideBadge: false
+    autoHideBadge: true
   }
 })
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\API\Admin\AlumniController;
 use App\Http\Controllers\API\Admin\BatchController;
 use App\Http\Controllers\API\Admin\FormController;
+use App\Http\Controllers\API\Admin\FormResponseController;
 use App\Http\Controllers\API\Admin\MajorController;
 use App\Http\Controllers\API\Admin\ProvinceController;
 use App\Http\Controllers\API\Admin\RegencyController;
@@ -128,6 +129,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'for-admin']
         $routes->put('{id}', [FormController::class, 'update']);
         $routes->put('{id}/detail', [FormController::class, 'updateDetail']);
         $routes->delete('{id}', [FormController::class, 'delete']);
+    });
+
+    $routes->group(['prefix' => 'form-response'], function ($routes) {
+        $routes->get('', [FormResponseController::class, 'list']);
     });
 });
 

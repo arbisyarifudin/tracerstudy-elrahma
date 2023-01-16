@@ -4,8 +4,9 @@
  * @author Arbi Syarifudin <arbisyarifudin@gmail.com>
  */
 
-namespace App\Repositories\Admin\Form;
+namespace App\Repositories\Admin\FormResponse;
 
+use App\Models\Form;
 use App\Repositories\PagingData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 /**
- * List Form Data.
+ * List Form Response Data.
  */
 class ListHandling extends PagingData
 {
@@ -25,7 +26,12 @@ class ListHandling extends PagingData
   public function validate()
   {
     $request = $this->getRequest();
-    $rules = [];
+    $rules = [
+      'form_id' => [
+        'nullable',
+        Rule::exists(Form::class, 'id')
+      ]
+    ];
 
     $messages = [];
 
@@ -37,26 +43,28 @@ class ListHandling extends PagingData
   {
     $this->validate();
     $validated = $this->getValidated();
-    $searchableColumns = ['name', /* 'tag', */ 'description'];
-    $orderableColumns = ['name', /* 'tag', */ 'description', 'created_at'];
+    $searchableColumns = ['name'];
+    $orderableColumns = ['name', 'created_at'];
 
     $this->setSearchableColumns($searchableColumns);
     $this->setOrderableColumns($orderableColumns);
 
     $selectedColumns = [
-      'id',
-      'name',
-      /* 'tag', */
-      'slug',
-      'is_active',
-      'description',
-      'created_at',
-      'updated_at',
-      DB::raw("(SELECT COUNT(*) FROM form_responses WHERE form_id = forms.id) as total_responses")
+      'form_responses.id',
+      'fullname',
+      'nim',
+      'form_responses.created_at',
+      'form_responses.updated_at',
     ];
 
-    $query = DB::table('forms')->select($selectedColumns)
+    $query = DB::table('form_responses')
+      ->select($selectedColumns)
+      ->join('alumnis', 'alumnis.id', '=', 'form_responses.alumni_id')
       ->whereNull('deleted_at');
+
+    if (isset($validated['form_id']) && !empty($validated['form_id'])) {
+      $query->where('form_id', $validated['form_id']);
+    }
 
     $this->paginateData($query);
 

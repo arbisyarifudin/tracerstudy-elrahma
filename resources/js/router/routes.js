@@ -152,6 +152,14 @@ const routes = [
         component: () => import('@/pages/admin/form/EditQuestion.vue')
       },
       {
+        path: 'form/:id/response',
+        name: 'Form Response Page',
+        meta: {
+          title: 'Formulir - Daftar Responden'
+        },
+        component: () => import('@/pages/admin/form/ResponseList.vue')
+      },
+      {
         path: 'user',
         name: 'User List Page',
         meta: {
