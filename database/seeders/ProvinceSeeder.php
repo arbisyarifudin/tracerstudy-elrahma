@@ -15,10 +15,12 @@ class ProvinceSeeder extends Seeder
    */
   public function run()
   {
-    $path = storage_path('app/json/provinsi_pddikti.json');
+    // $path = storage_path('app/json/provinsi_pddikti.json');
+    $path = public_path('json/provinsi_pddikti.json');
     $provinsi_dikti = json_decode(file_get_contents($path), true);
     $provinsi_dikti = $provinsi_dikti[2]['data'];
     // dd($provinsi_dikti);
+    
     $i = 0;
     foreach ($provinsi_dikti as $provinsi) {
       Province::firstOrCreate([

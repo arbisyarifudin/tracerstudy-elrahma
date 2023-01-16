@@ -16,7 +16,8 @@ class RegencySeeder extends Seeder
      */
     public function run()
     {
-        $path = storage_path('app/json/kabkota_pddikti.json');
+        // $path = storage_path('app/json/kabkota_pddikti.json');
+        $path = public_path('json/kabkota_pddikti.json');
         $kabkota_dikti = json_decode(file_get_contents($path), true);
         $kabkota_dikti = $kabkota_dikti[2]['data'];
         // dd($kabkota_dikti);

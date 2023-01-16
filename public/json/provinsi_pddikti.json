@@ -1,0 +1,158 @@
+[
+    {
+        "type": "header",
+        "version": "5.2.0",
+        "comment": "Export to JSON plugin for PHPMyAdmin"
+    },
+    {
+        "type": "database",
+        "name": "kp_tracestudy_old"
+    },
+    {
+        "type": "table",
+        "name": "provinsi_pddikti",
+        "database": "kp_tracestudy_old",
+        "data": [
+            {
+                "id_wil": "10000",
+                "nm_wil": "Prov. D.K.I. Jakarta"
+            },
+            {
+                "id_wil": "20000",
+                "nm_wil": "Prov. Jawa Barat"
+            },
+            {
+                "id_wil": "30000",
+                "nm_wil": "Prov. Jawa Tengah"
+            },
+            {
+                "id_wil": "40000",
+                "nm_wil": "Prov. D.I. Yogyakarta"
+            },
+            {
+                "id_wil": "50000",
+                "nm_wil": "Prov. Jawa Timur"
+            },
+            {
+                "id_wil": "60000",
+                "nm_wil": "Prov. Aceh"
+            },
+            {
+                "id_wil": "70000",
+                "nm_wil": "Prov. Sumatera Utara"
+            },
+            {
+                "id_wil": "80000",
+                "nm_wil": "Prov. Sumatera Barat"
+            },
+            {
+                "id_wil": "90000",
+                "nm_wil": "Prov. Riau"
+            },
+            {
+                "id_wil": "100000",
+                "nm_wil": "Prov. Jambi"
+            },
+            {
+                "id_wil": "110000",
+                "nm_wil": "Prov. Sumatera Selatan"
+            },
+            {
+                "id_wil": "120000",
+                "nm_wil": "Prov. Lampung"
+            },
+            {
+                "id_wil": "130000",
+                "nm_wil": "Prov. Kalimantan Barat"
+            },
+            {
+                "id_wil": "140000",
+                "nm_wil": "Prov. Kalimantan Tengah"
+            },
+            {
+                "id_wil": "150000",
+                "nm_wil": "Prov. Kalimantan Selatan"
+            },
+            {
+                "id_wil": "160000",
+                "nm_wil": "Prov. Kalimantan Timur"
+            },
+            {
+                "id_wil": "170000",
+                "nm_wil": "Prov. Sulawesi Utara"
+            },
+            {
+                "id_wil": "180000",
+                "nm_wil": "Prov. Sulawesi Tengah"
+            },
+            {
+                "id_wil": "190000",
+                "nm_wil": "Prov. Sulawesi Selatan"
+            },
+            {
+                "id_wil": "200000",
+                "nm_wil": "Prov. Sulawesi Tenggara"
+            },
+            {
+                "id_wil": "210000",
+                "nm_wil": "Prov. Maluku"
+            },
+            {
+                "id_wil": "220000",
+                "nm_wil": "Prov. Bali"
+            },
+            {
+                "id_wil": "230000",
+                "nm_wil": "Prov. Nusa Tenggara Barat"
+            },
+            {
+                "id_wil": "240000",
+                "nm_wil": "Prov. Nusa Tenggara Timur"
+            },
+            {
+                "id_wil": "250000",
+                "nm_wil": "Prov. Papua"
+            },
+            {
+                "id_wil": "260000",
+                "nm_wil": "Prov. Bengkulu"
+            },
+            {
+                "id_wil": "270000",
+                "nm_wil": "Prov. Maluku Utara"
+            },
+            {
+                "id_wil": "280000",
+                "nm_wil": "Prov. Banten"
+            },
+            {
+                "id_wil": "290000",
+                "nm_wil": "Prov. Bangka Belitung"
+            },
+            {
+                "id_wil": "300000",
+                "nm_wil": "Prov. Gorontalo"
+            },
+            {
+                "id_wil": "310000",
+                "nm_wil": "Prov. Kepulauan Riau"
+            },
+            {
+                "id_wil": "320000",
+                "nm_wil": "Prov. Papua Barat"
+            },
+            {
+                "id_wil": "330000",
+                "nm_wil": "Prov. Sulawesi Barat"
+            },
+            {
+                "id_wil": "340000",
+                "nm_wil": "Prov. Kalimantan Utara"
+            },
+            {
+                "id_wil": "999999",
+                "nm_wil": "Luar Negeri"
+            }
+        ]
+    }
+]

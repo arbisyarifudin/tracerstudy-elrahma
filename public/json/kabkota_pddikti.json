@@ -1,0 +1,2618 @@
+[
+    {
+        "type": "header",
+        "version": "5.2.0",
+        "comment": "Export to JSON plugin for PHPMyAdmin"
+    },
+    {
+        "type": "database",
+        "name": "kp_tracestudy_old"
+    },
+    {
+        "type": "table",
+        "name": "kabkota_pddikti",
+        "database": "kp_tracestudy_old",
+        "data": [
+            {
+                "id_wil": "10100",
+                "nm_wil": "Kab. Kepulauan Seribu",
+                "id_induk_wilayah": "10000"
+            },
+            {
+                "id_wil": "16000",
+                "nm_wil": "Kota Jakarta Pusat",
+                "id_induk_wilayah": "10000"
+            },
+            {
+                "id_wil": "16100",
+                "nm_wil": "Kota Jakarta Utara",
+                "id_induk_wilayah": "10000"
+            },
+            {
+                "id_wil": "16200",
+                "nm_wil": "Kota Jakarta Barat",
+                "id_induk_wilayah": "10000"
+            },
+            {
+                "id_wil": "16300",
+                "nm_wil": "Kota Jakarta Selatan",
+                "id_induk_wilayah": "10000"
+            },
+            {
+                "id_wil": "16400",
+                "nm_wil": "Kota Jakarta Timur",
+                "id_induk_wilayah": "10000"
+            },
+            {
+                "id_wil": "20500",
+                "nm_wil": "Kab. Bogor",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "20600",
+                "nm_wil": "Kab. Sukabumi",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "20700",
+                "nm_wil": "Kab. Cianjur",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "20800",
+                "nm_wil": "Kab. Bandung",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21000",
+                "nm_wil": "Kab. Sumedang",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21100",
+                "nm_wil": "Kab. Garut",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21200",
+                "nm_wil": "Kab. Tasikmalaya",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21400",
+                "nm_wil": "Kab. Ciamis",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21500",
+                "nm_wil": "Kab. Kuningan",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21600",
+                "nm_wil": "Kab. Majalengka",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21700",
+                "nm_wil": "Kab. Cirebon",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21800",
+                "nm_wil": "Kab. Indramayu",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "21900",
+                "nm_wil": "Kab. Subang",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "22000",
+                "nm_wil": "Kab. Purwakarta",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "22100",
+                "nm_wil": "Kab. Karawang",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "22200",
+                "nm_wil": "Kab. Bekasi",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "22300",
+                "nm_wil": "Kab. Bandung Barat",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "22500",
+                "nm_wil": "Kab. Pangandaran",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26000",
+                "nm_wil": "Kota Bandung",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26100",
+                "nm_wil": "Kota Bogor",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26200",
+                "nm_wil": "Kota Sukabumi",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26300",
+                "nm_wil": "Kota Cirebon",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26500",
+                "nm_wil": "Kota Bekasi",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26600",
+                "nm_wil": "Kota Depok",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26700",
+                "nm_wil": "Kota Cimahi",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26800",
+                "nm_wil": "Kota Tasikmalaya",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "26900",
+                "nm_wil": "Kota Banjar",
+                "id_induk_wilayah": "20000"
+            },
+            {
+                "id_wil": "30100",
+                "nm_wil": "Kab. Cilacap",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "30200",
+                "nm_wil": "Kab. Banyumas",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "30300",
+                "nm_wil": "Kab. Purbalingga",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "30400",
+                "nm_wil": "Kab. Banjarnegara",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "30500",
+                "nm_wil": "Kab. Kebumen",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "30600",
+                "nm_wil": "Kab. Purworejo",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "30700",
+                "nm_wil": "Kab. Wonosobo",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "30800",
+                "nm_wil": "Kab. Magelang",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "30900",
+                "nm_wil": "Kab. Boyolali",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31000",
+                "nm_wil": "Kab. Klaten",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31100",
+                "nm_wil": "Kab. Sukoharjo",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31200",
+                "nm_wil": "Kab. Wonogiri",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31300",
+                "nm_wil": "Kab. Karanganyar",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31400",
+                "nm_wil": "Kab. Sragen",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31500",
+                "nm_wil": "Kab. Grobogan",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31600",
+                "nm_wil": "Kab. Blora",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31700",
+                "nm_wil": "Kab. Rembang",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31800",
+                "nm_wil": "Kab. Pati",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "31900",
+                "nm_wil": "Kab. Kudus",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32000",
+                "nm_wil": "Kab. Jepara",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32100",
+                "nm_wil": "Kab. Demak",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32200",
+                "nm_wil": "Kab. Semarang",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32300",
+                "nm_wil": "Kab. Temanggung",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32400",
+                "nm_wil": "Kab. Kendal",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32500",
+                "nm_wil": "Kab. Batang",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32600",
+                "nm_wil": "Kab. Pekalongan",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32700",
+                "nm_wil": "Kab. Pemalang",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32800",
+                "nm_wil": "Kab. Tegal",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "32900",
+                "nm_wil": "Kab. Brebes",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "36000",
+                "nm_wil": "Kota Magelang",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "36100",
+                "nm_wil": "Kota Surakarta",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "36200",
+                "nm_wil": "Kota Salatiga",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "36300",
+                "nm_wil": "Kota Semarang",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "36400",
+                "nm_wil": "Kota Pekalongan",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "36500",
+                "nm_wil": "Kota Tegal",
+                "id_induk_wilayah": "30000"
+            },
+            {
+                "id_wil": "40100",
+                "nm_wil": "Kab. Bantul",
+                "id_induk_wilayah": "40000"
+            },
+            {
+                "id_wil": "40200",
+                "nm_wil": "Kab. Sleman",
+                "id_induk_wilayah": "40000"
+            },
+            {
+                "id_wil": "40300",
+                "nm_wil": "Kab. Gunung Kidul",
+                "id_induk_wilayah": "40000"
+            },
+            {
+                "id_wil": "40400",
+                "nm_wil": "Kab. Kulon Progo",
+                "id_induk_wilayah": "40000"
+            },
+            {
+                "id_wil": "46000",
+                "nm_wil": "Kota Yogyakarta",
+                "id_induk_wilayah": "40000"
+            },
+            {
+                "id_wil": "50100",
+                "nm_wil": "Kab. Gresik",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "50200",
+                "nm_wil": "Kab. Sidoarjo",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "50300",
+                "nm_wil": "Kab. Mojokerto",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "50400",
+                "nm_wil": "Kab. Jombang",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "50500",
+                "nm_wil": "Kab. Bojonegoro",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "50600",
+                "nm_wil": "Kab. Tuban",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "50700",
+                "nm_wil": "Kab. Lamongan",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "50800",
+                "nm_wil": "Kab. Madiun",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "50900",
+                "nm_wil": "Kab. Ngawi",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51000",
+                "nm_wil": "Kab. Magetan",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51100",
+                "nm_wil": "Kab. Ponorogo",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51200",
+                "nm_wil": "Kab. Pacitan",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51300",
+                "nm_wil": "Kab. Kediri",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51400",
+                "nm_wil": "Kab. Nganjuk",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51500",
+                "nm_wil": "Kab. Blitar",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51600",
+                "nm_wil": "Kab. Tulungagung",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51700",
+                "nm_wil": "Kab. Trenggalek",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51800",
+                "nm_wil": "Kab. Malang",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "51900",
+                "nm_wil": "Kab. Pasuruan",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52000",
+                "nm_wil": "Kab. Probolinggo",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52100",
+                "nm_wil": "Kab. Lumajang",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52200",
+                "nm_wil": "Kab. Bondowoso",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52300",
+                "nm_wil": "Kab. Situbondo",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52400",
+                "nm_wil": "Kab. Jember",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52500",
+                "nm_wil": "Kab. Banyuwangi",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52600",
+                "nm_wil": "Kab. Pamekasan",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52700",
+                "nm_wil": "Kab. Sampang",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52800",
+                "nm_wil": "Kab. Sumenep",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "52900",
+                "nm_wil": "Kab. Bangkalan",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56000",
+                "nm_wil": "Kota Surabaya",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56100",
+                "nm_wil": "Kota Malang",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56200",
+                "nm_wil": "Kota Madiun",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56300",
+                "nm_wil": "Kota Kediri",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56400",
+                "nm_wil": "Kota Mojokerto",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56500",
+                "nm_wil": "Kota Blitar",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56600",
+                "nm_wil": "Kota Pasuruan",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56700",
+                "nm_wil": "Kota Probolinggo",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "56800",
+                "nm_wil": "Kota Batu",
+                "id_induk_wilayah": "50000"
+            },
+            {
+                "id_wil": "60100",
+                "nm_wil": "Kab. Aceh Besar",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "60200",
+                "nm_wil": "Kab. Pidie",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "60300",
+                "nm_wil": "Kab. Aceh Utara",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "60400",
+                "nm_wil": "Kab. Aceh Timur",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "60500",
+                "nm_wil": "Kab. Aceh Tengah",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "60600",
+                "nm_wil": "Kab. Aceh Barat",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "60700",
+                "nm_wil": "Kab. Aceh Selatan",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "60800",
+                "nm_wil": "Kab. Aceh Tenggara",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61100",
+                "nm_wil": "Kab. Simeulue",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61200",
+                "nm_wil": "Kab. Bireuen",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61300",
+                "nm_wil": "Kab. Aceh Singkil",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61400",
+                "nm_wil": "Kab. Aceh Tamiang",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61500",
+                "nm_wil": "Kab. Nagan Raya",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61600",
+                "nm_wil": "Kab. Aceh Jaya",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61700",
+                "nm_wil": "Kab. Aceh Barat Daya",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61800",
+                "nm_wil": "Kab. Gayo Lues",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "61900",
+                "nm_wil": "Kab. Bener Meriah",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "62000",
+                "nm_wil": "Kab. Pidie Jaya",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "66000",
+                "nm_wil": "Kota Sabang",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "66100",
+                "nm_wil": "Kota Banda Aceh",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "66200",
+                "nm_wil": "Kota Lhokseumawe",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "66300",
+                "nm_wil": "Kota Langsa",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "66400",
+                "nm_wil": "Kab. Sabussalam",
+                "id_induk_wilayah": "60000"
+            },
+            {
+                "id_wil": "70100",
+                "nm_wil": "Kab. Deli Serdang",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "70200",
+                "nm_wil": "Kab. Langkat",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "70300",
+                "nm_wil": "Kab. Karo",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "70400",
+                "nm_wil": "Kab. Simalungun",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "70500",
+                "nm_wil": "Kab. Dairi",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "70600",
+                "nm_wil": "Kab. Asahan",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "70700",
+                "nm_wil": "Kab. Labuhan Batu",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "70800",
+                "nm_wil": "Kab. Tapanuli Utara",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "70900",
+                "nm_wil": "Kab. Tapanuli Tengah",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "71000",
+                "nm_wil": "Kab. Tapanuli Selatan",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "71100",
+                "nm_wil": "Kab. Nias",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "71500",
+                "nm_wil": "Kab. Mandailing Natal",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "71600",
+                "nm_wil": "Kab. Toba Samosir",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "71700",
+                "nm_wil": "Kab. Nias Selatan",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "71800",
+                "nm_wil": "Kab. Pak pak Bharat",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "71900",
+                "nm_wil": "Kab. Humbang Hasudutan",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72000",
+                "nm_wil": "Kab. Samosir",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72100",
+                "nm_wil": "Kab. Serdang Bedagai",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72200",
+                "nm_wil": "Kab. Batubara",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72300",
+                "nm_wil": "Kab. Padang Lawas utara",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72400",
+                "nm_wil": "Kab. Padang Lawas",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72500",
+                "nm_wil": "Kab. Labuhan Batu Utara",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72600",
+                "nm_wil": "Kab. Labuhan Batu Selatan",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72700",
+                "nm_wil": "Kab. Nias Barat",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "72800",
+                "nm_wil": "Kab. Nias Utara",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "76000",
+                "nm_wil": "Kota Medan",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "76100",
+                "nm_wil": "Kota Binjai",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "76200",
+                "nm_wil": "Kota Tebing Tinggi",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "76300",
+                "nm_wil": "Kota Pematang Siantar",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "76400",
+                "nm_wil": "Kota Tanjung Balai",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "76500",
+                "nm_wil": "Kota Sibolga",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "76600",
+                "nm_wil": "Kota Padang Sidempuan",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "76700",
+                "nm_wil": "Kota Gunung Sitoli",
+                "id_induk_wilayah": "70000"
+            },
+            {
+                "id_wil": "80100",
+                "nm_wil": "Kab. Agam",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "80200",
+                "nm_wil": "Kab. Pasaman",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "80300",
+                "nm_wil": "Kab. Lima Puluh Koto",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "80400",
+                "nm_wil": "Kab. Solok",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "80500",
+                "nm_wil": "Kab. Padang Pariaman",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "80600",
+                "nm_wil": "Kab. Pesisir Selatan",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "80700",
+                "nm_wil": "Kab. Tanah Datar",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "80800",
+                "nm_wil": "Kab. Sawahlunto\/ Sijunjung",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "81000",
+                "nm_wil": "Kab. Kepulauan Mentawai",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "81100",
+                "nm_wil": "Kab. Solok Selatan",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "81200",
+                "nm_wil": "Kab. Dharmas Raya",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "81300",
+                "nm_wil": "Kab. Pasaman Barat",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "86000",
+                "nm_wil": "Kota Bukittinggi",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "86100",
+                "nm_wil": "Kota Padang",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "86200",
+                "nm_wil": "Kota Padang Panjang",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "86300",
+                "nm_wil": "Kota Sawah Lunto",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "86400",
+                "nm_wil": "Kota Solok",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "86500",
+                "nm_wil": "Kota Payakumbuh",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "86600",
+                "nm_wil": "Kota Pariaman",
+                "id_induk_wilayah": "80000"
+            },
+            {
+                "id_wil": "90100",
+                "nm_wil": "Kab. Kampar",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "90200",
+                "nm_wil": "Kab. Bengkalis",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "90400",
+                "nm_wil": "Kab. Indragiri Hulu",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "90500",
+                "nm_wil": "Kab. Indragiri Hilir",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "90800",
+                "nm_wil": "Kab. Pelalawan",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "90900",
+                "nm_wil": "Kab. Rokan Hilir",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "91000",
+                "nm_wil": "Kab. Siak",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "91100",
+                "nm_wil": "Kab. Kuantan Singingi",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "91400",
+                "nm_wil": "Kab. Rokan Hulu",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "91500",
+                "nm_wil": "Kab. Kepulauan Meranti",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "96000",
+                "nm_wil": "Kota Pekanbaru",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "96200",
+                "nm_wil": "Kota Dumai",
+                "id_induk_wilayah": "90000"
+            },
+            {
+                "id_wil": "100100",
+                "nm_wil": "Kab. Batang Hari",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "100200",
+                "nm_wil": "Kab. Bungo",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "100300",
+                "nm_wil": "Kab. Sarolangun",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "100400",
+                "nm_wil": "Kab. Tanjung Jabung Barat",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "100500",
+                "nm_wil": "Kab. Kerinci",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "100600",
+                "nm_wil": "Kab. Tebo",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "100700",
+                "nm_wil": "Kab. Muaro Jambi",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "100800",
+                "nm_wil": "Kab. Tanjung Jabung Timur",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "100900",
+                "nm_wil": "Kab. Merangin",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "106000",
+                "nm_wil": "Kota Jambi",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "106100",
+                "nm_wil": "Kab. Sungai Penuh",
+                "id_induk_wilayah": "100000"
+            },
+            {
+                "id_wil": "110100",
+                "nm_wil": "Kab. Musi Banyu Asin",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "110200",
+                "nm_wil": "Kab. Ogan Komering Ilir",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "110300",
+                "nm_wil": "Kab. Ogan Komering Ulu",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "110400",
+                "nm_wil": "Kab. Muara Enim",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "110500",
+                "nm_wil": "Kab. Lahat",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "110600",
+                "nm_wil": "Kab. Musi Rawas",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "110700",
+                "nm_wil": "Kab. Banyuasin",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "110800",
+                "nm_wil": "Kab. Ogan Komering Ulu Timur",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "110900",
+                "nm_wil": "Kab. Ogan Komering Ulu Selatan",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "111000",
+                "nm_wil": "Kab. Ogan Ilir",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "111100",
+                "nm_wil": "Kab. Empat Lawang",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "111200",
+                "nm_wil": "Kab. Penukal Abab Lematang Ilir",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "111300",
+                "nm_wil": "Kab. Musi Rawas Utara",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "116000",
+                "nm_wil": "Kota Palembang",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "116100",
+                "nm_wil": "Kota Prabumulih",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "116200",
+                "nm_wil": "Kota Lubuk Linggau",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "116300",
+                "nm_wil": "Kota Pagar Alam",
+                "id_induk_wilayah": "110000"
+            },
+            {
+                "id_wil": "120100",
+                "nm_wil": "Kab. Lampung Selatan",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "120200",
+                "nm_wil": "Kab. Lampung Tengah",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "120300",
+                "nm_wil": "Kab. Lampung Utara",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "120400",
+                "nm_wil": "Kab. Lampung Barat",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "120500",
+                "nm_wil": "Kab. Tulang Bawang",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "120600",
+                "nm_wil": "Kab. Tenggamus",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "120700",
+                "nm_wil": "Kab. Lampung Timur",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "120800",
+                "nm_wil": "Kab. Way Kanan",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "120900",
+                "nm_wil": "Kab. Pasawaran",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "121000",
+                "nm_wil": "Kab. Tulang Bawang Barat",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "121100",
+                "nm_wil": "Kab. Mesuji",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "121200",
+                "nm_wil": "Kab. Pringsewu",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "121300",
+                "nm_wil": "Kab. Pesisir Barat",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "126000",
+                "nm_wil": "Kota Bandar Lampung",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "126100",
+                "nm_wil": "Kota Metro",
+                "id_induk_wilayah": "120000"
+            },
+            {
+                "id_wil": "130100",
+                "nm_wil": "Kab. Sambas",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "130200",
+                "nm_wil": "Kab. Pontianak",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "130300",
+                "nm_wil": "Kab. Sanggau",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "130400",
+                "nm_wil": "Kab. Sintang",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "130500",
+                "nm_wil": "Kab. Kapuas Hulu",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "130600",
+                "nm_wil": "Kab. Ketapang",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "130800",
+                "nm_wil": "Kab. Bengkayang",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "130900",
+                "nm_wil": "Kab. Landak",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "131000",
+                "nm_wil": "Kab. Sekadau",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "131100",
+                "nm_wil": "Kab. Melawi",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "131200",
+                "nm_wil": "Kab. Kayong Utara",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "131300",
+                "nm_wil": "Kab. Kuburaya",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "136000",
+                "nm_wil": "Kota Pontianak",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "136100",
+                "nm_wil": "Kota Singkawang",
+                "id_induk_wilayah": "130000"
+            },
+            {
+                "id_wil": "140100",
+                "nm_wil": "Kab. Kapuas",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "140200",
+                "nm_wil": "Kab. Barito Selatan",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "140300",
+                "nm_wil": "Kab. Barito Utara",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "140400",
+                "nm_wil": "Kab. Kotawaringin Timur",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "140500",
+                "nm_wil": "Kab. Kotawaringin Barat",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "140600",
+                "nm_wil": "Kab. Katingan",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "140700",
+                "nm_wil": "Kab. Seruyan",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "140800",
+                "nm_wil": "Kab. Sukamara",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "140900",
+                "nm_wil": "Kab. Lamandau",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "141000",
+                "nm_wil": "Kab. Gunung Mas",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "141100",
+                "nm_wil": "Kab. Pulang Pisau",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "141200",
+                "nm_wil": "Kab. Murung Raya",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "141300",
+                "nm_wil": "Kab. Barito Timur",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "146000",
+                "nm_wil": "Kota Palangka Raya",
+                "id_induk_wilayah": "140000"
+            },
+            {
+                "id_wil": "150100",
+                "nm_wil": "Kab. Banjar",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "150200",
+                "nm_wil": "Kab. Tanah Laut",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "150300",
+                "nm_wil": "Kab. Barito Kuala",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "150400",
+                "nm_wil": "Kab. Tapin",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "150500",
+                "nm_wil": "Kab. Hulu Sungai Selatan",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "150600",
+                "nm_wil": "Kab. Hulu Sungai Tengah",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "150700",
+                "nm_wil": "Kab. Hulu Sungai Utara",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "150800",
+                "nm_wil": "Kab. Tabalong",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "150900",
+                "nm_wil": "Kab. Kota Baru",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "151000",
+                "nm_wil": "Kab. Balangan",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "151100",
+                "nm_wil": "Kab. Tanah Bumbu",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "156000",
+                "nm_wil": "Kota Banjarmasin",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "156100",
+                "nm_wil": "Kota Banjarbaru",
+                "id_induk_wilayah": "150000"
+            },
+            {
+                "id_wil": "160100",
+                "nm_wil": "Kab. Pasir",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "160200",
+                "nm_wil": "Kab. Kutai Kartanegara",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "160300",
+                "nm_wil": "Kab. Berau",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "160400",
+                "nm_wil": "Kab. Bulongan",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "160700",
+                "nm_wil": "Kab. Malinau",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "160800",
+                "nm_wil": "Kab. Nunukan",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "160900",
+                "nm_wil": "Kab. Kutai Barat",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "161000",
+                "nm_wil": "Kab. Kutai Timur",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "161100",
+                "nm_wil": "Kab. Penajam Paser Utara",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "161200",
+                "nm_wil": "Kab. Mahakam Ulu",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "165400",
+                "nm_wil": "Kab. Tanah Tidung",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "166000",
+                "nm_wil": "Kota Samarinda",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "166100",
+                "nm_wil": "Kota Balikpapan",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "166200",
+                "nm_wil": "Kota Tarakan",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "166300",
+                "nm_wil": "Kota Bontang",
+                "id_induk_wilayah": "160000"
+            },
+            {
+                "id_wil": "170100",
+                "nm_wil": "Kab. Bolaang Mongondaw",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "170200",
+                "nm_wil": "Kab. Minahasa",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "170300",
+                "nm_wil": "Kab. Kep. Sangihe",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "170400",
+                "nm_wil": "Kab. Kepulauan Talaud",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "170500",
+                "nm_wil": "Kab. Minahasa Selatan",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "170600",
+                "nm_wil": "Kab. Minahasa Utara",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "170800",
+                "nm_wil": "Kab. Bolaang Mongondow Utara",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "170900",
+                "nm_wil": "Kab. Kepulauan Sitaro",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "171000",
+                "nm_wil": "Kab. Minahasa Tenggara",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "171100",
+                "nm_wil": "Kab. Bolaang Mongondaw Timur",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "171200",
+                "nm_wil": "Kab. Bolaang Mongondaw Selatan",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "176000",
+                "nm_wil": "Kota Manado",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "176100",
+                "nm_wil": "Kota Bitung",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "176200",
+                "nm_wil": "Kota Tomohon",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "176300",
+                "nm_wil": "Kota. Kotamobagu",
+                "id_induk_wilayah": "170000"
+            },
+            {
+                "id_wil": "180100",
+                "nm_wil": "Kab. Banggai Kepulauan",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "180200",
+                "nm_wil": "Kab. Donggala",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "180300",
+                "nm_wil": "Kab. Parigi Mautong",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "180400",
+                "nm_wil": "Kab. Banggai",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "180500",
+                "nm_wil": "Kab. Buol",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "180600",
+                "nm_wil": "Kab. Toli-Toli",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "180700",
+                "nm_wil": "Kab. Marowali",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "180800",
+                "nm_wil": "Kab. Poso",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "180900",
+                "nm_wil": "Kab. Tojo Una-Una",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "181000",
+                "nm_wil": "Kab. Sigi",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "181100",
+                "nm_wil": "Kab. Banggai Laut",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "181200",
+                "nm_wil": "Kab. Morowali Utara",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "186000",
+                "nm_wil": "Kota Palu",
+                "id_induk_wilayah": "180000"
+            },
+            {
+                "id_wil": "190100",
+                "nm_wil": "Kab. Maros",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "190200",
+                "nm_wil": "Kab. Pangkajene Kepulauan",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "190300",
+                "nm_wil": "Kab. Gowa",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "190400",
+                "nm_wil": "Kab. Takalar",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "190500",
+                "nm_wil": "Kab. Jeneponto",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "190600",
+                "nm_wil": "Kab. Barru",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "190700",
+                "nm_wil": "Kab. Bone",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "190800",
+                "nm_wil": "Kab. Wajo",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "190900",
+                "nm_wil": "Kab. Soppeng",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191000",
+                "nm_wil": "Kab. Bantaeng",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191100",
+                "nm_wil": "Kab. Bulukumba",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191200",
+                "nm_wil": "Kab. Sinjai",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191300",
+                "nm_wil": "Kab. Selayar",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191400",
+                "nm_wil": "Kab. Pinrang",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191500",
+                "nm_wil": "Kab. Sidenreng Rappang",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191600",
+                "nm_wil": "Kab. Enrekang",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191700",
+                "nm_wil": "Kab. Luwu",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "191800",
+                "nm_wil": "Kab. Tana Toraja",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "192400",
+                "nm_wil": "Kab. Luwu Utara",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "192600",
+                "nm_wil": "Kab. Luwu Timur",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "192700",
+                "nm_wil": "Kab. Toraja Utara",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "196000",
+                "nm_wil": "Kota Makassar",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "196100",
+                "nm_wil": "Kota Pare-Pare",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "196200",
+                "nm_wil": "Kota Palopo",
+                "id_induk_wilayah": "190000"
+            },
+            {
+                "id_wil": "200100",
+                "nm_wil": "Kab. Konawe",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "200200",
+                "nm_wil": "Kab. Muna",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "200300",
+                "nm_wil": "Kab. Buton",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "200400",
+                "nm_wil": "Kab. Kolaka",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "200500",
+                "nm_wil": "Kab. Konawe Selatan",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "200600",
+                "nm_wil": "Kab. Wakatobi",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "200700",
+                "nm_wil": "Kab. Bombana",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "200800",
+                "nm_wil": "Kab. Kolaka Utara",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "200900",
+                "nm_wil": "Kab. Konawe Utara",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "201000",
+                "nm_wil": "Kab. Buton Utara",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "201100",
+                "nm_wil": "Kab. Kolaka Timur",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "201200",
+                "nm_wil": "Kab. Konawe Kepulauan",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "201300",
+                "nm_wil": "Kab. Muna Barat",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "201400",
+                "nm_wil": "Kab. Buton Selatan",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "201600",
+                "nm_wil": "Kab. Buton Tengah",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "206000",
+                "nm_wil": "Kota Kendari",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "206100",
+                "nm_wil": "Kota Baubau",
+                "id_induk_wilayah": "200000"
+            },
+            {
+                "id_wil": "210100",
+                "nm_wil": "Kab. Maluku Tengah",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "210200",
+                "nm_wil": "Kab. Maluku Tenggara",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "210300",
+                "nm_wil": "Kab. Buru",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "210400",
+                "nm_wil": "Kab. Maluku Tenggara Barat",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "210500",
+                "nm_wil": "Kab. Seram Bagian Barat",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "210600",
+                "nm_wil": "Kab. Seram Bagian Timur",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "210700",
+                "nm_wil": "Kab. Kepulauan Aru",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "210800",
+                "nm_wil": "Kab. Maluku Barat Daya",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "210900",
+                "nm_wil": "Kab. Buru Selatan",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "216000",
+                "nm_wil": "Kota Ambon",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "216100",
+                "nm_wil": "Kota. Tual",
+                "id_induk_wilayah": "210000"
+            },
+            {
+                "id_wil": "220100",
+                "nm_wil": "Kab. Buleleng",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "220200",
+                "nm_wil": "Kab. Jembrana",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "220300",
+                "nm_wil": "Kab. Tabanan",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "220400",
+                "nm_wil": "Kab. Badung",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "220500",
+                "nm_wil": "Kab. Gianyar",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "220600",
+                "nm_wil": "Kab. Klungkung",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "220700",
+                "nm_wil": "Kab. Bangli",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "220800",
+                "nm_wil": "Kab. Karang Asem",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "226000",
+                "nm_wil": "Kota Denpasar",
+                "id_induk_wilayah": "220000"
+            },
+            {
+                "id_wil": "230100",
+                "nm_wil": "Kab. Lombok Barat",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "230200",
+                "nm_wil": "Kab. Lombok Tengah",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "230300",
+                "nm_wil": "Kab. Lombok Timur",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "230400",
+                "nm_wil": "Kab. Sumbawa",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "230500",
+                "nm_wil": "Kab. Dompu",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "230600",
+                "nm_wil": "Kab. Bima",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "230700",
+                "nm_wil": "Kab. Sumbawa Barat",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "230800",
+                "nm_wil": "Kab. Lombok Utara",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "236000",
+                "nm_wil": "Kota Mataram",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "236100",
+                "nm_wil": "Kota Bima",
+                "id_induk_wilayah": "230000"
+            },
+            {
+                "id_wil": "240100",
+                "nm_wil": "Kab. Kupang",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "240300",
+                "nm_wil": "Kab. Timor Tengah Selatan",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "240400",
+                "nm_wil": "Kab. Timor Tengah Utara",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "240500",
+                "nm_wil": "Kab. Belu",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "240600",
+                "nm_wil": "Kab. Alor",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "240700",
+                "nm_wil": "Kab. Flores Timur",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "240800",
+                "nm_wil": "Kab. Sikka",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "240900",
+                "nm_wil": "Kab. Ende",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241000",
+                "nm_wil": "Kab. Ngada",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241100",
+                "nm_wil": "Kab. Manggarai",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241200",
+                "nm_wil": "Kab. Sumba Timur",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241300",
+                "nm_wil": "Kab. Sumba Barat",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241400",
+                "nm_wil": "Kab. Lembata",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241500",
+                "nm_wil": "Kab. Rote-Ndao",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241600",
+                "nm_wil": "Kab. Manggarai Barat",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241700",
+                "nm_wil": "Kab. Nagakeo",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241800",
+                "nm_wil": "Kab. Sumba Tengah",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "241900",
+                "nm_wil": "Kab. Sumba Barat Daya",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "242000",
+                "nm_wil": "Kab. Manggarai Timur",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "242100",
+                "nm_wil": "Kab. Sabu Raijua",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "242200",
+                "nm_wil": "Kab. Malaka",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "246000",
+                "nm_wil": "Kota Kupang",
+                "id_induk_wilayah": "240000"
+            },
+            {
+                "id_wil": "250100",
+                "nm_wil": "Kab. Jayapura",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "250200",
+                "nm_wil": "Kab. Biak Numfor",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "250300",
+                "nm_wil": "Kab. Yapen Waropen",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "250700",
+                "nm_wil": "Kab. Merauke",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "250800",
+                "nm_wil": "Kab. Jayawijaya",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "250900",
+                "nm_wil": "Kab. Nabire",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251000",
+                "nm_wil": "Kab. Paniai",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251100",
+                "nm_wil": "Kab. Puncak Jaya",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251200",
+                "nm_wil": "Kab. Mimika",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251300",
+                "nm_wil": "Kab. Boven Digoel",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251400",
+                "nm_wil": "Kab. Mappi",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251500",
+                "nm_wil": "Kab. Asmat",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251600",
+                "nm_wil": "Kab. Yahukimo",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251700",
+                "nm_wil": "Kab. Pegunungan Bintang",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251800",
+                "nm_wil": "Kab. Tolikara",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "251900",
+                "nm_wil": "Kab. Sarmi",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "252000",
+                "nm_wil": "Kab. Keerom",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "252600",
+                "nm_wil": "Kab. Waropen",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "252700",
+                "nm_wil": "Kab. Supiori",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "252800",
+                "nm_wil": "Kab. Memberamo Raya",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "252900",
+                "nm_wil": "Kab. Nduga",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "253000",
+                "nm_wil": "Kab. Lanny Jaya",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "253100",
+                "nm_wil": "Kab. Membramo Tengah",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "253200",
+                "nm_wil": "Kab. Yalimo",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "253300",
+                "nm_wil": "kab. Puncak",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "253400",
+                "nm_wil": "Kab. Dogiyai",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "253500",
+                "nm_wil": "Kab. Deiyai",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "253600",
+                "nm_wil": "Kab. Intan Jaya",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "256000",
+                "nm_wil": "Kota Jayapura",
+                "id_induk_wilayah": "250000"
+            },
+            {
+                "id_wil": "260100",
+                "nm_wil": "Kab. Bengkulu Utara",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "260200",
+                "nm_wil": "Kab. Rejang Lebong",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "260300",
+                "nm_wil": "Kab. Bengkulu Selatan",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "260400",
+                "nm_wil": "Kab. Muko-muko",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "260500",
+                "nm_wil": "Kab. Kepahiang",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "260600",
+                "nm_wil": "Kab. Lebong",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "260700",
+                "nm_wil": "Kab. Kaur",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "260800",
+                "nm_wil": "Kab. Seluma",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "260900",
+                "nm_wil": "Kab. Bengkulu Tengah",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "266000",
+                "nm_wil": "Kota Bengkulu",
+                "id_induk_wilayah": "260000"
+            },
+            {
+                "id_wil": "270100",
+                "nm_wil": "Kab. Pulau Taliabu",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "270200",
+                "nm_wil": "Kab. Halmahera Tengah",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "270300",
+                "nm_wil": "Kab. Halmahera Barat",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "270400",
+                "nm_wil": "Kab. halmahera Utara",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "270500",
+                "nm_wil": "Kab. Halmahera Selatan",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "270600",
+                "nm_wil": "Kab. Halmahera Timur",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "270700",
+                "nm_wil": "Kab. Kepulauan Sula",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "270800",
+                "nm_wil": "Kab. Kepulauan Morotai",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "276000",
+                "nm_wil": "Kota Ternate",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "276100",
+                "nm_wil": "Kota Tidore Kepulauan",
+                "id_induk_wilayah": "270000"
+            },
+            {
+                "id_wil": "280100",
+                "nm_wil": "Kab. Pandeglang",
+                "id_induk_wilayah": "280000"
+            },
+            {
+                "id_wil": "280200",
+                "nm_wil": "Kab. Lebak",
+                "id_induk_wilayah": "280000"
+            },
+            {
+                "id_wil": "280300",
+                "nm_wil": "Kab. Tangerang",
+                "id_induk_wilayah": "280000"
+            },
+            {
+                "id_wil": "280400",
+                "nm_wil": "Kab. Serang",
+                "id_induk_wilayah": "280000"
+            },
+            {
+                "id_wil": "286000",
+                "nm_wil": "Kota Cilegon",
+                "id_induk_wilayah": "280000"
+            },
+            {
+                "id_wil": "286100",
+                "nm_wil": "Kota Tangerang",
+                "id_induk_wilayah": "280000"
+            },
+            {
+                "id_wil": "286200",
+                "nm_wil": "Kota Serang",
+                "id_induk_wilayah": "280000"
+            },
+            {
+                "id_wil": "286300",
+                "nm_wil": "Kota tangerang Selatan",
+                "id_induk_wilayah": "280000"
+            },
+            {
+                "id_wil": "290100",
+                "nm_wil": "Kab. Bangka",
+                "id_induk_wilayah": "290000"
+            },
+            {
+                "id_wil": "290200",
+                "nm_wil": "Kab. Belitung",
+                "id_induk_wilayah": "290000"
+            },
+            {
+                "id_wil": "290300",
+                "nm_wil": "Kab. Bangka Tengah",
+                "id_induk_wilayah": "290000"
+            },
+            {
+                "id_wil": "290400",
+                "nm_wil": "Kab. Bangka Barat",
+                "id_induk_wilayah": "290000"
+            },
+            {
+                "id_wil": "290500",
+                "nm_wil": "Kab. Bangka Selatan",
+                "id_induk_wilayah": "290000"
+            },
+            {
+                "id_wil": "290600",
+                "nm_wil": "Kab. Belitung Timur",
+                "id_induk_wilayah": "290000"
+            },
+            {
+                "id_wil": "296000",
+                "nm_wil": "Kota Pangkalpinang",
+                "id_induk_wilayah": "290000"
+            },
+            {
+                "id_wil": "300100",
+                "nm_wil": "Kab. Boalemo",
+                "id_induk_wilayah": "300000"
+            },
+            {
+                "id_wil": "300200",
+                "nm_wil": "Kab. Gorontalo",
+                "id_induk_wilayah": "300000"
+            },
+            {
+                "id_wil": "300300",
+                "nm_wil": "Kab. Pohuwato",
+                "id_induk_wilayah": "300000"
+            },
+            {
+                "id_wil": "300400",
+                "nm_wil": "Kab. Bone Bolango",
+                "id_induk_wilayah": "300000"
+            },
+            {
+                "id_wil": "300500",
+                "nm_wil": "Kab. Gorontalo Utara",
+                "id_induk_wilayah": "300000"
+            },
+            {
+                "id_wil": "306000",
+                "nm_wil": "Kota Gorontalo",
+                "id_induk_wilayah": "300000"
+            },
+            {
+                "id_wil": "310100",
+                "nm_wil": "Kab. Bintan",
+                "id_induk_wilayah": "310000"
+            },
+            {
+                "id_wil": "310200",
+                "nm_wil": "Kab. Karimun",
+                "id_induk_wilayah": "310000"
+            },
+            {
+                "id_wil": "310300",
+                "nm_wil": "Kab. Natuna",
+                "id_induk_wilayah": "310000"
+            },
+            {
+                "id_wil": "310400",
+                "nm_wil": "Kab. Lingga",
+                "id_induk_wilayah": "310000"
+            },
+            {
+                "id_wil": "310500",
+                "nm_wil": "Kab. Kepulauan Anambas",
+                "id_induk_wilayah": "310000"
+            },
+            {
+                "id_wil": "316000",
+                "nm_wil": "Kota Batam",
+                "id_induk_wilayah": "310000"
+            },
+            {
+                "id_wil": "316100",
+                "nm_wil": "Kota Tanjungpinang",
+                "id_induk_wilayah": "310000"
+            },
+            {
+                "id_wil": "320100",
+                "nm_wil": "Kab. Fak-Fak",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "320200",
+                "nm_wil": "Kab. Kaimana",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "320300",
+                "nm_wil": "Kab. Teluk Wondama",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "320400",
+                "nm_wil": "Kab. Teluk Bintuni",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "320500",
+                "nm_wil": "Kab. Manokwari",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "320600",
+                "nm_wil": "Kab. Sorong Selatan",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "320700",
+                "nm_wil": "Kab. Sorong",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "320800",
+                "nm_wil": "Kab. Raja Ampat",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "320900",
+                "nm_wil": "Kab. Tambrauw",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "321000",
+                "nm_wil": "Kab. Maybrat",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "321100",
+                "nm_wil": "Kab. Pegunungan Arfak",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "321200",
+                "nm_wil": "Kab. Manokwari Selatan",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "326000",
+                "nm_wil": "Kota Sorong",
+                "id_induk_wilayah": "320000"
+            },
+            {
+                "id_wil": "330100",
+                "nm_wil": "Kab. Mamuju",
+                "id_induk_wilayah": "330000"
+            },
+            {
+                "id_wil": "330200",
+                "nm_wil": "Kab. Mamuju Utara",
+                "id_induk_wilayah": "330000"
+            },
+            {
+                "id_wil": "330300",
+                "nm_wil": "Kab. Polewali Mamasa",
+                "id_induk_wilayah": "330000"
+            },
+            {
+                "id_wil": "330400",
+                "nm_wil": "Kab. Mamasa",
+                "id_induk_wilayah": "330000"
+            },
+            {
+                "id_wil": "330500",
+                "nm_wil": "Kab. Majene",
+                "id_induk_wilayah": "330000"
+            },
+            {
+                "id_wil": "330600",
+                "nm_wil": "Kab. Mamuju Tengah",
+                "id_induk_wilayah": "330000"
+            },
+            {
+                "id_wil": "340100",
+                "nm_wil": "Kab. Malinau",
+                "id_induk_wilayah": "340000"
+            },
+            {
+                "id_wil": "340200",
+                "nm_wil": "Kab. Bulungan",
+                "id_induk_wilayah": "340000"
+            },
+            {
+                "id_wil": "340300",
+                "nm_wil": "Kab. Tana Tidung",
+                "id_induk_wilayah": "340000"
+            },
+            {
+                "id_wil": "340500",
+                "nm_wil": "Kab. Nunukan",
+                "id_induk_wilayah": "340000"
+            },
+            {
+                "id_wil": "346000",
+                "nm_wil": "Kota Tarakan",
+                "id_induk_wilayah": "340000"
+            },
+            {
+                "id_wil": "999999",
+                "nm_wil": "Luar Negeri",
+                "id_induk_wilayah": "999999"
+            }
+        ]
+    }
+]
