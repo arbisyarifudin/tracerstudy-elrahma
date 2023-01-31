@@ -121,6 +121,13 @@ class SubmitHandling
       $formResponseExists = false;
       if ($formResponse) {
         $formResponseExists = true;
+
+        $form = Form::where('id', $validated['id'])->first();
+        $form->updated_at = now();
+        $form->save();
+
+        $formResponse->updated_at = now();
+        $formResponse->save();
       } else {
         $formResponse =  FormResponse::create([
           'form_id' => $validated['id'],
