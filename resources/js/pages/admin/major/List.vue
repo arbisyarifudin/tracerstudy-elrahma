@@ -150,7 +150,7 @@ const columns = [
     align: 'left',
   },
   {
-    label: 'Actions',
+    label: 'Aksi',
     name: 'action',
     align: 'center',
     width: 150,

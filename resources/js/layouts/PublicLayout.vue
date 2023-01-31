@@ -195,6 +195,7 @@
             name="unameOrEmail"
             placeholder="Masukan NIM atau Email"
             required
+            autocomplete="off"
             v-model="stateLogin.unameOrEmail"
             :errors="errorsLogin.unameOrEmail"
             @change="errorsLogin.unameOrEmail = null"
@@ -205,6 +206,7 @@
             type="password"
             placeholder="Masukkan kata sandi"
             required
+            autocomplete="new-password"
             v-model="stateLogin.password"
             :errors="errorsLogin.password"
             @change="errorsLogin.password = null"
@@ -295,12 +297,12 @@ const onSubmitLogin = async () => {
     recaptchaToken: stateLogin.value.recaptchaToken,
   })
     .then(async (res) => {
-      showAlert('Berhasil login!', { type: 'success' });
       if (res.type === 'Alumni') {
         await $router.push({ name: 'Member Dashboard Page' });
       } else {
         await $router.push({ name: 'Admin Dashboard Page' });
       }
+      showAlert('Berhasil login!', { type: 'success' });
       return res;
     })
     .catch((error) => {

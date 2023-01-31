@@ -7,7 +7,7 @@
     </p>
     <div class="my-3 h-[1px] w-full bg-slate-500" />
     <div class="pt-4">
-      <form class="" @submit.prevent="onSubmit" @keyup.enter="onSubmit">
+      <form class="" @submit.prevent="onSubmit">
         <Select
           label="Kategori"
           placeholder="- Pilih kategori -"
@@ -61,6 +61,7 @@
           v-model="state.message"
           :errors="errors.message"
           @change="errors.message = null"
+          @keyup.enter.stop="() => {}"
         ></Textarea>
         <div class="flex justify-end items-center gap-x-2 py-3">
           <Button

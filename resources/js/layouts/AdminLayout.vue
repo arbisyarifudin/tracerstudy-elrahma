@@ -11,6 +11,7 @@
 import Sidebar from '@/components/Sidebar.vue';
 import Main from '@/components/Main.vue';
 import { ref } from '@vue/reactivity';
+import { onMounted } from 'vue';
 
 const closed = ref(false);
 const onCloseSidebar = () => {
@@ -31,7 +32,7 @@ const menus = ref([
     title: 'Data Master',
     icon: 'database',
     activeName: 'Master',
-    expand: false,
+    expand: true,
     childs: [
       {
         title: 'Angkatan',
@@ -91,6 +92,20 @@ const menus = ref([
   //   expand: false,
   // },
 ]);
+
+const collapseChild = () => {
+  if (window.innerWidth < 768) {
+    for (let i = 0; i < menus.value.length; i++) {
+      menus.value[i].expand = false;
+    }
+  }
+};
+
+onMounted(() => {
+  // listen window resize
+  window.addEventListener('resize', collapseChild);
+  collapseChild();
+});
 </script>
 
 <style scoped>

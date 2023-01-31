@@ -35,12 +35,29 @@
       </template>
       <template v-slot:body-cell-nim="props">
         <td>
-          {{ props.row.nim }}
+          <span
+            class="
+              border border-sky-100
+              text-white
+              px-2
+              py-1
+              text-xs
+              rounded
+              font-semibold
+              cursor-pointer
+              hover:bg-white hover:text-blue-800
+            "
+            @click="openDialogDetail(props.row)"
+          >
+            {{ props.row.nim }}
+          </span>
         </td>
       </template>
       <template v-slot:body-cell-fullname="props">
         <td>
-          {{ props.row.fullname }}
+          <div class="text-white">
+            {{ props.row.fullname }}
+          </div>
         </td>
       </template>
       <template v-slot:body-cell-major_name="props">
@@ -103,12 +120,47 @@
               <tr>
                 <td width="150" class="font-semibold">No. Telp/HP</td>
                 <td width="50" class="text-center">:</td>
-                <td>{{ detailData.phone_number }}</td>
+                <td>
+                  <a
+                    class="
+                      text-blue-500 text-sm
+                      px-2
+                      py-1
+                      rounded
+                      border border-blue-400
+                      hover:bg-blue-600 hover:border-blue-600 hover:text-white
+                    "
+                    :href="`tel:${detailData.phone_number}`"
+                    v-if="detailData.phone_number"
+                    >{{ detailData.phone_number }}</a
+                  >
+                  <span v-else class="text-xs text-gray-500 p-1 rounded italic"
+                    >belum mencantumkan</span
+                  >
+                </td>
               </tr>
               <tr>
                 <td width="150" class="font-semibold">No. WA</td>
                 <td width="50" class="text-center">:</td>
-                <td>{{ detailData.wa_number }}</td>
+                <td>
+                  <a
+                    class="
+                      text-blue-500 text-sm
+                      px-2
+                      py-1
+                      rounded
+                      border border-blue-400
+                      hover:bg-blue-600 hover:border-blue-600 hover:text-white
+                    "
+                    target="_blank"
+                    :href="`https://wa.me/${detailData.wa_number}?text=Halo%20${detailData.fullname}. %0A%0ASaya%20ingin%20bertanya%20tentang%20kealumnian%20kamu. Saya dapat informasi nomor ini dari website Sistem Informasi Alumni STMIK Elrahma Yogyakarta. %0A%0ATerima%20kasih.`"
+                    v-if="detailData.wa_number"
+                    >{{ detailData.wa_number }}</a
+                  >
+                  <span v-else class="text-xs text-gray-500 p-1 rounded italic"
+                    >belum mencantumkan</span
+                  >
+                </td>
               </tr>
               <tr>
                 <td width="150" class="font-semibold">
@@ -155,7 +207,10 @@ import useLoading from '@/composables/loading';
 import useAlert from '@/composables/alert';
 
 import { inject, onMounted, ref, watch } from '@vue/runtime-core';
+import { useAuthStore } from '@/store/auth';
+
 const axios = inject('axios');
+const authStore = useAuthStore();
 
 const columns = [
   {
@@ -215,8 +270,15 @@ const { showLoading, isLoading } = useLoading();
 const getData = () => {
   if (isLoading.value == true) return;
   showLoading(true);
+
+  // set url to non public if user already logged in
+  let url = 'api/public/alumni';
+  if (authStore.isAuth) {
+    url = 'api/member/alumni';
+  }
+
   axios
-    .get('api/public/alumni', {
+    .get(url, {
       params: {
         search: filter.value.search,
         size: pagination.value.size,
@@ -244,6 +306,13 @@ const getData = () => {
 
 watch(
   () => pagination.value.page,
+  (newValue) => {
+    getData();
+  }
+);
+
+watch(
+  () => authStore.isAuth,
   (newValue) => {
     getData();
   }
@@ -321,8 +390,15 @@ const openDialogDetail = (rowData) => {
   };
   showDialogDetail.value = true;
   showLoading(true);
+
+  // set url to non public if user already logged in
+  let url = 'api/public/alumni/' + rowData.id;
+  if (authStore.isAuth) {
+    url = 'api/member/alumni/' + rowData.id;
+  }
+
   axios
-    .get('api/public/alumni/' + rowData.id)
+    .get(url)
     .then((response) => {
       // console.log('res', response.data);
       detailData.value = response.data?.data;

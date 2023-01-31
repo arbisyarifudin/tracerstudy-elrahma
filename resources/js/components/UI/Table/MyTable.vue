@@ -41,7 +41,7 @@
             :colspan="columns.length"
             class="text-center text-gray-500 text-sm py-5"
           >
-            No data.
+            Tidak ada data.
           </td>
         </tr>
       </tbody>

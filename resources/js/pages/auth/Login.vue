@@ -22,6 +22,7 @@
         :errors="errors.unameOrEmail"
         @change="errors.unameOrEmail = null"
         required
+        autocomplete="off"
       ></Input>
       <Input
         label="Kata Sandi:"
@@ -31,6 +32,7 @@
         :errors="errors.password"
         @change="errors.password = null"
         required
+        autocomplete="new-password"
       ></Input>
       <div class="flex mt-5">
         <Button

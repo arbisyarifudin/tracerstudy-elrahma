@@ -140,7 +140,7 @@
                     class="md:mr-3"
                   ></component>
                   <span
-                    class="font-normal md:inline-block"
+                    class="font-normal md:inline-block text-sm md:text-base"
                     v-text="submenu.title"
                   ></span
                 ></router-link>
@@ -174,11 +174,20 @@ const $props = defineProps({
 
 // const menus = ref([]);
 
-const collapseChild = () => {
+watch(
+  () => $props.closed,
+  (val) => {
+    if (val) {
+      collapseChild(true);
+    }
+  }
+);
+
+const collapseChild = (all = false) => {
   // console.log('window.innerWidth', window.innerWidth);
-  if (window.innerWidth < 768) {
-    for (let i = 0; i < $props.menus.value.length; i++) {
-      $props.menus.value[i].expand = false;
+  if (window.innerWidth < 768 || all) {
+    for (let i = 0; i < $props.menus.length; i++) {
+      $props.menus[i].expand = false;
     }
   }
 };

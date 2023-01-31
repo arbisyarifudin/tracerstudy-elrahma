@@ -223,9 +223,14 @@ const loading = ref(false);
 
 const onConfirmLogout = async () => {
   showLoading(true);
+  if (authStore?.userProfile?.type === 'Administrator') {
+    await $router.replace({ name: 'Login Page' });
+  } else {
+    await $router.replace({ name: 'Home Page' });
+  }
   await AuthService.logout();
   showAlert('Logout sukses!', { type: 'success' });
-  await $router.push({ name: 'Login Page' });
+
   showLoading(false);
 };
 </script>

@@ -17,6 +17,7 @@
         readonly ? 'cursor-not-allowed bg-gray-50' : '',
       ]"
       :type="type"
+      :autocomplete="autocomplete"
       :name="name"
       :placeholder="placeholder"
       :value="modelValue"
@@ -128,6 +129,10 @@ const $props = defineProps({
   errors: {
     type: [String, Object, Array],
     default: {},
+  },
+  autocomplete: {
+    type: String,
+    default: 'off',
   },
 });
 

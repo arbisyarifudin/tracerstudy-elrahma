@@ -1007,7 +1007,7 @@ const onSubmit = () => {
     .post('api/member/form/submit', submitData)
     .then((response) => {
       console.log('res', response.data);
-      showAlert('Data berhasil dikirimkan!', { type: 'success' });
+      showAlert('Terima kasih! Data berhasil dikirimkan.', { type: 'success' });
       // $router.push({ name: 'Form List Page' });
     })
     .catch((error) => {

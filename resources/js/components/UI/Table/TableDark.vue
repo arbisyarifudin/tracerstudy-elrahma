@@ -7,6 +7,8 @@
       shadow-xl
       p-5
       bg-slate-800
+      max-w-full
+      overflow-x-auto
     "
   >
     <slot name="header" />
@@ -50,7 +52,7 @@
             :colspan="columns.length"
             class="text-center text-slate-300 text-sm py-5"
           >
-            No data.
+            Tidak ada data.
           </td>
         </tr>
       </tbody>

@@ -11,6 +11,7 @@
 import Sidebar from '@/components/Sidebar.vue';
 import Main from '@/components/Main.vue';
 import { ref } from '@vue/reactivity';
+import { onMounted } from 'vue';
 
 const closed = ref(false);
 const onCloseSidebar = () => {
@@ -31,7 +32,7 @@ const menus = ref([
     title: 'Biodata',
     icon: 'user',
     activeName: 'Biodata',
-    expand: false,
+    expand: true,
     childs: [
       {
         title: 'Profil Alumni',
@@ -73,16 +74,6 @@ const menus = ref([
     expand: false,
   },
   {
-    title: 'Kontak',
-    icon: 'chat',
-    path: {
-      // name: 'Member Contact Page',
-      name: 'Public Contact Page',
-    },
-    activeName: 'Kontak',
-    expand: false,
-  },
-  {
     title: 'Informasi',
     icon: 'newspaper',
     path: {
@@ -92,7 +83,41 @@ const menus = ref([
     activeName: 'Informasi',
     expand: false,
   },
+  {
+    title: 'Alumni',
+    icon: 'users',
+    path: {
+      // name: 'Member Alumni Page',
+      name: 'Public Alumni Page',
+    },
+    activeName: 'Alumni',
+    expand: false,
+  },
+  {
+    title: 'Kontak',
+    icon: 'chat',
+    path: {
+      // name: 'Member Contact Page',
+      name: 'Public Contact Page',
+    },
+    activeName: 'Kontak',
+    expand: false,
+  },
 ]);
+
+const collapseChild = () => {
+  if (window.innerWidth < 768) {
+    for (let i = 0; i < menus.value.length; i++) {
+      menus.value[i].expand = false;
+    }
+  }
+};
+
+onMounted(() => {
+  // listen window resize
+  window.addEventListener('resize', collapseChild);
+  collapseChild();
+});
 </script>
 
 <style scoped>

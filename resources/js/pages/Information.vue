@@ -4,7 +4,7 @@
     <div class="my-3 h-[1px] w-full bg-slate-500" />
     <ul>
       <li
-        class="bg-white px-4 py-5 mb-4 rounded-lg"
+        class="bg-blue-100 border-4 border-blue-800 px-4 py-5 mb-4 rounded-lg"
         v-for="(row, index) in rows"
         :key="index"
       >
