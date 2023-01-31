@@ -26,15 +26,15 @@
       </template>
       <template v-slot:body-cell-created_at="props">
         <td>
-          {{ props.row.created_at }}
+          {{ formatDate(props.row.created_at, 'DD MMMM YYYY HH:mm:ss') }}
         </td>
       </template>
       <template v-slot:body-cell-updated_at="props">
         <td>
-          {{ formatDate(props.row.updated_at) }}
+          {{ formatDate(props.row.updated_at, 'DD MMMM YYYY HH:mm:ss') }}
         </td>
       </template>
-      <template v-slot:body-cell-action="">
+      <template v-slot:body-cell-action>
         <td>
           <div class="flex">
             <Button size="sm" label="Edit" class="mr-2" />

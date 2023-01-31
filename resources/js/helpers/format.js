@@ -1,11 +1,10 @@
 import moment from 'moment'
-import 'moment/locale/id'
+import 'moment/dist/locale/id'
+moment.locale('id')
 export default function useFormatHelper() {
-  const formatDate = (dateString) => {
-    console.log(moment.locale('id'))
-    const momenDate = moment(new Date(dateString)).format(
-      'DD MMMM YYYY HH:mm:ss'
-    )
+  const formatDate = (dateString, format = 'DD MMMM YYYY HH:mm:ss') => {
+    console.log(moment.locale())
+    const momenDate = moment(dateString).format(format)
     return momenDate
   }
 
