@@ -10,4 +10,16 @@ class FormResponse extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    /* RELATIONS */
+
+    public function form()
+    {
+        return $this->belongsTo(Form::class);
+    }
+
+    public function alumni()
+    {
+        return $this->belongsTo(Alumni::class);
+    }
 }

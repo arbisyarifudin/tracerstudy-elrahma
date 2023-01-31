@@ -40,7 +40,7 @@
           <router-link
             class="underline text-blue-800"
             :to="{
-              name: 'Form Response Page',
+              name: 'Form Response List Page',
               params: { id: props.row.id },
             }"
             >{{ props.row.total_responses }} responden</router-link

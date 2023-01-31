@@ -34,10 +34,23 @@
           {{ formatDate(props.row.updated_at, 'DD MMMM YYYY HH:mm:ss') }}
         </td>
       </template>
-      <template v-slot:body-cell-action>
+      <template v-slot:body-cell-action="props">
         <td>
           <div class="flex">
-            <Button size="sm" label="Edit" class="mr-2" />
+            <Button
+              size="sm"
+              label="Detail"
+              class="mr-2"
+              @click="
+                $router.push({
+                  name: 'Form Response Detail Page',
+                  params: {
+                    id: $route.params.id,
+                    responseId: props.row.id,
+                  },
+                })
+              "
+            />
           </div>
         </td>
       </template>

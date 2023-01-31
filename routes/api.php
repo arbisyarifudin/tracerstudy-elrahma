@@ -133,6 +133,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'for-admin']
 
     $routes->group(['prefix' => 'form-response'], function ($routes) {
         $routes->get('', [FormResponseController::class, 'list']);
+        $routes->get('{id}', [FormResponseController::class, 'show']);
     });
 });
 

@@ -14,6 +14,11 @@ class Form extends Model
     protected $hidden = ['deleted_at'];
 
     /* RELATIONS */
+    public function response()
+    {
+        return $this->hasOne(FormResponse::class);
+    }
+
     public function sections()
     {
         return $this->hasMany(FormSection::class)->orderBy('order', 'asc');
