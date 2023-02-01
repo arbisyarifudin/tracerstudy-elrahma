@@ -7,6 +7,16 @@
             Responden
             <span class="text-sm text-gray-500">/ {{ detailData.name }}</span>
           </h3>
+          <div class="flex items-center">
+            <Button size="sm" label="Export Data" icon="upload" class="ml-2" />
+            <Button
+              size="sm"
+              label="Pengaturan"
+              outline
+              icon="gear"
+              class="ml-2"
+            />
+          </div>
         </div>
       </template>
       <template v-slot:body-cell-no="props">
@@ -39,7 +49,8 @@
           <div class="flex">
             <Button
               size="sm"
-              label="Detail"
+              label="Lihat Detail"
+              icon="eye"
               class="mr-2"
               @click="
                 $router.push({

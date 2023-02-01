@@ -38,7 +38,13 @@
       <template v-slot:body-cell-response="props">
         <td>
           <router-link
-            class="underline text-blue-800"
+            class="
+              text-blue-500
+              border border-blue-500
+              p-1
+              rounded
+              hover:bg-blue-800 hover:border-blue-800 hover:text-white
+            "
             :to="{
               name: 'Form Response List Page',
               params: { id: props.row.id },
