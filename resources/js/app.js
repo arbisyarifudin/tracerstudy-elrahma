@@ -39,7 +39,7 @@ app.use(PhosphorVue)
 app.use(Toast, toastOptions)
 app.use(VueAxios, axiosInstance)
 app.use(VueReCaptcha, {
-  siteKey: '6LcpB1ojAAAAACg0Yo_1LKmmcDW2BQLQ965BjgKi',
+  siteKey: import.meta.env.VITE_RECAPTCHA_SITE_KEY,
   loaderOptions: {
     useRecaptchaNet: true,
     autoHideBadge: true
