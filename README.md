@@ -30,17 +30,24 @@ Aplikasi ini untuk menggunakan `RestFul` yang di kembangkan menggunakan bahasa p
         DB_PASSWORD=database_password
 
 - Eksekusi `composer install`
-- Eksekusi `php artisan jwt:secret`
+- Eksekusi `npm install`
+<!-- - Eksekusi `php artisan jwt:secret` -->
 - Eksekusi `php artisan migrate`
 - Eksekusi `php artisan db:seed`
 
 ## 3. Cara Menjalankan Projek
+
+Untuk menjalankan Laravel API, jalankan perintah
 
     php artisan serve
   
 atau bisa menggunakan 
 
     ./serve.sh 8000
+
+Untuk menjalankan VueJS frontend, jalankan perintah
+
+    npm run dev
   
 ## Struktur Projek
 
